@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Lineups</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap');
+
+  :root {
+    --green: #1a3a1a;
+    --green-mid: #2d5a2d;
+    --green-light: #4a8a4a;
+    --cream: #f5f0e8;
+    --dirt: #c8a870;
+    --chalk: #ffffff;
+    --accent: #e8c840;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--green);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.02) 79px, rgba(255,255,255,0.02) 80px);
+    font-family: 'Source Code Pro', monospace;
+    color: var(--chalk);
+    padding: 24px 16px 48px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--accent);
+    text-shadow: 0 2px 12px rgba(232,200,64,0.3);
+    margin-bottom: 32px;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.6);
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--green);
+  }
+
+  .tab-btn:hover:not(.active) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .section-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    padding-left: 4px;
+  }
+
+  .card {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  thead th {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 6px 10px;
+    border-bottom: 1px solid rgba(232,200,64,0.3);
+    text-align: center;
+    font-weight: 600;
+  }
+
+  thead th:first-child, thead th:nth-child(2) { text-align: left; }
+
+  tbody tr:nth-child(even) { background: rgba(255,255,255,0.04); }
+  tbody tr:hover { background: rgba(232,200,64,0.08); }
+
+  tbody td {
+    padding: 7px 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.88);
+  }
+
+  tbody td:first-child {
+    text-align: left;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.7rem;
+    width: 32px;
+  }
+
+  tbody td:nth-child(2) {
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    color: var(--chalk);
+    padding-right: 16px;
+  }
+
+  .sits { background: rgba(232,200,64,0.15) !important; color: var(--accent) !important; font-weight: 600; border-radius: 3px; padding: 2px 5px; }
+
+  .note-box {
+    display: inline-block;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    padding: 4px 12px;
+    margin: 4px 4px 0 0;
+  }
+
+  .notes-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 500px) { .info-grid { grid-template-columns: 1fr; } }
+
+  .info-block h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(232,200,64,0.25);
+    padding-bottom: 4px;
+  }
+
+  .info-block p, .info-block li {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
+    list-style: none;
+  }
+
+  .info-block li span.num {
+    display: inline-block;
+    width: 18px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .strike { text-decoration: line-through; opacity: 0.5; }
+  .arrow { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<h1>⚾ Game Lineups</h1>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('g1-lineup')">Game 1 · Lineup</button>
+  <button class="tab-btn" onclick="showTab('g1-notes')">Game 1 · Notes</button>
+  <button class="tab-btn" onclick="showTab('g2-lineup')">Game 2 · Lineup</button>
+  <button class="tab-btn" onclick="showTab('g2-notes')">Game 2 · Notes</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════ GAME 1 LINEUP ══ -->
+<div class="tab-panel active" id="g1-lineup">
+
+  <p class="section-label">Innings 1–6 · Goes 2 (sits 2 innings)</p>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Player</th>
+          <th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1*</td><td>OK / Owen</td><td>LF</td><td><span class="sits">SIT</span></td><td>CF</td><td>1B</td><td>1B</td><td>P</td></tr>
+        <tr><td>2*</td><td>Ben</td><td>SS</td><td>SS</td><td>P</td><td><span class="sits">SIT</span></td><td><span class="sits">SIT</span></td><td>CF</td></tr>
+        <tr><td>3*</td><td>Sam</td><td>P</td><td>P</td><td><span class="sits">SIT</span></td><td>SS</td><td>SS</td><td>SS</td></tr>
+        <tr><td>4</td><td>Gray</td><td>3B</td><td>3B</td><td>3B</td><td>RF</td><td>LF</td><td>LF</td></tr>
+        <tr><td>5</td><td>Max</td><td>2B</td><td>2B</td><td>SS</td><td>CF</td><td>CF</td><td>1B</td></tr>
+        <tr><td>6*</td><td>Alex</td><td>CF</td><td>CF</td><td>2B</td><td>2B</td><td>P</td><td><span class="sits">SIT</span></td></tr>
+        <tr><td>7</td><td>Chas</td><td>1B</td><td>1B</td><td>1B</td><td>C</td><td>C</td><td>C</td></tr>
+        <tr><td>8*</td><td>Joe</td><td>C</td><td>C</td><td>C</td><td><span class="sits">SIT</span></td><td>RF</td><td>RF</td></tr>
+        <tr><td>9</td><td>Coop</td><td>RF</td><td>LF</td><td>LF</td><td>3B</td><td>3B</td><td>3B</td></tr>
+        <tr><td>10*</td><td>Jack</td><td><span class="sits">SIT</span></td><td>RF</td><td>RF</td><td>LF</td><td>2B</td><td>2B</td></tr>
+      </tbody>
+    </table>
+    <div class="notes-row"><span class="note-box">GOES 2</span></div>
+  </div>
+
+  <p class="section-label">Innings 1–6 · Goes 3 or 4 (sits 3–4 innings)</p>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Player</th>
+          <th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1*</td><td>OK / Owen</td><td>LF</td><td><span class="sits">SIT</span></td><td>CF</td><td>1B</td><td>1B</td><td>P</td></tr>
+        <tr><td>2*</td><td>Ben</td><td>SS</td><td>SS</td><td>SS</td><td>P/RF</td><td>P</td><td><span class="sits">SIT</span></td></tr>
+        <tr><td>3*</td><td>Sam</td><td>P</td><td>P</td><td>P</td><td>RF/P</td><td><span class="sits">SIT</span></td><td>1B</td></tr>
+        <tr><td>4</td><td>Gray</td><td>3B</td><td>3B</td><td>3B</td><td>LF</td><td>LF</td><td>LF</td></tr>
+        <tr><td>5</td><td>Max</td><td>2B</td><td>2B</td><td>2B</td><td>CF</td><td>CF</td><td>CF</td></tr>
+        <tr><td>6*</td><td>Alex</td><td>CF</td><td>CF</td><td><span class="sits">SIT</span></td><td>SS</td><td>SS</td><td>SS</td></tr>
+        <tr><td>7</td><td>Chas</td><td>1B</td><td>1B</td><td>1B</td><td>C</td><td>C</td><td>C</td></tr>
+        <tr><td>8*</td><td>Joe</td><td>C</td><td>C</td><td>C</td><td><span class="sits">SIT</span></td><td>RF</td><td>RF</td></tr>
+        <tr><td>9</td><td>Coop</td><td>RF</td><td>LF</td><td>LF</td><td>3B</td><td>3B</td><td>3B</td></tr>
+        <tr><td>10*</td><td>Jack</td><td><span class="sits">SIT</span></td><td>RF</td><td>RF</td><td>2B</td><td>2B</td><td>2B</td></tr>
+      </tbody>
+    </table>
+    <div class="notes-row"><span class="note-box">GOES 3</span><span class="note-box">OR 4</span></div>
+  </div>
+
+  <p class="section-label">Innings 1–6 · Goes 5 (sits 1 inning)</p>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Player</th>
+          <th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1*</td><td>Owen</td><td>LF</td><td><span class="sits">SIT</span></td><td>CF</td><td>1B</td><td>1B</td><td>1B</td></tr>
+        <tr><td>2*</td><td>Ben</td><td>SS</td><td>SS</td><td>SS</td><td>CF</td><td><span class="sits">SIT</span></td><td>P</td></tr>
+        <tr><td>3*</td><td>Sam</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td><span class="sits">SIT</span></td></tr>
+        <tr><td>4</td><td>Gray</td><td>3B</td><td>3B</td><td>3B</td><td>RF</td><td>LF</td><td>LF</td></tr>
+        <tr><td>5</td><td>Max</td><td>2B</td><td>2B</td><td>2B</td><td>LF</td><td>CF</td><td>CF</td></tr>
+        <tr><td>6*</td><td>Alex</td><td>CF</td><td>CF</td><td><span class="sits">SIT</span></td><td>SS</td><td>SS</td><td>SS</td></tr>
+        <tr><td>7</td><td>Chas</td><td>1B</td><td>1B</td><td>1B</td><td>C</td><td>C</td><td>C</td></tr>
+        <tr><td>8*</td><td>Joe</td><td>C</td><td>C</td><td>C</td><td><span class="sits">SIT</span></td><td>RF</td><td>RF</td></tr>
+        <tr><td>9</td><td>Coop</td><td>RF</td><td>LF</td><td>LF</td><td>3B</td><td>3B</td><td>3B</td></tr>
+        <tr><td>10*</td><td>Jack</td><td><span class="sits">SIT</span></td><td>RF</td><td>RF</td><td>2B</td><td>2B</td><td>2B</td></tr>
+      </tbody>
+    </table>
+    <div class="notes-row"><span class="note-box">GOES 5</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ GAME 1 NOTES ══ -->
+<div class="tab-panel" id="g1-notes">
+  <div class="info-grid">
+    <div class="info-block card">
+      <h4>Pitchers · Game 1</h4>
+      <ul>
+        <li><span class="num">①</span> Sam</li>
+        <li><span class="num">②</span> <span class="strike">Charlie</span> Ben</li>
+        <li><span class="num">③</span> Alex</li>
+        <li><span class="num">④</span> Owen</li>
+        <li>&nbsp;&nbsp;&nbsp;Everett</li>
+      </ul>
+    </div>
+    <div class="info-block card">
+      <h4>Pitchers · Game 2</h4>
+      <ul>
+        <li><span class="num">①</span> Coop ←</li>
+        <li><span class="num">②</span> <span class="strike">Ben</span> Charlie</li>
+        <li><span class="num">③</span> Max</li>
+        <li><span class="num">④</span> Grayson</li>
+      </ul>
+    </div>
+    <div class="info-block card">
+      <h4>Catchers</h4>
+      <ul>
+        <li>Joe — G1, G2</li>
+        <li>Chas — G1</li>
+        <li>Everett <span class="arrow">→</span> G2</li>
+        <li>Jackson — as needed</li>
+      </ul>
+    </div>
+    <div class="info-block card">
+      <h4>Sit Rules</h4>
+      <ul>
+        <li>6 innings → 6 sits · 12 players</li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11 players</li>
+        <li>5 innings → 5+ sits · 10 players</li>
+        <li>Catchers / Pitchers sit</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ GAME 2 LINEUP ══ -->
+<div class="tab-panel" id="g2-lineup">
+
+  <p class="section-label">Goes 2 (sits 2 innings) — 6 innings</p>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Player</th>
+          <th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1□</td><td>EV (Everett)</td><td>C</td><td>C</td><td>C</td><td>2B</td><td>P</td><td><span class="sits">SIT</span></td></tr>
+        <tr><td>2</td><td>Jack</td><td>CF</td><td>CF</td><td>CF/SIT</td><td>SIT/C</td><td>3B/C</td><td>3B/C</td></tr>
+        <tr><td>3*</td><td>Coop</td><td>P</td><td>P</td><td><span class="sits">SIT</span></td><td><span class="sits">SIT</span></td><td>SS</td><td>SS</td></tr>
+        <tr><td>4</td><td>Joe</td><td>RF</td><td>RF</td><td>SIT/RF</td><td>C/SIT</td><td>C/1B</td><td>C/1B</td></tr>
+        <tr><td>5</td><td>Chas</td><td>3B</td><td><span class="sits">SIT</span></td><td>P</td><td>P</td><td>LF</td><td>LF</td></tr>
+        <tr><td>6</td><td>Alex</td><td>LF</td><td>LF</td><td>3B</td><td>3B</td><td><span class="sits">SIT</span></td><td>2B</td></tr>
+        <tr><td>7</td><td>Max</td><td><span class="sits">SIT</span></td><td>SS</td><td>SS</td><td>SS</td><td>CF</td><td>P</td></tr>
+        <tr><td>8</td><td>Gray</td><td><span class="sits">SIT</span></td><td>3B</td><td>RF/LF</td><td>RF</td><td>2B</td><td>1B/3B</td></tr>
+        <tr><td>9</td><td>Sam</td><td>2B</td><td>2B</td><td>2B</td><td>LF</td><td><span class="sits">SIT</span></td><td>CF</td></tr>
+        <tr><td>10</td><td>Ben</td><td>1B</td><td>1B</td><td>1B</td><td>CF</td><td>RF</td><td><span class="sits">SIT</span></td></tr>
+        <tr><td>11</td><td>OK</td><td>SS</td><td><span class="sits">SIT</span></td><td>LF/CF</td><td>1B</td><td>1B</td><td>RF</td></tr>
+      </tbody>
+    </table>
+    <div class="notes-row"><span class="note-box">GOES 2</span><span class="note-box">SEE FRONT</span></div>
+  </div>
+
+  <p class="section-label">Goes 3/4 (sits 3–4 innings) — 6 innings</p>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Player</th>
+          <th>Inn 1</th><th>Inn 2</th><th>Inn 3/4</th><th>Inn 4/5</th><th>Inn 5/6</th><th>Inn 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1□</td><td>EV</td><td>—</td><td>C</td><td>2B</td><td>SS</td><td><span class="sits">SIT</span></td><td>—</td></tr>
+        <tr><td>2</td><td>Jack</td><td>—</td><td>CF/SIT</td><td>SIT/C</td><td>3B/C</td><td>3B/C</td><td>—</td></tr>
+        <tr><td>3*</td><td>Coop</td><td>P</td><td>P</td><td>P</td><td><span class="sits">SIT</span></td><td><span class="sits">SIT</span></td><td>SS</td></tr>
+        <tr><td>4</td><td>Joe</td><td>—</td><td>SIT/RF</td><td>C/SIT</td><td>C/1B</td><td>C/1B</td><td>—</td></tr>
+        <tr><td>5</td><td>Chas</td><td>—</td><td><span class="sits">SIT</span></td><td>3B</td><td>P</td><td>P</td><td>LF</td></tr>
+        <tr><td>6</td><td>Alex</td><td>—</td><td><span class="sits">SIT</span></td><td>LF</td><td>2B</td><td>2B</td><td>—</td></tr>
+        <tr><td>7</td><td>Max</td><td><span class="sits">SIT</span></td><td>SS</td><td>SS</td><td>CF</td><td>P</td><td>—</td></tr>
+        <tr><td>8</td><td>Gray</td><td><span class="sits">SIT</span></td><td>RF/LF</td><td>RF</td><td>1B/3B</td><td>1B/3B</td><td>—</td></tr>
+        <tr><td>9</td><td>Sam</td><td>—</td><td>2B</td><td>3B</td><td><span class="sits">SIT</span></td><td>CF</td><td>—</td></tr>
+        <tr><td>10</td><td>Ben</td><td>—</td><td>1B</td><td>CF</td><td>RF</td><td><span class="sits">SIT</span></td><td>—</td></tr>
+        <tr><td>11</td><td>OK</td><td><span class="sits">SIT</span></td><td>LF/CF</td><td>1B</td><td>LF</td><td>RF</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="notes-row"><span class="note-box">GOES 3/4</span></div>
+  </div>
+
+  <p class="section-label">Goes 5 (sits 1 inning) — 6 innings</p>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Player</th>
+          <th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1□</td><td>EV</td><td>C</td><td>C</td><td>C</td><td>2B</td><td>SS</td><td><span class="sits">SIT</span></td></tr>
+        <tr><td>2</td><td>Jack</td><td>CF</td><td>CF</td><td>CF/SIT</td><td>SIT/C</td><td>3B/C</td><td>3B/C</td></tr>
+        <tr><td>3*</td><td>Coop</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td><span class="sits">SIT</span></td></tr>
+        <tr><td>4</td><td>Joe</td><td>RF</td><td>RF</td><td>SIT/RF</td><td>C/SIT</td><td>C/1B</td><td>C/1B</td></tr>
+        <tr><td>5</td><td>Chas</td><td>3B</td><td><span class="sits">SIT</span></td><td>3B</td><td>3B</td><td>RF</td><td>LF</td></tr>
+        <tr><td>6</td><td>Alex</td><td>LF</td><td>LF</td><td><span class="sits">SIT</span></td><td>LF</td><td>2B</td><td>2B</td></tr>
+        <tr><td>7*</td><td>Max</td><td><span class="sits">SIT</span></td><td>SS</td><td>SS</td><td>SS</td><td><span class="sits">SIT</span></td><td>P</td></tr>
+        <tr><td>8</td><td>Gray</td><td><span class="sits">SIT</span></td><td>3B</td><td>RF/LF</td><td>RF</td><td>1B/3B</td><td>1B/3B</td></tr>
+        <tr><td>9</td><td>Sam</td><td>SS</td><td>2B</td><td>2B</td><td><span class="sits">SIT</span></td><td>CF</td><td>CF</td></tr>
+        <tr><td>10</td><td>Ben</td><td>1B</td><td>1B</td><td>1B</td><td>CF</td><td><span class="sits">SIT</span></td><td>RF</td></tr>
+        <tr><td>11</td><td>OK</td><td>2B</td><td><span class="sits">SIT</span></td><td>LF/CF</td><td>1B</td><td>LF</td><td>SS</td></tr>
+      </tbody>
+    </table>
+    <div class="notes-row"><span class="note-box">GOES 5</span><span class="note-box">*Emery catching Inn 4, 5, 6</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ GAME 2 NOTES ══ -->
+<div class="tab-panel" id="g2-notes">
+  <div class="info-grid">
+    <div class="info-block card">
+      <h4>Pitchers · Game 2</h4>
+      <ul>
+        <li>Coop</li>
+        <li>Charlie</li>
+        <li>Max / Everett</li>
+      </ul>
+    </div>
+    <div class="info-block card">
+      <h4>Catchers · Game 2</h4>
+      <ul>
+        <li>Joe</li>
+        <li>Everett</li>
+        <li>Jackson</li>
+      </ul>
+    </div>
+    <div class="info-block card" style="grid-column: 1 / -1;">
+      <h4>Sit Rules</h4>
+      <ul>
+        <li>6 innings → 1 player sits 2×  ✱</li>
+        <li>5 innings → 1 player doesn't sit</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
