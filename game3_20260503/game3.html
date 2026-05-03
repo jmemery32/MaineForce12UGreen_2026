@@ -3,27 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maine Force 12U Green · 2026</title>
+<title>Maine Force 12U Green 2026</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap');
-:root{--green:#1a3a1a;--chalk:#ffffff;--accent:#e8c840;--blue:#90ccff;--purple:#cc99ff;}
+:root{--green:#1a3a1a;--chalk:#fff;--accent:#e8c840;--blue:#90ccff;--purple:#cc99ff;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--green);background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px);font-family:'Source Code Pro',monospace;color:var(--chalk);padding:20px 12px 60px;min-height:100vh;}
 h1{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--accent);margin-bottom:4px;}
-.subtitle{text-align:center;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:24px;text-transform:uppercase;}
+.sub{text-align:center;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:24px;text-transform:uppercase;}
 .tabs{display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
 .tab-btn{font-family:'Oswald',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:2px solid rgba(255,255,255,.18);color:rgba(255,255,255,.45);padding:6px 12px;border-radius:4px;cursor:pointer;transition:all .15s;}
 .tab-btn.active{background:var(--accent);border-color:var(--accent);color:var(--green);}
 .tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
 .tab-panel{display:none;}.tab-panel.active{display:block;}
-.date-hdr{font-family:'Oswald',sans-serif;font-size:.95rem;letter-spacing:.15em;color:rgba(255,255,255,.38);text-align:center;margin-bottom:12px;text-transform:uppercase;}
-.slbl{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;padding-left:2px;}
+.dh{font-family:'Oswald',sans-serif;font-size:.95rem;letter-spacing:.15em;color:rgba(255,255,255,.38);text-align:center;margin-bottom:12px;text-transform:uppercase;}
+.sl{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;padding-left:2px;}
 .card{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:12px;margin-bottom:16px;overflow-x:auto;}
-.legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:.66rem;font-family:'Oswald',sans-serif;letter-spacing:.07em;}
-.leg{border-radius:3px;padding:2px 6px;}
-.leg-p{background:rgba(100,180,255,.18);color:var(--blue);}
-.leg-c{background:rgba(180,100,255,.18);color:var(--purple);}
-.leg-s{background:rgba(232,200,64,.14);color:var(--accent);}
+.leg{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:.66rem;font-family:'Oswald',sans-serif;letter-spacing:.07em;}
+.lp{border-radius:3px;padding:2px 6px;background:rgba(100,180,255,.18);color:var(--blue);}
+.lc{border-radius:3px;padding:2px 6px;background:rgba(180,100,255,.18);color:var(--purple);}
+.ls{border-radius:3px;padding:2px 6px;background:rgba(232,200,64,.14);color:var(--accent);}
 table{width:100%;border-collapse:collapse;font-size:.7rem;white-space:nowrap;}
 thead th{font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:5px 7px;border-bottom:1px solid rgba(232,200,64,.2);text-align:center;font-weight:600;}
 thead th:nth-child(1),thead th:nth-child(2){text-align:left;}
@@ -37,426 +36,225 @@ tbody td:nth-child(2){text-align:left;font-family:'Oswald',sans-serif;font-size:
 .pst{background:rgba(100,180,255,.18)!important;color:var(--blue)!important;border-color:rgba(100,180,255,.3)!important;}
 .cst{background:rgba(180,100,255,.18)!important;color:var(--purple)!important;border-color:rgba(180,100,255,.3)!important;}
 .sst{background:rgba(232,200,64,.13)!important;color:var(--accent)!important;border-color:rgba(232,200,64,.28)!important;}
-.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);align-items:center;justify-content:center;}
-.overlay.open{display:flex;}
+.ov{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);align-items:center;justify-content:center;}
+.ov.open{display:flex;}
 .pbox{background:#1e3a1e;border:1px solid rgba(232,200,64,.4);border-radius:10px;padding:14px;min-width:240px;box-shadow:0 8px 40px rgba(0,0,0,.6);}
-.ptitle{font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;text-align:center;}
-.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.pt{font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;text-align:center;}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
 .pb{font-family:'Oswald',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.05em;padding:8px 4px;border-radius:4px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);color:var(--chalk);cursor:pointer;transition:all .1s;text-align:center;}
-.pb:hover{background:var(--accent);color:var(--green);border-color:var(--accent);}
-.pb.pp{background:rgba(100,180,255,.2);color:var(--blue);border-color:rgba(100,180,255,.3);}
-.pb.cp{background:rgba(180,100,255,.2);color:var(--purple);border-color:rgba(180,100,255,.3);}
-.pb.sp{background:rgba(232,200,64,.15);color:var(--accent);border-color:rgba(232,200,64,.28);}
-.pcancel{margin-top:8px;width:100%;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.1em;padding:7px;border-radius:4px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.38);cursor:pointer;}
-.pcancel:hover{color:var(--chalk);}
-.nrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.06);}
+.pb:hover,.pb:focus{background:var(--accent);color:var(--green);border-color:var(--accent);}
+.ppp{background:rgba(100,180,255,.2);color:var(--blue);border-color:rgba(100,180,255,.3);}
+.pcp{background:rgba(180,100,255,.2);color:var(--purple);border-color:rgba(180,100,255,.3);}
+.psp{background:rgba(232,200,64,.15);color:var(--accent);border-color:rgba(232,200,64,.28);}
+.pc2{margin-top:8px;width:100%;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.1em;padding:7px;border-radius:4px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.38);cursor:pointer;}
+.pc2:hover{color:var(--chalk);}
+.nr{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.06);}
 .nb{border:1px solid rgba(232,200,64,.45);border-radius:3px;font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.06em;color:var(--accent);padding:2px 8px;}
-.igrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-@media(max-width:460px){.igrid{grid-template-columns:1fr;}}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:460px){.ig{grid-template-columns:1fr;}}
 .ib h4{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;border-bottom:1px solid rgba(232,200,64,.18);padding-bottom:3px;}
 .ib li{font-size:.73rem;color:rgba(255,255,255,.75);line-height:1.9;list-style:none;}
 .ib li .n{display:inline-block;width:22px;color:var(--accent);font-weight:600;}
-.rnum{text-align:center!important;font-family:'Oswald',sans-serif;font-size:.95rem;color:var(--accent)!important;}
+.rn{text-align:center!important;font-family:'Oswald',sans-serif;font-size:.95rem;color:var(--accent)!important;}
+.ab{opacity:.35;text-decoration:line-through;}
 </style>
 </head>
 <body>
-<h1>⚾ Maine Force 12U Green</h1>
-<p class="subtitle">2026 Season · Tap any cell to edit position</p>
-
+<h1>&#9918; Maine Force 12U Green</h1>
+<p class="sub">2026 Season &#183; Tap any cell to edit position</p>
 <div class="tabs">
-  <button class="tab-btn active" onclick="showTab('roster',this)">Roster</button>
-  <button class="tab-btn" onclick="showTab('g1-426',this)">4/26 G1</button>
-  <button class="tab-btn" onclick="showTab('g2-426',this)">4/26 G2</button>
-  <button class="tab-btn" onclick="showTab('g1-502',this)">5/2 G1</button>
-  <button class="tab-btn" onclick="showTab('g1-502-notes',this)">5/2 G1 Notes</button>
-  <button class="tab-btn" onclick="showTab('g2-502',this)">5/2 G2</button>
-  <button class="tab-btn" onclick="showTab('g2-502-notes',this)">5/2 G2 Notes</button>
+  <button class="tab-btn active" data-tab="roster">Roster</button>
+  <button class="tab-btn" data-tab="g1-53">5/3 G1</button>
+  <button class="tab-btn" data-tab="g1-53-notes">5/3 G1 Notes</button>
+  <button class="tab-btn" data-tab="g2-53">5/3 G2</button>
+  <button class="tab-btn" data-tab="g2-53-notes">5/3 G2 Notes</button>
 </div>
-
-<div class="overlay" id="ov">
+<div class="ov" id="ov">
   <div class="pbox">
-    <div class="ptitle" id="ptitle">Select Position</div>
-    <div class="pgrid">
-      <button class="pb pp" onclick="pick('P')">P</button>
-      <button class="pb cp" onclick="pick('C')">C</button>
-      <button class="pb" onclick="pick('1B')">1B</button>
-      <button class="pb" onclick="pick('2B')">2B</button>
-      <button class="pb" onclick="pick('3B')">3B</button>
-      <button class="pb" onclick="pick('SS')">SS</button>
-      <button class="pb" onclick="pick('LF')">LF</button>
-      <button class="pb" onclick="pick('CF')">CF</button>
-      <button class="pb" onclick="pick('RF')">RF</button>
-      <button class="pb sp" onclick="pick('SIT')">SIT</button>
+    <div class="pt" id="ptitle">Select Position</div>
+    <div class="pg">
+      <button class="pb ppp" data-pos="P">P</button>
+      <button class="pb pcp" data-pos="C">C</button>
+      <button class="pb" data-pos="1B">1B</button>
+      <button class="pb" data-pos="2B">2B</button>
+      <button class="pb" data-pos="3B">3B</button>
+      <button class="pb" data-pos="SS">SS</button>
+      <button class="pb" data-pos="LF">LF</button>
+      <button class="pb" data-pos="CF">CF</button>
+      <button class="pb" data-pos="RF">RF</button>
+      <button class="pb psp" data-pos="SIT">SIT</button>
     </div>
-    <button class="pcancel" onclick="closeOv()">Cancel</button>
+    <button class="pc2" id="cancelBtn">Cancel</button>
   </div>
 </div>
-
-<!-- ROSTER -->
 <div class="tab-panel active" id="roster">
-  <p class="slbl">Maine Force 12U Green · 2026</p>
+  <p class="sl">Maine Force 12U Green &#183; 2026</p>
   <div class="card"><table>
     <thead><tr><th style="text-align:center;width:52px;">#</th><th>Player</th></tr></thead>
     <tbody>
-      <tr><td class="rnum">#1</td><td>Cooper Mullen</td></tr>
-      <tr><td class="rnum">#3</td><td>Alex Johnston</td></tr>
-      <tr><td class="rnum">#5</td><td>Max Jellie</td></tr>
-      <tr><td class="rnum">#7</td><td>Joe Dolby</td></tr>
-      <tr><td class="rnum">#8</td><td>Jamiks Petersons</td></tr>
-      <tr><td class="rnum">#9</td><td>Grayson Fairfield</td></tr>
-      <tr><td class="rnum">#11</td><td>Charlie Boston</td></tr>
-      <tr><td class="rnum">#12</td><td>Jackson Emery</td></tr>
-      <tr><td class="rnum">#13</td><td>Owen Kane</td></tr>
-      <tr><td class="rnum">#20</td><td>Griffin Strattard</td></tr>
-      <tr><td class="rnum">#28</td><td>Everett Marcaurelle</td></tr>
-      <tr><td class="rnum">#33</td><td>Ben Eastman</td></tr>
-      <tr><td class="rnum">#78</td><td>Sam McDuffie</td></tr>
+      <tr><td class="rn">#1</td><td>Cooper Mullen</td></tr>
+      <tr><td class="rn">#3</td><td>Alex Johnston</td></tr>
+      <tr><td class="rn">#5</td><td>Max Jellie</td></tr>
+      <tr><td class="rn">#7</td><td>Joe Dolby</td></tr>
+      <tr><td class="rn">#8</td><td>Jamiks Petersons</td></tr>
+      <tr><td class="rn">#9</td><td>Grayson Fairfield</td></tr>
+      <tr><td class="rn">#11</td><td>Charlie Boston</td></tr>
+      <tr><td class="rn">#12</td><td>Jackson Emery</td></tr>
+      <tr><td class="rn">#13</td><td>Owen Kane</td></tr>
+      <tr><td class="rn">#20</td><td>Griffin Strattard</td></tr>
+      <tr><td class="rn ab">#28</td><td class="ab">Everett Marcaurelle &#8212; absent</td></tr>
+      <tr><td class="rn">#33</td><td>Ben Eastman</td></tr>
+      <tr><td class="rn">#78</td><td>Sam McDuffie</td></tr>
     </tbody>
   </table></div>
 </div>
-
-<!-- 4/26 G1 -->
-<div class="tab-panel" id="g1-426">
-  <div class="date-hdr">April 26 · Game 1 · 10 Players</div>
-  <div class="legend"><span class="leg leg-p">P Pitch</span><span class="leg leg-c">C Catch</span><span class="leg leg-s">SIT Bench</span></div>
-  <p class="slbl">Sam goes 2 · Ben goes 2 · Alex goes 1 · Owen closes</p>
-  <div class="card" id="tbl-426g1-g2"></div>
-  <p class="slbl">Sam goes 3 · Ben goes 2 · Owen closes</p>
-  <div class="card" id="tbl-426g1-g3"></div>
-  <p class="slbl">Sam goes 4 · Ben goes 1 · Alex closes</p>
-  <div class="card" id="tbl-426g1-g4"></div>
-  <p class="slbl">Sam goes 5 · Ben closes</p>
-  <div class="card" id="tbl-426g1-g5"></div>
+<div class="tab-panel" id="g1-53">
+  <div class="dh">May 3 &#183; Game 1 &#183; 12 Players &#183; 3 Sit/Inning</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <p class="sl">Sam goes 2 &#183; Ben goes 2 &#183; Alex goes 2</p><div class="card" id="tbl-g1-g2"></div>
+  <p class="sl">Sam goes 3 &#183; Ben goes 2 &#183; Owen closes</p><div class="card" id="tbl-g1-g3"></div>
+  <p class="sl">Sam goes 4 &#183; Ben goes 1 &#183; Alex closes</p><div class="card" id="tbl-g1-g4"></div>
+  <p class="sl">Sam goes 5 &#183; Alex closes</p><div class="card" id="tbl-g1-g5"></div>
 </div>
-
-<!-- 4/26 G2 -->
-<div class="tab-panel" id="g2-426">
-  <div class="date-hdr">April 26 · Game 2 · 11 Players</div>
-  <div class="legend"><span class="leg leg-p">P Pitch</span><span class="leg leg-c">C Catch</span><span class="leg leg-s">SIT Bench</span></div>
-  <p class="slbl">Coop goes 2 · Charlie goes 2 · Max closes</p>
-  <div class="card" id="tbl-426g2-g2"></div>
-  <p class="slbl">Coop goes 3 · Charlie goes 2 · Gray closes</p>
-  <div class="card" id="tbl-426g2-g3"></div>
-  <p class="slbl">Coop goes 5 · Max closes</p>
-  <div class="card" id="tbl-426g2-g5"></div>
-</div>
-
-<!-- 5/2 G1 -->
-<div class="tab-panel" id="g1-502">
-  <div class="date-hdr">May 2 · Game 1 · 13 Players</div>
-  <div class="legend"><span class="leg leg-p">P Pitch</span><span class="leg leg-c">C Catch</span><span class="leg leg-s">SIT Bench</span></div>
-  <p class="slbl">Sam goes 2 · Ben goes 2 · Alex goes 2</p>
-  <div class="card" id="tbl-502g1-g2"></div>
-  <p class="slbl">Sam goes 3 · Ben goes 2 · Owen closes</p>
-  <div class="card" id="tbl-502g1-g3"></div>
-  <p class="slbl">Sam goes 4 · Ben goes 1 · Alex closes</p>
-  <div class="card" id="tbl-502g1-g4"></div>
-  <p class="slbl">Sam goes 5 · Alex closes</p>
-  <div class="card" id="tbl-502g1-g5"></div>
-</div>
-
-<!-- 5/2 G1 Notes -->
-<div class="tab-panel" id="g1-502-notes">
-  <div class="date-hdr">May 2 · Game 1 · Notes</div>
-  <div class="igrid">
+<div class="tab-panel" id="g1-53-notes">
+  <div class="dh">May 3 &#183; Game 1 &#183; Notes</div>
+  <div class="ig">
     <div class="ib card"><h4>Batting Order</h4><ul>
       <li><span class="n">1</span>Jamiks Petersons</li><li><span class="n">2</span>Griffin Strattard</li>
       <li><span class="n">3</span>Max Jellie</li><li><span class="n">4</span>Grayson Fairfield</li>
       <li><span class="n">5</span>Sam McDuffie</li><li><span class="n">6</span>Ben Eastman</li>
-      <li><span class="n">7</span>Owen Kane</li><li><span class="n">8</span>Everett Marcaurelle</li>
-      <li><span class="n">9</span>Jack Emery</li><li><span class="n">10</span>Cooper Mullen</li>
-      <li><span class="n">11</span>Joe Dolby</li><li><span class="n">12</span>Charlie Boston</li>
-      <li><span class="n">13</span>Alex Johnston</li>
+      <li><span class="n">7</span>Owen Kane</li><li><span class="n">8</span>Jack Emery</li>
+      <li><span class="n">9</span>Cooper Mullen</li><li><span class="n">10</span>Joe Dolby</li>
+      <li><span class="n">11</span>Charlie Boston</li><li><span class="n">12</span>Alex Johnston</li>
     </ul></div>
     <div class="ib card"><h4>Pitching Order</h4><ul>
-      <li><span class="n">①</span>Sam McDuffie</li><li><span class="n">②</span>Ben Eastman</li>
-      <li><span class="n">③</span>Alex Johnston</li><li><span class="n">④</span>Owen Kane</li>
-      <li><span class="n">⑤</span>Jamiks Petersons</li>
+      <li><span class="n">1</span>Sam McDuffie</li><li><span class="n">2</span>Ben Eastman</li>
+      <li><span class="n">3</span>Alex Johnston</li><li><span class="n">4</span>Owen Kane</li>
+      <li><span class="n">5</span>Jamiks Petersons</li>
     </ul></div>
     <div class="ib card"><h4>Catching</h4><ul>
-      <li>Jamiks — Inn 1, 2, 3</li><li>Charlie — Inn 4, 5, 6</li>
+      <li>Jamiks &#8212; Inn 1, 2, 3</li><li>Charlie &#8212; Inn 4, 5, 6</li>
     </ul></div>
-    <div class="ib card"><h4>Rules · 13 Players</h4><ul>
-      <li>4 sit per inning</li><li>Max 2 consecutive sits</li><li>P / C innings = active</li>
+    <div class="ib card"><h4>Today &#183; 12 Players</h4><ul>
+      <li>Everett &#8212; absent</li><li>3 sit per inning</li>
+      <li>6 sit once, 6 sit twice</li><li>Max 2 consecutive sits</li>
     </ul></div>
   </div>
 </div>
-
-<!-- 5/2 G2 -->
-<div class="tab-panel" id="g2-502">
-  <div class="date-hdr">May 2 · Game 2 · 13 Players</div>
-  <div class="legend"><span class="leg leg-p">P Pitch</span><span class="leg leg-c">C Catch</span><span class="leg leg-s">SIT Bench</span></div>
-  <p class="slbl">Coop goes 2 · Charlie goes 2 · Gray goes 2</p>
-  <div class="card" id="tbl-502g2-g2"></div>
-  <p class="slbl">Coop goes 3 · Charlie goes 2 · Gray closes</p>
-  <div class="card" id="tbl-502g2-g3"></div>
-  <p class="slbl">Coop goes 4 · Charlie goes 1 · Gray closes</p>
-  <div class="card" id="tbl-502g2-g4"></div>
-  <p class="slbl">Coop goes 5 · Gray closes</p>
-  <div class="card" id="tbl-502g2-g5"></div>
+<div class="tab-panel" id="g2-53">
+  <div class="dh">May 3 &#183; Game 2 &#183; 12 Players &#183; 3 Sit/Inning</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <p class="sl">Coop goes 2 &#183; Charlie goes 2 &#183; Gray goes 2</p><div class="card" id="tbl-g2-g2"></div>
+  <p class="sl">Coop goes 3 &#183; Charlie goes 2 &#183; Gray closes</p><div class="card" id="tbl-g2-g3"></div>
+  <p class="sl">Coop goes 4 &#183; Charlie goes 1 &#183; Gray closes</p><div class="card" id="tbl-g2-g4"></div>
+  <p class="sl">Coop goes 5 &#183; Gray closes</p><div class="card" id="tbl-g2-g5"></div>
 </div>
-
-<!-- 5/2 G2 Notes -->
-<div class="tab-panel" id="g2-502-notes">
-  <div class="date-hdr">May 2 · Game 2 · Notes</div>
-  <div class="igrid">
+<div class="tab-panel" id="g2-53-notes">
+  <div class="dh">May 3 &#183; Game 2 &#183; Notes</div>
+  <div class="ig">
     <div class="ib card"><h4>Batting Order</h4><ul>
       <li><span class="n">1</span>Alex Johnston</li><li><span class="n">2</span>Charlie Boston</li>
       <li><span class="n">3</span>Joe Dolby</li><li><span class="n">4</span>Cooper Mullen</li>
-      <li><span class="n">5</span>Jack Emery</li><li><span class="n">6</span>Everett Marcaurelle</li>
-      <li><span class="n">7</span>Owen Kane</li><li><span class="n">8</span>Ben Eastman</li>
-      <li><span class="n">9</span>Sam McDuffie</li><li><span class="n">10</span>Grayson Fairfield</li>
-      <li><span class="n">11</span>Max Jellie</li><li><span class="n">12</span>Griffin Strattard</li>
-      <li><span class="n">13</span>Jamiks Petersons</li>
+      <li><span class="n">5</span>Jack Emery</li><li><span class="n">6</span>Owen Kane</li>
+      <li><span class="n">7</span>Ben Eastman</li><li><span class="n">8</span>Sam McDuffie</li>
+      <li><span class="n">9</span>Grayson Fairfield</li><li><span class="n">10</span>Max Jellie</li>
+      <li><span class="n">11</span>Griffin Strattard</li><li><span class="n">12</span>Jamiks Petersons</li>
     </ul></div>
     <div class="ib card"><h4>Pitching Order</h4><ul>
-      <li><span class="n">①</span>Cooper Mullen</li><li><span class="n">②</span>Charlie Boston</li>
-      <li><span class="n">③</span>Grayson Fairfield</li><li><span class="n">④</span>Max Jellie</li>
-      <li><span class="n">⑤</span>Everett Marcaurelle</li>
+      <li><span class="n">1</span>Cooper Mullen</li><li><span class="n">2</span>Charlie Boston</li>
+      <li><span class="n">3</span>Grayson Fairfield</li><li><span class="n">4</span>Max Jellie</li>
+      <li><span class="n">5</span>Everett &#8212; absent</li>
     </ul></div>
     <div class="ib card"><h4>Catching</h4><ul>
-      <li>Jamiks — Inn 1, 2, 3</li><li>Joe — Inn 4, 5, 6</li>
+      <li>Jamiks &#8212; Inn 1, 2, 3</li><li>Joe &#8212; Inn 4, 5, 6</li>
     </ul></div>
-    <div class="ib card"><h4>Jamiks Total</h4><ul>
-      <li>G1 catching: Inn 1–3</li><li>G2 catching: Inn 1–3</li><li>Total: 6 innings</li>
+    <div class="ib card"><h4>Sit Rotation</h4><ul>
+      <li>G1 sits-once get sits-twice in G2</li>
+      <li>G1 sits-twice get sits-once in G2</li>
+      <li>Balanced across the day</li>
     </ul></div>
   </div>
 </div>
-
 <script>
-const p426g1_g2=[[1,"Owen","SIT","SIT","1B","SIT","SIT","P"],
-[2,"Ben","SS","SS","P","P","SS","SIT"],
-[3,"Sam","P","P","SIT","2B","2B","2B"],
-[4,"Gray","3B","3B","SS","3B","3B","3B"],
-[5,"Max","2B","2B","2B","1B","CF","1B"],
-[6,"Alex","CF","CF","CF","CF","P","CF"],
-[7,"Charlie","1B","1B","3B","C","C","C"],
-[8,"Joe","C","C","C","RF","1B","RF"],
-[9,"Coop","LF","LF","LF","SS","LF","SS"],
-[10,"Jack","RF","RF","RF","LF","RF","LF"]];
-const p426g1_g3=[[1,"Owen","SIT","SIT","1B","SIT","SIT","P"],
-[2,"Ben","SS","SS","SIT","P","P","SIT"],
-[3,"Sam","P","P","P","2B","2B","2B"],
-[4,"Gray","3B","3B","SS","3B","3B","3B"],
-[5,"Max","2B","2B","2B","1B","1B","1B"],
-[6,"Alex","CF","CF","CF","CF","CF","CF"],
-[7,"Charlie","1B","1B","3B","C","C","C"],
-[8,"Joe","C","C","C","RF","RF","RF"],
-[9,"Coop","LF","LF","LF","SS","SS","SS"],
-[10,"Jack","RF","RF","RF","LF","LF","LF"]];
-const p426g1_g4=[[1,"Owen","SIT","SIT","1B","SIT","SIT","1B"],
-[2,"Ben","SS","SS","SIT","SS","P","SIT"],
-[3,"Sam","P","P","P","P","2B","2B"],
-[4,"Gray","3B","3B","SS","3B","3B","3B"],
-[5,"Max","2B","2B","2B","1B","1B","CF"],
-[6,"Alex","CF","CF","CF","CF","CF","P"],
-[7,"Charlie","1B","1B","3B","C","C","C"],
-[8,"Joe","C","C","C","RF","RF","RF"],
-[9,"Coop","LF","LF","LF","LF","SS","SS"],
-[10,"Jack","RF","RF","RF","2B","LF","LF"]];
-const p426g1_g5=[[1,"Owen","SIT","SIT","1B","SIT","SIT","1B"],
-[2,"Ben","SS","SS","SIT","SS","SS","P"],
-[3,"Sam","P","P","P","P","P","SIT"],
-[4,"Gray","3B","3B","SS","3B","3B","3B"],
-[5,"Max","2B","2B","2B","1B","1B","2B"],
-[6,"Alex","CF","CF","CF","CF","CF","CF"],
-[7,"Charlie","1B","1B","3B","C","C","C"],
-[8,"Joe","C","C","C","RF","RF","RF"],
-[9,"Coop","LF","LF","LF","LF","LF","SS"],
-[10,"Jack","RF","RF","RF","2B","2B","LF"]];
-const p426g2_g2=[[1,"Everett","C","C","C","SIT","SIT","2B"],
-[2,"Jack","SIT","SIT","3B","SIT","SIT","3B"],
-[3,"Coop","P","P","SIT","1B","1B","SIT"],
-[4,"Joe","SIT","SIT","1B","C","C","C"],
-[5,"Charlie","1B","1B","P","P","3B","SIT"],
-[6,"Alex","2B","2B","SIT","2B","2B","SS"],
-[7,"Max","SS","SS","2B","SS","P","P"],
-[8,"Gray","3B","3B","LF","3B","LF","LF"],
-[9,"Sam","LF","LF","SS","LF","SS","1B"],
-[10,"Ben","CF","CF","CF","CF","CF","CF"],
-[11,"Owen","RF","RF","RF","RF","RF","RF"]];
-const p426g2_g3=[[1,"Everett","C","C","C","SIT","SIT","2B"],
-[2,"Jack","SIT","SIT","3B","SIT","SIT","3B"],
-[3,"Coop","P","P","P","1B","1B","SIT"],
-[4,"Joe","SIT","SIT","1B","C","C","C"],
-[5,"Charlie","1B","1B","SIT","P","P","SIT"],
-[6,"Alex","2B","2B","SIT","2B","2B","SS"],
-[7,"Max","SS","SS","2B","SS","SS","CF"],
-[8,"Gray","3B","3B","LF","3B","3B","P"],
-[9,"Sam","LF","LF","SS","LF","LF","1B"],
-[10,"Ben","CF","CF","CF","CF","CF","RF"],
-[11,"Owen","RF","RF","RF","RF","RF","LF"]];
-const p426g2_g5=[[1,"Everett","C","C","C","SIT","SIT","2B"],
-[2,"Jack","SIT","SIT","3B","SIT","SIT","3B"],
-[3,"Coop","P","P","P","P","P","SIT"],
-[4,"Joe","SIT","SIT","1B","C","C","C"],
-[5,"Charlie","1B","1B","SIT","1B","1B","SIT"],
-[6,"Alex","2B","2B","SIT","2B","2B","SS"],
-[7,"Max","SS","SS","2B","SS","SS","P"],
-[8,"Gray","3B","3B","LF","3B","3B","LF"],
-[9,"Sam","LF","LF","SS","LF","LF","1B"],
-[10,"Ben","CF","CF","CF","CF","CF","CF"],
-[11,"Owen","RF","RF","RF","RF","RF","RF"]];
-const p502g1_g2=[[1,"Jamiks","C","C","C","SIT","SIT","SS"],
-[2,"Griffin","SIT","SIT","1B","SIT","SIT","1B"],
-[3,"Max","SIT","SIT","2B","SIT","SIT","2B"],
-[4,"Gray","SIT","SIT","3B","SIT","SIT","3B"],
-[5,"Sam","P","P","SIT","1B","1B","SIT"],
-[6,"Ben","SIT","SIT","P","P","SS","SIT"],
-[7,"Owen","1B","1B","SIT","LF","LF","SIT"],
-[8,"Everett","2B","2B","SIT","2B","CF","CF"],
-[9,"Jack","LF","LF","LF","3B","2B","LF"],
-[10,"Coop","RF","RF","SIT","SS","RF","SIT"],
-[11,"Joe","3B","3B","RF","RF","3B","RF"],
-[12,"Charlie","SS","SS","SS","C","C","C"],
-[13,"Alex","CF","CF","CF","CF","P","P"]];
-const p502g1_g3=[[1,"Jamiks","C","C","C","SIT","SIT","SS"],
-[2,"Griffin","SIT","SIT","1B","SIT","SIT","1B"],
-[3,"Max","SIT","SIT","2B","SIT","SIT","2B"],
-[4,"Gray","SIT","SIT","3B","SIT","SIT","3B"],
-[5,"Sam","P","P","P","1B","1B","SIT"],
-[6,"Ben","SIT","SIT","SS","P","P","SIT"],
-[7,"Owen","1B","1B","SIT","LF","LF","P"],
-[8,"Everett","2B","2B","SIT","2B","2B","SIT"],
-[9,"Jack","LF","LF","LF","3B","3B","LF"],
-[10,"Coop","RF","RF","SIT","SS","SS","SIT"],
-[11,"Joe","3B","3B","RF","RF","RF","RF"],
-[12,"Charlie","SS","SS","SIT","C","C","C"],
-[13,"Alex","CF","CF","CF","CF","CF","CF"]];
-const p502g1_g4=[[1,"Jamiks","C","C","C","SIT","SIT","SS"],
-[2,"Griffin","SIT","SIT","1B","SIT","SIT","1B"],
-[3,"Max","SIT","SIT","2B","SIT","SIT","2B"],
-[4,"Gray","SIT","SIT","3B","SIT","SIT","3B"],
-[5,"Sam","P","P","P","P","1B","SIT"],
-[6,"Ben","SIT","SIT","SS","SS","P","SIT"],
-[7,"Owen","1B","1B","SIT","1B","LF","SIT"],
-[8,"Everett","2B","2B","SIT","2B","2B","CF"],
-[9,"Jack","LF","LF","LF","LF","3B","LF"],
-[10,"Coop","RF","RF","SIT","RF","SS","SIT"],
-[11,"Joe","3B","3B","RF","3B","RF","RF"],
-[12,"Charlie","SS","SS","SIT","C","C","C"],
-[13,"Alex","CF","CF","CF","CF","CF","P"]];
-const p502g1_g5=[[1,"Jamiks","C","C","C","SIT","SIT","SS"],
-[2,"Griffin","SIT","SIT","1B","SIT","SIT","1B"],
-[3,"Max","SIT","SIT","2B","SIT","SIT","2B"],
-[4,"Gray","SIT","SIT","3B","SIT","SIT","3B"],
-[5,"Sam","P","P","P","P","P","SIT"],
-[6,"Ben","SIT","SIT","SS","SS","SS","SIT"],
-[7,"Owen","1B","1B","SIT","1B","1B","SIT"],
-[8,"Everett","2B","2B","SIT","2B","2B","CF"],
-[9,"Jack","LF","LF","LF","LF","LF","LF"],
-[10,"Coop","RF","RF","SIT","RF","RF","SIT"],
-[11,"Joe","3B","3B","RF","3B","3B","RF"],
-[12,"Charlie","SS","SS","SIT","C","C","C"],
-[13,"Alex","CF","CF","CF","CF","CF","P"]];
-const p502g2_g2=[[1,"Alex","SIT","SIT","2B","SIT","SIT","2B"],
-[2,"Charlie","SIT","SIT","P","P","SIT","SIT"],
-[3,"Joe","SIT","SIT","1B","C","C","C"],
-[4,"Coop","P","P","SIT","SIT","1B","SIT"],
-[5,"Jack","SIT","SIT","3B","SIT","SIT","1B"],
-[6,"Everett","2B","2B","SIT","SIT","2B","SIT"],
-[7,"Owen","1B","1B","SIT","1B","SIT","SIT"],
-[8,"Ben","SS","SS","SIT","SS","SS","SS"],
-[9,"Sam","3B","3B","SS","2B","3B","3B"],
-[10,"Gray","LF","LF","LF","3B","P","P"],
-[11,"Max","CF","CF","CF","CF","CF","CF"],
-[12,"Griffin","RF","RF","RF","RF","RF","RF"],
-[13,"Jamiks","C","C","C","LF","LF","LF"]];
-const p502g2_g3=[[1,"Alex","SIT","SIT","2B","SIT","SIT","2B"],
-[2,"Charlie","SIT","SIT","1B","P","P","SIT"],
-[3,"Joe","SIT","SIT","3B","C","C","C"],
-[4,"Coop","P","P","P","SIT","SIT","1B"],
-[5,"Jack","SIT","SIT","LF","SIT","SIT","3B"],
-[6,"Everett","2B","2B","SIT","SIT","2B","SIT"],
-[7,"Owen","1B","1B","SIT","1B","SIT","SIT"],
-[8,"Ben","SS","SS","SIT","SS","SS","SIT"],
-[9,"Sam","3B","3B","SIT","2B","3B","SS"],
-[10,"Gray","LF","LF","SS","3B","LF","P"],
-[11,"Max","CF","CF","CF","CF","1B","CF"],
-[12,"Griffin","RF","RF","RF","RF","RF","RF"],
-[13,"Jamiks","C","C","C","LF","CF","LF"]];
-const p502g2_g4=[[1,"Alex","SIT","SIT","2B","SIT","SIT","2B"],
-[2,"Charlie","SIT","SIT","1B","SIT","P","SIT"],
-[3,"Joe","SIT","SIT","3B","C","C","C"],
-[4,"Coop","P","P","P","P","SIT","SIT"],
-[5,"Jack","SIT","SIT","LF","SIT","SIT","1B"],
-[6,"Everett","2B","2B","SIT","SIT","2B","SIT"],
-[7,"Owen","1B","1B","SIT","1B","SIT","SIT"],
-[8,"Ben","SS","SS","SIT","SS","SS","SS"],
-[9,"Sam","3B","3B","SIT","2B","3B","3B"],
-[10,"Gray","LF","LF","SS","3B","LF","P"],
-[11,"Max","CF","CF","CF","CF","1B","CF"],
-[12,"Griffin","RF","RF","RF","RF","RF","RF"],
-[13,"Jamiks","C","C","C","LF","CF","LF"]];
-const p502g2_g5=[[1,"Alex","SIT","SIT","2B","SIT","SIT","2B"],
-[2,"Charlie","SIT","SIT","1B","SIT","SIT","1B"],
-[3,"Joe","SIT","SIT","3B","C","C","C"],
-[4,"Coop","P","P","P","P","P","SIT"],
-[5,"Jack","SIT","SIT","LF","SIT","SIT","3B"],
-[6,"Everett","2B","2B","SIT","SIT","2B","SIT"],
-[7,"Owen","1B","1B","SIT","1B","SIT","SIT"],
-[8,"Ben","SS","SS","SIT","SS","SS","SIT"],
-[9,"Sam","3B","3B","SIT","2B","3B","SS"],
-[10,"Gray","LF","LF","SS","3B","LF","P"],
-[11,"Max","CF","CF","CF","CF","1B","CF"],
-[12,"Griffin","RF","RF","RF","RF","RF","RF"],
-[13,"Jamiks","C","C","C","LF","CF","LF"]];
+const p53_g1_g2=[[1,'Jamiks','C','C','C','SIT','SIT','SS'],[2,'Griffin','SIT','SIT','1B','1B','1B','1B'],[3,'Max','SIT','SIT','2B','2B','2B','CF'],[4,'Gray','SIT','SIT','3B','3B','3B','3B'],[5,'Sam','P','P','SIT','SIT','SS','RF'],[6,'Ben','SS','SS','P','P','SIT','SIT'],[7,'Owen','LF','LF','SIT','SIT','CF','LF'],[8,'Jack','2B','2B','LF','LF','LF','SIT'],[9,'Coop','RF','RF','SIT','SS','SIT','2B'],[10,'Joe','3B','3B','RF','RF','RF','SIT'],[11,'Charlie','1B','1B','SS','C','C','C'],[12,'Alex','CF','CF','CF','CF','P','P']];
+const p53_g2_g2=[[1,'Joe','SIT','SIT','1B','C','C','C'],[2,'Jack','SIT','SIT','2B','1B','1B','1B'],[3,'Alex','SIT','SIT','SS','2B','2B','2B'],[4,'Charlie','1B','1B','P','P','SIT','SIT'],[5,'Coop','P','P','SIT','SIT','SS','SS'],[6,'Owen','LF','LF','SIT','SIT','LF','LF'],[7,'Ben','CF','CF','SIT','SIT','CF','CF'],[8,'Sam','SS','SS','RF','SS','RF','RF'],[9,'Gray','3B','3B','3B','3B','P','P'],[10,'Max','2B','2B','CF','CF','SIT','SIT'],[11,'Griffin','RF','RF','LF','RF','3B','3B'],[12,'Jamiks','C','C','C','LF','SIT','SIT']];
+const p53_g1_g3=[[1,'Jamiks','C','C','C','SIT','SIT','SS'],[2,'Griffin','SIT','SIT','1B','1B','1B','1B'],[3,'Max','SIT','SIT','2B','2B','2B','2B'],[4,'Gray','SIT','SIT','3B','3B','3B','3B'],[5,'Sam','P','P','P','SIT','SIT','RF'],[6,'Ben','SS','SS','SIT','P','P','SIT'],[7,'Owen','LF','LF','SIT','SIT','LF','P'],[8,'Jack','2B','2B','LF','LF','SIT','LF'],[9,'Coop','RF','RF','SIT','SS','SS','SIT'],[10,'Joe','3B','3B','RF','RF','RF','SIT'],[11,'Charlie','1B','1B','SS','C','C','C'],[12,'Alex','CF','CF','CF','CF','CF','CF']];
+const p53_g2_g3=[[1,'Joe','SIT','SIT','1B','C','C','C'],[2,'Jack','SIT','SIT','2B','1B','1B','1B'],[3,'Alex','SIT','SIT','SS','2B','2B','2B'],[4,'Charlie','1B','1B','SIT','P','P','SIT'],[5,'Coop','P','P','P','SIT','SIT','SS'],[6,'Owen','LF','LF','SIT','SIT','LF','LF'],[7,'Ben','CF','CF','SIT','SIT','SS','CF'],[8,'Sam','SS','SS','RF','SS','SIT','RF'],[9,'Gray','3B','3B','3B','3B','3B','P'],[10,'Max','2B','2B','CF','CF','SIT','SIT'],[11,'Griffin','RF','RF','LF','RF','RF','3B'],[12,'Jamiks','C','C','C','LF','CF','SIT']];
+const p53_g1_g4=[[1,'Jamiks','C','C','C','SIT','SIT','SS'],[2,'Griffin','SIT','SIT','1B','1B','1B','1B'],[3,'Max','SIT','SIT','2B','2B','2B','2B'],[4,'Gray','SIT','SIT','3B','3B','3B','3B'],[5,'Sam','P','P','P','P','SIT','SIT'],[6,'Ben','SS','SS','SIT','SIT','P','CF'],[7,'Owen','LF','LF','SIT','SIT','LF','LF'],[8,'Jack','2B','2B','LF','LF','SIT','SIT'],[9,'Coop','RF','RF','SIT','SS','SS','SIT'],[10,'Joe','3B','3B','RF','RF','RF','RF'],[11,'Charlie','1B','1B','SS','C','C','C'],[12,'Alex','CF','CF','CF','CF','CF','P']];
+const p53_g2_g4=[[1,'Alex','SIT','SIT','2B','2B','2B','2B'],[2,'Charlie','SIT','SIT','1B','1B','P','1B'],[3,'Joe','SIT','SIT','3B','C','C','C'],[4,'Coop','P','P','P','P','SIT','SIT'],[5,'Jack','1B','1B','SIT','SIT','1B','3B'],[6,'Owen','LF','LF','SIT','SIT','LF','LF'],[7,'Ben','CF','CF','SIT','SIT','SS','SS'],[8,'Sam','SS','SS','SS','SS','SIT','SIT'],[9,'Gray','3B','3B','LF','3B','3B','P'],[10,'Max','2B','2B','CF','CF','SIT','SIT'],[11,'Griffin','RF','RF','RF','RF','RF','RF'],[12,'Jamiks','C','C','C','LF','CF','CF']];
+const p53_g1_g5=[[1,"Jamiks","C","C","C","SIT","SIT","SS"],[2,"Griffin","1B","1B","SIT","RF","RF","SIT"],[3,"Max","2B","2B","SS","SIT","SS","LF"],[4,"Gray","SIT","3B","3B","3B","SIT","RF"],[5,"Sam","P","P","P","P","P","SIT"],[6,"Ben","SS","SS","SIT","SS","CF","CF"],[7,"Owen","LF","SIT","2B","SIT","LF","1B"],[8,"Jack","CF","CF","SIT","2B","2B","2B"],[9,"Coop","3B","SIT","LF","CF","SIT","3B"],[10,"Joe","SIT","RF","RF","1B","1B","SIT"],[11,"Charlie","RF","SIT","1B","C","C","C"],[12,"Alex","SIT","LF","CF","LF","3B","P"]];
+const p53_g2_g5=[[1,'Joe','SIT','SIT','1B','C','C','C'],[2,'Sam','SIT','SIT','SS','1B','1B','1B'],[3,'Alex','SIT','SIT','2B','2B','2B','2B'],[4,'Charlie','1B','1B','SIT','SIT','SS','SS'],[5,'Coop','P','P','P','P','P','SIT'],[6,'Jack','2B','2B','SIT','SIT','3B','3B'],[7,'Owen','LF','LF','LF','SIT','SIT','LF'],[8,'Ben','SS','SS','SIT','SS','SIT','CF'],[9,'Gray','3B','3B','3B','3B','SIT','P'],[10,'Max','CF','CF','CF','CF','CF','SIT'],[11,'Griffin','RF','RF','RF','RF','RF','RF'],[12,'Jamiks','C','C','C','LF','LF','SIT']];
+var _aid = null;
 
-function showTab(id,btn){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
-}
-let _aid=null;
-function openPicker(id,name,inn){
-  _aid=id;
-  document.getElementById('ptitle').textContent=name+' · Inn '+(inn+1);
-  document.getElementById('ov').classList.add('open');
-}
-function closeOv(){document.getElementById('ov').classList.remove('open');_aid=null;}
-function pick(pos){
-  if(!_aid)return;
-  const el=document.getElementById(_aid);
-  el.textContent=pos;
-  el.className='pc '+sf(pos);
-  closeOv();
-}
-document.getElementById('ov').addEventListener('click',e=>{if(e.target===document.getElementById('ov'))closeOv();});
-function sf(v){return v==='P'?'pst':v==='C'?'cst':v==='SIT'?'sst':'';}
-
-function renderTable(cid,data,notes){
-  const div=document.getElementById(cid);
-  if(!div)return;
-  let h='<table><thead><tr><th>Bat</th><th>Player</th><th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th></tr></thead><tbody>';
-  data.forEach((row,pi)=>{
-    const[bat,name,...inns]=row;
-    const cells=inns.map((v,i)=>{
-      const id=`${cid}-r${pi}-i${i}`;
-      return`<td><span class="pc ${sf(v)}" id="${id}" onclick="openPicker('${id}','${name}',${i})">${v}</span></td>`;
-    }).join('');
-    h+=`<tr><td>${bat}</td><td>${name}</td>${cells}</tr>`;
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+    btn.classList.add('active');
   });
-  h+='</tbody></table>';
-  if(notes&&notes.length)h+='<div class="nrow">'+notes.map(n=>`<span class="nb">${n}</span>`).join('')+'</div>';
-  div.innerHTML=h;
+});
+
+document.querySelector('.pg').addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-pos]');
+  if (!btn || !_aid) return;
+  var pos = btn.getAttribute('data-pos');
+  var el = document.getElementById(_aid);
+  el.textContent = pos;
+  el.className = 'pc ' + sf(pos);
+  closeOv();
+});
+
+document.getElementById('cancelBtn').addEventListener('click', closeOv);
+document.getElementById('ov').addEventListener('click', function(e) {
+  if (e.target === this) closeOv();
+});
+
+function closeOv() { document.getElementById('ov').classList.remove('open'); _aid = null; }
+function sf(v) { return v === 'P' ? 'pst' : v === 'C' ? 'cst' : v === 'SIT' ? 'sst' : ''; }
+
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('.pc');
+  if (!el) return;
+  _aid = el.id;
+  var name = el.closest('tr').cells[1].textContent;
+  var inn = el.closest('td').cellIndex - 1;
+  document.getElementById('ptitle').textContent = name + ' - Inn ' + inn;
+  document.getElementById('ov').classList.add('open');
+});
+
+function renderTable(cid, data, notes) {
+  var div = document.getElementById(cid);
+  if (!div) return;
+  var h = '<table><thead><tr><th>Bat</th><th>Player</th><th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th></tr></thead><tbody>';
+  for (var pi = 0; pi < data.length; pi++) {
+    var row = data[pi];
+    var bat = row[0]; var name = row[1];
+    var cells = '';
+    for (var i = 0; i < 6; i++) {
+      var v = row[i + 2];
+      var id = cid + '-r' + pi + '-i' + i;
+      cells += '<td><span class="pc ' + sf(v) + '" id="' + id + '">' + v + '</span></td>';
+    }
+    h += '<tr><td>' + bat + '</td><td>' + name + '</td>' + cells + '</tr>';
+  }
+  h += '</tbody></table>';
+  if (notes && notes.length) {
+    h += '<div class="nr">';
+    for (var n = 0; n < notes.length; n++) h += '<span class="nb">' + notes[n] + '</span>';
+    h += '</div>';
+  }
+  div.innerHTML = h;
 }
 
-renderTable('tbl-426g1-g2',p426g1_g2,['GOES 2','Sam P 1-2','Ben P 3-4','Alex P 5','Owen P 6','Joe C 1-3','Charlie C 4-6']);
-renderTable('tbl-426g1-g3',p426g1_g3,['GOES 3','Sam P 1-3','Ben P 4-5','Owen P 6','Joe C 1-3','Charlie C 4-6']);
-renderTable('tbl-426g1-g4',p426g1_g4,['GOES 4','Sam P 1-4','Ben P 5','Alex P 6','Joe C 1-3','Charlie C 4-6']);
-renderTable('tbl-426g1-g5',p426g1_g5,['GOES 5','Sam P 1-5','Ben P 6','Joe C 1-3','Charlie C 4-6']);
-renderTable('tbl-426g2-g2',p426g2_g2,['GOES 2','Coop P 1-2','Charlie P 3-4','Max P 5-6','Everett C 1-3','Joe C 4-6']);
-renderTable('tbl-426g2-g3',p426g2_g3,['GOES 3','Coop P 1-3','Charlie P 4-5','Gray P 6','Everett C 1-3','Joe C 4-6']);
-renderTable('tbl-426g2-g5',p426g2_g5,['GOES 5','Coop P 1-5','Max P 6','Everett C 1-3','Joe C 4-6']);
-renderTable('tbl-502g1-g2',p502g1_g2,['GOES 2','Sam P 1-2','Ben P 3-4','Alex P 5-6','Jamiks C 1-3','Charlie C 4-6']);
-renderTable('tbl-502g1-g3',p502g1_g3,['GOES 3','Sam P 1-3','Ben P 4-5','Owen P 6','Jamiks C 1-3','Charlie C 4-6']);
-renderTable('tbl-502g1-g4',p502g1_g4,['GOES 4','Sam P 1-4','Ben P 5','Alex P 6','Jamiks C 1-3','Charlie C 4-6']);
-renderTable('tbl-502g1-g5',p502g1_g5,['GOES 5','Sam P 1-5','Alex P 6','Jamiks C 1-3','Charlie C 4-6']);
-renderTable('tbl-502g2-g2',p502g2_g2,['GOES 2','Coop P 1-2','Charlie P 3-4','Gray P 5-6','Jamiks C 1-3','Joe C 4-6']);
-renderTable('tbl-502g2-g3',p502g2_g3,['GOES 3','Coop P 1-3','Charlie P 4-5','Gray P 6','Jamiks C 1-3','Joe C 4-6']);
-renderTable('tbl-502g2-g4',p502g2_g4,['GOES 4','Coop P 1-4','Charlie P 5','Gray P 6','Jamiks C 1-3','Joe C 4-6']);
-renderTable('tbl-502g2-g5',p502g2_g5,['GOES 5','Coop P 1-5','Gray P 6','Jamiks C 1-3','Joe C 4-6']);
+renderTable('tbl-g1-g2', p53_g1_g2, ['GOES 2','Sam P 1-2','Ben P 3-4','Alex P 5-6','Jamiks C 1-3','Charlie C 4-6']);
+renderTable('tbl-g1-g3', p53_g1_g3, ['GOES 3','Sam P 1-3','Ben P 4-5','Owen P 6','Jamiks C 1-3','Charlie C 4-6']);
+renderTable('tbl-g1-g4', p53_g1_g4, ['GOES 4','Sam P 1-4','Ben P 5','Alex P 6','Jamiks C 1-3','Charlie C 4-6']);
+renderTable('tbl-g1-g5', p53_g1_g5, ['GOES 5','Sam P 1-5','Alex P 6','Jamiks C 1-3','Charlie C 4-6']);
+renderTable('tbl-g2-g2', p53_g2_g2, ['GOES 2','Coop P 1-2','Charlie P 3-4','Gray P 5-6','Jamiks C 1-3','Joe C 4-6']);
+renderTable('tbl-g2-g3', p53_g2_g3, ['GOES 3','Coop P 1-3','Charlie P 4-5','Gray P 6','Jamiks C 1-3','Joe C 4-6']);
+renderTable('tbl-g2-g4', p53_g2_g4, ['GOES 4','Coop P 1-4','Charlie P 5','Gray P 6','Jamiks C 1-3','Joe C 4-6']);
+renderTable('tbl-g2-g5', p53_g2_g5, ['GOES 5','Coop P 1-5','Gray P 6','Jamiks C 1-3','Joe C 4-6']);
 </script>
 </body>
 </html>
