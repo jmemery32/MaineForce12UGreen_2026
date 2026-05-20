@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maine Force 12U Green · Tournament</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap');
+:root{--green:#1a3a1a;--chalk:#fff;--accent:#e8c840;--blue:#90ccff;--purple:#cc99ff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--green);background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px);font-family:'Source Code Pro',monospace;color:var(--chalk);padding:20px 12px 60px;min-height:100vh;}
+h1{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--accent);margin-bottom:4px;}
+.sub{text-align:center;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:24px;text-transform:uppercase;}
+.tabs{display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.tab-btn{font-family:'Oswald',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:2px solid rgba(255,255,255,.18);color:rgba(255,255,255,.45);padding:6px 12px;border-radius:4px;cursor:pointer;transition:all .15s;}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:var(--green);}
+.tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.dh{font-family:'Oswald',sans-serif;font-size:.95rem;letter-spacing:.15em;color:rgba(255,255,255,.38);text-align:center;margin-bottom:12px;text-transform:uppercase;}
+.sl{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;padding-left:2px;}
+.card{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:12px;margin-bottom:16px;overflow-x:auto;}
+.leg{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:.66rem;font-family:'Oswald',sans-serif;letter-spacing:.07em;}
+.lp{border-radius:3px;padding:2px 6px;background:rgba(100,180,255,.18);color:var(--blue);}
+.lc{border-radius:3px;padding:2px 6px;background:rgba(180,100,255,.18);color:var(--purple);}
+.ls{border-radius:3px;padding:2px 6px;background:rgba(232,200,64,.14);color:var(--accent);}
+.ldrag{border-radius:3px;padding:2px 6px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);font-size:.62rem;}
+table{width:100%;border-collapse:collapse;font-size:.7rem;white-space:nowrap;}
+thead th{font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:5px 7px;border-bottom:1px solid rgba(232,200,64,.2);text-align:center;font-weight:600;}
+thead th:nth-child(1),thead th:nth-child(2),thead th:nth-child(3){text-align:left;}
+tbody tr:nth-child(even){background:rgba(255,255,255,.03);}
+tbody td{padding:3px 5px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);}
+tbody td:nth-child(1){text-align:left;color:rgba(255,255,255,.3);font-size:.6rem;width:20px;cursor:grab;padding:3px 4px;}
+tbody td:nth-child(2){text-align:center;color:var(--accent);font-weight:600;font-size:.65rem;width:24px;}
+tbody td:nth-child(3){text-align:left;font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.04em;color:var(--chalk);padding-right:10px;min-width:76px;}
+.g1bat td:nth-child(1){cursor:default;color:var(--accent);font-weight:600;font-size:.65rem;}
+.g1bat td:nth-child(2){display:none;}
+.pc{display:inline-block;min-width:40px;padding:3px 5px;border-radius:3px;cursor:pointer;font-family:'Oswald',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.04em;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);transition:background .1s;user-select:none;}
+.pc:hover{background:rgba(255,255,255,.14);}
+.pst{background:rgba(100,180,255,.18)!important;color:var(--blue)!important;border-color:rgba(100,180,255,.3)!important;}
+.cst{background:rgba(180,100,255,.18)!important;color:var(--purple)!important;border-color:rgba(180,100,255,.3)!important;}
+.sst{background:rgba(232,200,64,.13)!important;color:var(--accent)!important;border-color:rgba(232,200,64,.28)!important;}
+tr.dragging{opacity:.4;}
+tr.drag-over{border-top:2px solid var(--accent);}
+.ov{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);align-items:center;justify-content:center;}
+.ov.open{display:flex;}
+.pbox{background:#1e3a1e;border:1px solid rgba(232,200,64,.4);border-radius:10px;padding:14px;min-width:240px;box-shadow:0 8px 40px rgba(0,0,0,.6);}
+.pt{font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;text-align:center;}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.pb{font-family:'Oswald',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.05em;padding:8px 4px;border-radius:4px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);color:var(--chalk);cursor:pointer;transition:all .1s;text-align:center;}
+.pb:hover{background:var(--accent);color:var(--green);border-color:var(--accent);}
+.ppp{background:rgba(100,180,255,.2);color:var(--blue);border-color:rgba(100,180,255,.3);}
+.pcp{background:rgba(180,100,255,.2);color:var(--purple);border-color:rgba(180,100,255,.3);}
+.psp{background:rgba(232,200,64,.15);color:var(--accent);border-color:rgba(232,200,64,.28);}
+.pc2{margin-top:8px;width:100%;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.1em;padding:7px;border-radius:4px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.38);cursor:pointer;}
+.pc2:hover{color:var(--chalk);}
+.nr{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.06);}
+.nb{border:1px solid rgba(232,200,64,.45);border-radius:3px;font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.06em;color:var(--accent);padding:2px 8px;}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:460px){.ig{grid-template-columns:1fr;}}
+.ib h4{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;border-bottom:1px solid rgba(232,200,64,.18);padding-bottom:3px;}
+.ib li{font-size:.73rem;color:rgba(255,255,255,.75);line-height:1.9;list-style:none;}
+.ib li .n{display:inline-block;width:22px;color:var(--accent);font-weight:600;}
+.rn{text-align:center!important;font-family:'Oswald',sans-serif;font-size:.95rem;color:var(--accent)!important;}
+/* Stats tables */
+.stats-tbl{font-size:.6rem;}
+.stats-tbl thead th{font-size:.58rem;padding:4px 4px;letter-spacing:.04em;}
+.stats-tbl tbody td{padding:2px 4px;font-size:.6rem;}
+.stats-tbl tbody td:nth-child(1){text-align:center;color:var(--accent);font-weight:600;font-size:.6rem;width:28px;cursor:default;}
+.stats-tbl tbody td:nth-child(2){text-align:left;font-family:'Oswald',sans-serif;font-size:.68rem;color:var(--chalk);min-width:52px;}
+.stats-tbl tbody td:nth-child(3){text-align:left;}
+.stats-tbl thead th:nth-child(1),.stats-tbl thead th:nth-child(2),.stats-tbl thead th:nth-child(3){text-align:left;}
+.hi{color:var(--accent);font-weight:600;}
+.stat-note{font-family:'Oswald',sans-serif;font-size:.62rem;color:rgba(255,255,255,.35);text-align:center;margin-top:6px;letter-spacing:.08em;}
+</style>
+</head>
+<body>
+<h1>&#9918; Maine Force 12U Green</h1>
+<p class="sub">Tournament &#183; All 13 Players &#183; Tap cells to edit &#183; Drag G2 rows to reorder</p>
+<div class="tabs">
+  <button class="tab-btn active" data-tab="g1">G1</button>
+  <button class="tab-btn" data-tab="g1-notes">G1 Notes</button>
+  <button class="tab-btn" data-tab="g2">G2</button>
+  <button class="tab-btn" data-tab="g2-notes">G2 Notes</button>
+  <button class="tab-btn" data-tab="hit">Hitting</button>
+  <button class="tab-btn" data-tab="pitch">Pitching</button>
+  <button class="tab-btn" data-tab="field">Fielding</button>
+</div>
+
+<div class="ov" id="ov">
+  <div class="pbox">
+    <div class="pt" id="ptitle">Select Position</div>
+    <div class="pg">
+      <button class="pb ppp" data-pos="P">P</button>
+      <button class="pb pcp" data-pos="C">C</button>
+      <button class="pb" data-pos="1B">1B</button>
+      <button class="pb" data-pos="2B">2B</button>
+      <button class="pb" data-pos="3B">3B</button>
+      <button class="pb" data-pos="SS">SS</button>
+      <button class="pb" data-pos="LF">LF</button>
+      <button class="pb" data-pos="CF">CF</button>
+      <button class="pb" data-pos="RF">RF</button>
+      <button class="pb psp" data-pos="SIT">SIT</button>
+    </div>
+    <button class="pc2" id="cancelBtn">Cancel</button>
+  </div>
+</div>
+
+<!-- G1 -->
+<div class="tab-panel active" id="g1">
+  <div class="dh">G1 &#183; 13 Players &#183; 4 Sit/Inning</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <p class="sl">Max goes 2 &#183; Alex &#183; Everett &#183; Joe &#183; Owen &#183; Jamiks closes</p><div class="card" id="tbl-g1-g2"></div>
+  <p class="sl">Max goes 3 &#183; Joe &#183; Owen &#183; Jamiks closes</p><div class="card" id="tbl-g1-g3"></div>
+</div>
+
+<!-- G1 Notes -->
+<div class="tab-panel" id="g1-notes">
+  <div class="dh">G1 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order</h4><ul>
+      <li><span class="n">1</span>Cooper Mullen</li>
+      <li><span class="n">2</span>Charlie Boston</li>
+      <li><span class="n">3</span>Grayson Fairfield</li>
+      <li><span class="n">4</span>Jamiks Petersons</li>
+      <li><span class="n">5</span>Max Jellie</li>
+      <li><span class="n">6</span>Ben Eastman</li>
+      <li><span class="n">7</span>Sam McDuffie</li>
+      <li><span class="n">8</span>Jackson Emery</li>
+      <li><span class="n">9</span>Joe Dolby</li>
+      <li><span class="n">10</span>Griffin Strattard</li>
+      <li><span class="n">11</span>Alex Johnston</li>
+      <li><span class="n">12</span>Everett Marcaurelle</li>
+      <li><span class="n">13</span>Owen Kane</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching Order (Goes 2)</h4><ul>
+      <li><span class="n">&#9312;</span>Max Jellie — Inn 1-2</li>
+      <li><span class="n">&#9313;</span>Alex Johnston — Inn 2</li>
+      <li><span class="n">&#9314;</span>Everett Marcaurelle — Inn 3</li>
+      <li><span class="n">&#9315;</span>Joe Dolby — Inn 4</li>
+      <li><span class="n">&#9316;</span>Owen Kane — Inn 5</li>
+      <li><span class="n">&#9317;</span>Jamiks Petersons — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching Order (Goes 3)</h4><ul>
+      <li><span class="n">&#9312;</span>Max Jellie — Inn 1-3</li>
+      <li><span class="n">&#9313;</span>Joe Dolby — Inn 4</li>
+      <li><span class="n">&#9314;</span>Owen Kane — Inn 5</li>
+      <li><span class="n">&#9315;</span>Jamiks Petersons — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — Inn 1, 2, 3, 4</li>
+      <li>Joe — Inn 5, 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Sit Balance &#183; G1</h4><ul>
+      <li>4 sit per inning · 6 innings</li>
+      <li><b>11 players sit twice</b></li>
+      <li><b>Jamiks &amp; Sam sit once</b></li>
+      <li>Max 2 consecutive sits OK</li>
+      <li>No player sits 3 in a row</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- G2 placeholder -->
+<div class="tab-panel" id="g2">
+  <div class="dh">G2 &#183; Lineup TBD</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span><span class="ldrag">&#8597; drag rows to reorder batting</span></div>
+  <p class="sl">G2 plan coming after G1</p>
+  <div class="card" id="tbl-g2-g2"></div>
+  <div class="card" id="tbl-g2-g3"></div>
+</div>
+
+<!-- G2 Notes placeholder -->
+<div class="tab-panel" id="g2-notes">
+  <div class="dh">G2 &#183; Notes TBD</div>
+</div>
+
+<!-- Hitting Stats -->
+<div class="tab-panel" id="hit">
+  <div class="dh">Hitting Stats &#183; 2026 Season</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="stats-tbl">
+      <thead><tr>
+        <th>#</th><th>Last</th><th>First</th>
+        <th>GP</th><th>PA</th><th>AB</th>
+        <th>AVG</th><th>OBP</th><th>OPS</th><th>SLG</th>
+        <th>H</th><th>1B</th><th>2B</th><th>3B</th><th>HR</th>
+        <th>RBI</th><th>R</th><th>BB</th><th>SO</th><th>K-L</th><th>HBP</th><th>SAC</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>11</td><td>Boston</td><td>Charlie</td><td>7</td><td>21</td><td>15</td><td class="hi">.733</td><td class="hi">.810</td><td class="hi">1.543</td><td>.733</td><td class="hi">11</td><td>11</td><td>0</td><td>0</td><td>0</td><td>6</td><td>9</td><td>5</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>9</td><td>Fairfield</td><td>Grayson</td><td>7</td><td>20</td><td>15</td><td class="hi">.533</td><td>.650</td><td class="hi">1.450</td><td class="hi">.800</td><td>8</td><td>6</td><td>1</td><td>0</td><td>1</td><td>8</td><td class="hi">9</td><td>4</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>Mullen</td><td>Cooper</td><td>5</td><td>16</td><td>8</td><td class="hi">.625</td><td class="hi">.813</td><td class="hi">1.438</td><td>.625</td><td>5</td><td>5</td><td>0</td><td>0</td><td>0</td><td>2</td><td class="hi">7</td><td class="hi">7</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>8</td><td>Petersons</td><td>Jamiks</td><td>5</td><td>15</td><td>11</td><td>.545</td><td>.643</td><td>1.370</td><td>.727</td><td>6</td><td>4</td><td>2</td><td>0</td><td>0</td><td>5</td><td>7</td><td>1</td><td>1</td><td>0</td><td>2</td><td>1</td></tr>
+        <tr><td>5</td><td>Jellie</td><td>Max</td><td>7</td><td>21</td><td>17</td><td>.471</td><td>.571</td><td>1.218</td><td>.647</td><td>8</td><td>5</td><td>3</td><td>0</td><td>0</td><td>7</td><td class="hi">10</td><td>3</td><td>2</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>20</td><td>Strattard</td><td>Griffin</td><td>5</td><td>14</td><td>9</td><td>.444</td><td>.643</td><td>1.087</td><td>.444</td><td>4</td><td>4</td><td>0</td><td>0</td><td>0</td><td>3</td><td>4</td><td>5</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>7</td><td>Dolby</td><td>Joe</td><td>7</td><td>21</td><td>12</td><td>.333</td><td>.619</td><td>1.202</td><td>.583</td><td>4</td><td>2</td><td>1</td><td>1</td><td>0</td><td>5</td><td>6</td><td class="hi">9</td><td>3</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>12</td><td>Emery</td><td>Jackson</td><td>7</td><td>19</td><td>17</td><td>.412</td><td>.474</td><td>1.003</td><td>.529</td><td>7</td><td>5</td><td>2</td><td>0</td><td>0</td><td>3</td><td>7</td><td>2</td><td>2</td><td>2</td><td>0</td><td>0</td></tr>
+        <tr><td>3</td><td>Johnston</td><td>Alex</td><td>7</td><td>20</td><td>13</td><td>.231</td><td>.500</td><td>.731</td><td>.231</td><td>3</td><td>3</td><td>0</td><td>0</td><td>0</td><td>5</td><td>3</td><td class="hi">7</td><td>7</td><td>3</td><td>0</td><td>0</td></tr>
+        <tr><td>33</td><td>Eastman</td><td>Ben</td><td>7</td><td>18</td><td>12</td><td>.250</td><td>.500</td><td>.750</td><td>.250</td><td>3</td><td>3</td><td>0</td><td>0</td><td>0</td><td>3</td><td>5</td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>78</td><td>McDuffie</td><td>Sam</td><td>7</td><td>20</td><td>16</td><td>.250</td><td>.400</td><td>.650</td><td>.250</td><td>4</td><td>4</td><td>0</td><td>0</td><td>0</td><td>6</td><td>4</td><td>3</td><td>2</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>13</td><td>Kane</td><td>Owen</td><td>7</td><td>18</td><td>15</td><td>.200</td><td>.333</td><td>.667</td><td>.333</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0</td><td>2</td><td>5</td><td>2</td><td>6</td><td>2</td><td>1</td><td>0</td></tr>
+        <tr><td>28</td><td>Marcaurelle</td><td>Everett</td><td>4</td><td>11</td><td>11</td><td>.182</td><td>.182</td><td>.364</td><td>.182</td><td>2</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>5</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr style="border-top:1px solid rgba(232,200,64,.3);"><td></td><td colspan="2" style="text-align:left;font-family:'Oswald',sans-serif;font-size:.65rem;color:var(--accent);">TOTALS</td><td>7</td><td>234</td><td>171</td><td>.398</td><td>.558</td><td>1.049</td><td>.491</td><td>68</td><td>55</td><td>11</td><td>1</td><td>1</td><td>55</td><td>77</td><td>53</td><td>34</td><td>14</td><td>9</td><td>1</td></tr>
+      </tbody>
+    </table>
+    <p class="stat-note">Sorted by OPS · Highlighted = team best in category</p>
+  </div>
+</div>
+
+<!-- Pitching Stats -->
+<div class="tab-panel" id="pitch">
+  <div class="dh">Pitching Stats &#183; 2026 Season</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="stats-tbl">
+      <thead><tr>
+        <th>#</th><th>Last</th><th>First</th>
+        <th>IP</th><th>GP</th><th>GS</th><th>BF</th><th>#P</th>
+        <th>W</th><th>L</th><th>SV</th><th>H</th><th>R</th><th>ER</th><th>BB</th><th>SO</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>78</td><td>McDuffie</td><td>Sam</td><td class="hi">16.1</td><td>4</td><td class="hi">4</td><td class="hi">90</td><td class="hi">273</td><td class="hi">2</td><td>0</td><td>0</td><td>29</td><td>18</td><td>13</td><td>9</td><td class="hi">15</td></tr>
+        <tr><td>1</td><td>Mullen</td><td>Cooper</td><td>7.1</td><td>3</td><td>2</td><td>51</td><td>191</td><td>1</td><td>0</td><td>0</td><td>14</td><td>13</td><td>8</td><td>13</td><td>6</td></tr>
+        <tr><td>9</td><td>Fairfield</td><td>Grayson</td><td>4.0</td><td>2</td><td>1</td><td>15</td><td>62</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>4</td></tr>
+        <tr><td>11</td><td>Boston</td><td>Charlie</td><td>3.1</td><td>2</td><td>0</td><td>18</td><td>76</td><td>0</td><td>0</td><td>0</td><td>4</td><td>6</td><td>3</td><td>4</td><td>3</td></tr>
+        <tr><td>5</td><td>Jellie</td><td>Max</td><td>3.1</td><td>3</td><td>0</td><td>19</td><td>54</td><td>0</td><td>0</td><td>1</td><td>8</td><td>4</td><td>4</td><td>1</td><td>1</td></tr>
+        <tr><td>13</td><td>Kane</td><td>Owen</td><td>1.1</td><td>2</td><td>0</td><td>10</td><td>33</td><td>0</td><td>0</td><td>0</td><td>4</td><td>3</td><td>3</td><td>2</td><td>3</td></tr>
+        <tr><td>3</td><td>Johnston</td><td>Alex</td><td>1.2</td><td>2</td><td>0</td><td>9</td><td>28</td><td>0</td><td>0</td><td>2</td><td>3</td><td>2</td><td>2</td><td>1</td><td>1</td></tr>
+        <tr><td>28</td><td>Marcaurelle</td><td>Everett</td><td>1.0</td><td>1</td><td>0</td><td>6</td><td>26</td><td>0</td><td>0</td><td>1</td><td>1</td><td>3</td><td>3</td><td>2</td><td>1</td></tr>
+        <tr><td>33</td><td>Eastman</td><td>Ben</td><td>1.0</td><td>1</td><td>0</td><td>6</td><td>30</td><td>0</td><td>0</td><td>0</td><td>2</td><td>1</td><td>1</td><td>1</td><td>3</td></tr>
+        <tr><td>20</td><td>Strattard</td><td>Griffin</td><td>1.0</td><td>1</td><td>0</td><td>7</td><td>22</td><td>0</td><td>0</td><td>0</td><td>3</td><td>3</td><td>2</td><td>0</td><td>0</td></tr>
+        <tr><td>7</td><td>Dolby</td><td>Joe</td><td>—</td><td>0</td><td>0</td><td>—</td><td>—</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>8</td><td>Petersons</td><td>Jamiks</td><td>—</td><td>0</td><td>0</td><td>—</td><td>—</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>12</td><td>Emery</td><td>Jackson</td><td>—</td><td>0</td><td>0</td><td>—</td><td>—</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <p class="stat-note">Sorted by IP · Joe, Jamiks &amp; Jack have not yet pitched</p>
+  </div>
+</div>
+
+<!-- Fielding Stats -->
+<div class="tab-panel" id="field">
+  <div class="dh">Fielding Stats &#183; 2026 Season</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="stats-tbl">
+      <thead><tr>
+        <th>#</th><th>Last</th><th>First</th>
+        <th>TC</th><th>PO</th><th>A</th><th>E</th><th>FPCT</th>
+        <th>INN</th><th>P</th><th>C</th><th>1B</th><th>2B</th><th>3B</th><th>SS</th><th>LF</th><th>CF</th><th>RF</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>11</td><td>Boston</td><td>Charlie</td><td class="hi">23</td><td class="hi">22</td><td>1</td><td>0</td><td class="hi">1.000</td><td>12</td><td>3.1</td><td>12</td><td>7</td><td>2</td><td>6</td><td>0</td><td>1</td><td>1.1</td><td>1</td></tr>
+        <tr><td>5</td><td>Jellie</td><td>Max</td><td>14</td><td>9</td><td>0</td><td>5</td><td>.643</td><td>—</td><td>3.1</td><td>0</td><td>1</td><td>9.1</td><td>2</td><td>9</td><td>2</td><td>4.2</td><td>2</td></tr>
+        <tr><td>78</td><td>McDuffie</td><td>Sam</td><td class="hi">18</td><td class="hi">16</td><td>2</td><td>0</td><td class="hi">1.000</td><td>—</td><td>16.1</td><td>0</td><td>1</td><td>5</td><td>2</td><td>4</td><td>0</td><td>4</td><td>0</td></tr>
+        <tr><td>7</td><td>Dolby</td><td>Joe</td><td>13</td><td>10</td><td>1</td><td>2</td><td>.846</td><td>13</td><td>0</td><td>13</td><td>8</td><td>0</td><td>0</td><td>0</td><td>0</td><td>8.1</td><td>0</td></tr>
+        <tr><td>8</td><td>Petersons</td><td>Jamiks</td><td>13</td><td>13</td><td>0</td><td>0</td><td class="hi">1.000</td><td>12.1</td><td>0</td><td>12.1</td><td>1</td><td>0</td><td>2</td><td>0</td><td>2</td><td>4</td><td>0</td></tr>
+        <tr><td>12</td><td>Emery</td><td>Jackson</td><td>9</td><td>6</td><td>0</td><td>3</td><td>.667</td><td>—</td><td>0</td><td>0</td><td>0</td><td>12.1</td><td>1</td><td>0</td><td>0</td><td>10</td><td>4</td></tr>
+        <tr><td>20</td><td>Strattard</td><td>Griffin</td><td>10</td><td>8</td><td>1</td><td>1</td><td>.900</td><td>—</td><td>1</td><td>0</td><td>12.2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>5</td></tr>
+        <tr><td>9</td><td>Fairfield</td><td>Grayson</td><td>8</td><td>5</td><td>2</td><td>1</td><td>.875</td><td>—</td><td>4</td><td>0</td><td>2</td><td>0</td><td>14</td><td>0</td><td>8</td><td>0</td><td>4</td></tr>
+        <tr><td>1</td><td>Mullen</td><td>Cooper</td><td>8</td><td>8</td><td>0</td><td>0</td><td class="hi">1.000</td><td>—</td><td>7.1</td><td>0</td><td>0.2</td><td>1</td><td>6.1</td><td>1</td><td>2</td><td>1</td><td>4</td></tr>
+        <tr><td>28</td><td>Marcaurelle</td><td>Everett</td><td>8</td><td>7</td><td>1</td><td>0</td><td class="hi">1.000</td><td>3</td><td>1</td><td>3</td><td>0</td><td>3</td><td>3</td><td>1</td><td>3</td><td>4</td><td>0</td></tr>
+        <tr><td>13</td><td>Kane</td><td>Owen</td><td>6</td><td>5</td><td>0</td><td>1</td><td>.833</td><td>—</td><td>1.1</td><td>0</td><td>4</td><td>3</td><td>2</td><td>1.2</td><td>13.1</td><td>2</td><td>4</td></tr>
+        <tr><td>33</td><td>Eastman</td><td>Ben</td><td>12</td><td>8</td><td>2</td><td>2</td><td>.833</td><td>—</td><td>1</td><td>0</td><td>3</td><td>0.2</td><td>0</td><td class="hi">19.1</td><td>0</td><td>5</td><td>2</td></tr>
+        <tr><td>3</td><td>Johnston</td><td>Alex</td><td>6</td><td>4</td><td>1</td><td>1</td><td>.833</td><td>—</td><td>1.2</td><td>0</td><td>0</td><td>4</td><td>3</td><td>2.1</td><td>11</td><td>6.1</td><td>2</td></tr>
+      </tbody>
+    </table>
+    <p class="stat-note">Sorted by TC · INN = innings caught · position columns = innings at position</p>
+  </div>
+</div>
+
+<script>
+// ── G1 GAME DATA ───────────────────────────────────────────────────
+// Goes 2: Max 1-2, Alex 2, Everett 3, Joe 4, Owen 5, Jamiks 6
+// Jamiks C 1-4, Joe C 5-6. Jamiks & Sam each sit once.
+const tg1_g2=[
+  [1,"Coop","SIT","SIT","1B","1B","1B","RF"],
+  [2,"Charlie","2B","2B","SIT","3B","SIT","3B"],
+  [3,"Gray","3B","3B","3B","SIT","3B","SIT"],
+  [4,"Jamiks","C","C","C","C","SIT","P"],
+  [5,"Max","P","LF","2B","SIT","SS","SIT"],
+  [6,"Ben","SS","SS","SIT","SS","SIT","SS"],
+  [7,"Sam","CF","CF","SS","SIT","CF","CF"],
+  [8,"Jack","SIT","SIT","CF","2B","2B","2B"],
+  [9,"Joe","SIT","SIT","RF","P","C","C"],
+  [10,"Griffin","1B","1B","SIT","RF","SIT","1B"],
+  [11,"Alex","LF","P","SIT","LF","LF","SIT"],
+  [12,"Everett","RF","SIT","P","SIT","RF","LF"],
+  [13,"Owen","SIT","RF","LF","CF","P","SIT"]
+];
+
+// Goes 3: Max 1-3, Joe 4, Owen 5, Jamiks 6
+// Pitcher rows changed: Max stays P inn3; Alex back to LF inn2; Everett back to RF inn3
+const tg1_g3=[
+  [1,"Coop","SIT","SIT","1B","1B","1B","RF"],
+  [2,"Charlie","2B","2B","SIT","3B","SIT","3B"],
+  [3,"Gray","3B","3B","3B","SIT","3B","SIT"],
+  [4,"Jamiks","C","C","C","C","SIT","P"],
+  [5,"Max","P","P","P","SIT","SS","SIT"],
+  [6,"Ben","SS","SS","SIT","SS","SIT","SS"],
+  [7,"Sam","CF","CF","SS","SIT","CF","CF"],
+  [8,"Jack","SIT","SIT","CF","2B","2B","2B"],
+  [9,"Joe","SIT","SIT","RF","P","C","C"],
+  [10,"Griffin","1B","1B","SIT","RF","SIT","1B"],
+  [11,"Alex","LF","LF","SIT","LF","LF","SIT"],
+  [12,"Everett","RF","SIT","RF","SIT","RF","LF"],
+  [13,"Owen","SIT","RF","LF","CF","P","SIT"]
+];
+
+// G2 placeholders (to be filled after G1)
+const tg2_g2=[];
+const tg2_g3=[];
+
+var _aid = null;
+
+// ── TAB SWITCHING ──────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+    document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+    btn.classList.add('active');
+  });
+});
+
+// ── POSITION PICKER ────────────────────────────────────────────────
+document.querySelector('.pg').addEventListener('click',function(e){
+  var btn=e.target.closest('[data-pos]');
+  if(!btn||!_aid)return;
+  var pos=btn.getAttribute('data-pos');
+  var el=document.getElementById(_aid);
+  el.textContent=pos;
+  el.className='pc '+sf(pos);
+  closeOv();
+});
+document.getElementById('cancelBtn').addEventListener('click',closeOv);
+document.getElementById('ov').addEventListener('click',function(e){if(e.target===this)closeOv();});
+function closeOv(){document.getElementById('ov').classList.remove('open');_aid=null;}
+function sf(v){return v==='P'?'pst':v==='C'?'cst':v==='SIT'?'sst':'';}
+
+document.addEventListener('click',function(e){
+  var el=e.target.closest('.pc');
+  if(!el)return;
+  _aid=el.id;
+  var cells=el.closest('tr').cells;
+  var nameIdx=el.closest('tbody').closest('table').getAttribute('data-g2')?2:1;
+  var name=cells[nameIdx].textContent;
+  var inn=el.closest('td').cellIndex-nameIdx;
+  document.getElementById('ptitle').textContent=name+' - Inn '+inn;
+  document.getElementById('ov').classList.add('open');
+});
+
+// ── RENDER TABLES ──────────────────────────────────────────────────
+function renderG1(cid,data,notes){
+  var div=document.getElementById(cid);if(!div)return;
+  if(!data||!data.length){div.innerHTML='<p style="font-family:Oswald;font-size:.72rem;color:rgba(255,255,255,.3);text-align:center;padding:16px;">Plan TBD</p>';return;}
+  var h='<table><thead><tr><th>Bat</th><th>Player</th><th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th></tr></thead><tbody>';
+  for(var pi=0;pi<data.length;pi++){
+    var row=data[pi];var bat=row[0];var name=row[1];var cells='';
+    for(var i=0;i<6;i++){var v=row[i+2];var id=cid+'-r'+pi+'-i'+i;cells+='<td><span class="pc '+sf(v)+'" id="'+id+'">'+v+'</span></td>';}
+    h+='<tr class="g1bat"><td>'+bat+'</td><td></td><td>'+name+'</td>'+cells+'</tr>';
+  }
+  h+='</tbody></table>';
+  if(notes&&notes.length){h+='<div class="nr">';for(var n=0;n<notes.length;n++)h+='<span class="nb">'+notes[n]+'</span>';h+='</div>';}
+  div.innerHTML=h;
+}
+
+function renderG2(cid,data,notes){
+  var div=document.getElementById(cid);if(!div)return;
+  if(!data||!data.length){div.innerHTML='<p style="font-family:Oswald;font-size:.72rem;color:rgba(255,255,255,.3);text-align:center;padding:16px;">Plan TBD</p>';return;}
+  var h='<table data-g2="1"><thead><tr><th style="width:18px;"></th><th style="width:24px;">Bat</th><th>Player</th><th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th></tr></thead><tbody id="'+cid+'-body">';
+  for(var pi=0;pi<data.length;pi++){
+    var row=data[pi];var bat=row[0];var name=row[1];var cells='';
+    for(var i=0;i<6;i++){var v=row[i+2];var id=cid+'-r'+pi+'-i'+i;cells+='<td><span class="pc '+sf(v)+'" id="'+id+'">'+v+'</span></td>';}
+    h+='<tr draggable="true" data-name="'+name+'"><td title="Drag to reorder">&#8597;</td><td>'+bat+'</td><td>'+name+'</td>'+cells+'</tr>';
+  }
+  h+='</tbody></table>';
+  if(notes&&notes.length){h+='<div class="nr">';for(var n=0;n<notes.length;n++)h+='<span class="nb">'+notes[n]+'</span>';h+='</div>';}
+  div.innerHTML=h;
+  enableDrag(cid+'-body');
+}
+
+// ── TOUCH-FRIENDLY DRAG TO REORDER ────────────────────────────────
+function enableDrag(tbodyId){
+  var tbody=document.getElementById(tbodyId);if(!tbody)return;
+  var dragged=null;
+
+  // Mouse drag
+  tbody.addEventListener('dragstart',function(e){dragged=e.target.closest('tr');if(!dragged)return;dragged.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
+  tbody.addEventListener('dragend',function(){if(dragged)dragged.classList.remove('dragging');tbody.querySelectorAll('tr').forEach(function(r){r.classList.remove('drag-over');});dragged=null;renumber(tbody);});
+  tbody.addEventListener('dragover',function(e){e.preventDefault();var t=e.target.closest('tr');if(!t||t===dragged)return;tbody.querySelectorAll('tr').forEach(function(r){r.classList.remove('drag-over');});t.classList.add('drag-over');});
+  tbody.addEventListener('drop',function(e){e.preventDefault();var t=e.target.closest('tr');if(!t||t===dragged||!dragged)return;var rows=Array.from(tbody.querySelectorAll('tr'));if(rows.indexOf(dragged)<rows.indexOf(t)){tbody.insertBefore(dragged,t.nextSibling);}else{tbody.insertBefore(dragged,t);}});
+
+  // Touch drag (iPhone-friendly)
+  var touchDragged=null,clone=null,startY=0,offsetY=0;
+  tbody.addEventListener('touchstart',function(e){
+    var handle=e.target.closest('td:first-child');if(!handle)return;
+    touchDragged=handle.closest('tr');
+    startY=e.touches[0].clientY;
+    var rect=touchDragged.getBoundingClientRect();
+    offsetY=startY-rect.top;
+    clone=touchDragged.cloneNode(true);
+    clone.style.cssText='position:fixed;left:'+rect.left+'px;width:'+rect.width+'px;opacity:.7;pointer-events:none;z-index:999;background:#1e3a1e;border:1px solid rgba(232,200,64,.4);border-radius:4px;';
+    clone.style.top=(rect.top)+'px';
+    document.body.appendChild(clone);
+    touchDragged.style.opacity='.3';
+    e.preventDefault();
+  },{passive:false});
+  tbody.addEventListener('touchmove',function(e){
+    if(!touchDragged||!clone)return;
+    var y=e.touches[0].clientY;
+    clone.style.top=(y-offsetY)+'px';
+    var rows=Array.from(tbody.querySelectorAll('tr'));
+    rows.forEach(function(r){r.classList.remove('drag-over');});
+    var target=rows.find(function(r){
+      var rect=r.getBoundingClientRect();
+      return r!==touchDragged&&y>=rect.top&&y<=rect.bottom;
+    });
+    if(target)target.classList.add('drag-over');
+    e.preventDefault();
+  },{passive:false});
+  tbody.addEventListener('touchend',function(e){
+    if(!touchDragged||!clone)return;
+    var y=e.changedTouches[0].clientY;
+    var rows=Array.from(tbody.querySelectorAll('tr'));
+    var target=rows.find(function(r){var rect=r.getBoundingClientRect();return r!==touchDragged&&y>=rect.top&&y<=rect.bottom;});
+    if(target){if(rows.indexOf(touchDragged)<rows.indexOf(target)){tbody.insertBefore(touchDragged,target.nextSibling);}else{tbody.insertBefore(touchDragged,target);}}
+    clone.remove();clone=null;
+    touchDragged.style.opacity='';
+    tbody.querySelectorAll('tr').forEach(function(r){r.classList.remove('drag-over');});
+    renumber(tbody);
+    touchDragged=null;
+  });
+}
+
+function renumber(tbody){tbody.querySelectorAll('tr').forEach(function(r,i){r.cells[1].textContent=i+1;});}
+
+// ── RENDER ALL ─────────────────────────────────────────────────────
+renderG1('tbl-g1-g2',tg1_g2,['GOES 2','Max P 1-2','Alex P 2','Everett P 3','Joe P 4','Owen P 5','Jamiks P 6','Jamiks C 1-4','Joe C 5-6']);
+renderG1('tbl-g1-g3',tg1_g3,['GOES 3','Max P 1-3','Joe P 4','Owen P 5','Jamiks P 6','Jamiks C 1-4','Joe C 5-6']);
+renderG2('tbl-g2-g2',tg2_g2,[]);
+renderG2('tbl-g2-g3',tg2_g3,[]);
+</script>
+</body>
+</html>

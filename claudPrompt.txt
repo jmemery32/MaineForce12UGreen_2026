@@ -1,0 +1,103 @@
+In a previous chat, you helped me tremendously to develop game plans for the 12u baseball team that I coach. You even provided html code that I host on github to share with my coaching staff. I want a fresh chat here to help plan for a tournament this weekend. You told me to provide the following summary and it we can pick up again with fresh context for you. 
+
+I will upload the html from our May 10 games. 
+
+I will paste a screen capture of what I want the first two innings of G1 plan to be. Players sit no more than two in a row. w/ 13, two players only sit once. I want those two players to be Jamiks and Sam.
+
+Summary: 
+
+Maine Force 12U Green 2026 — Coaching staff: John, Brian, Evans, John M
+
+
+Roster (jersey numbers / preferred batting order / preferred positions):
+#1	Cooper Mullen	1B, P, RF
+#11	Charlie Boston	3B, P, 1B, LF
+#9	Grayson Fairfield	3B, P, 1B
+#8	Jamiks Petersons	C, LF, 3B, P
+#5	Max Jellie	2B, P, LF, SS
+#33	Ben Eastman	SS, CF, 2B, P
+#78	Sam McDuffie	SS, CF, P
+#7	Joe Dolby	C, P, RF
+#20	Griffin Strattard	1B, RF, P
+#3	Alex Johnston	LF, CF, 3B, P
+#12	Jackson Emery	CF, 2B, 3B
+#28	Everett Marcaurelle	1B, LF, CF, P
+#13	Owen Kane	1B, LF, CF, RF, P
+
+Game format: 
+6 innings, 2 games for pool play on Saturday. 
+Single elimination tournament on Sunday, pool play determines the seeding. 
+With 13 players: 4 sit/inning, 11 sit twice, 2 sit once. 
+With 12 players: 3 sit/inning, 6 sit twice, 6 sit once.
+With 11 players: 2 sit/inning, 1 sit twice, 10 sit once.
+With 10 players: 6 sit once, 4 sit zero.
+
+Our workflow: 
+I determine the starting pitcher, and the available pitchers for each game.
+I determine who is catching. 
+Claude suggests a game plan. 
+I modify the goes 5 game plan to my liking and share the Goes 5 screenshot.
+Claude reads the screenshot and derives Goes 2/3/4 by only changing pitcher rows and shares the new consts. 
+I paste the consts directly into the HTML file.
+
+Key rules: 
+No player sits 3 consecutive innings. 
+Max 2 consecutive sits. 
+Pitchers/catchers count as active. 
+For the tournament, pitchers can only pitch 100 pitches max for the weekend. I will plan to change pitchers more often. this means for the pool play we won't need goes 4, goes 5. 
+
+
+Tool: Interactive HTML lineup manager with tap-to-edit cells and drag-to-reorder batting in G2. Make the drag easy for the browser on an iPhone.
+
+
+Current hitting stats: 
+Number	Last	First	GP	PA	AB	AVG	OBP	OPS	SLG	H	1B	2B	3B	HR	RBI	R	BB	SO	K-L	HBP	SAC
+1	Mullen	Cooper	5	16	8	0.625	0.813	1.438	0.625	5	5	0	0	0	2	7	7	1	1	1	0
+3	Johnston	Alex	7	20	13	0.231	0.5	0.731	0.231	3	3	0	0	0	5	3	7	7	3	0	0
+5	Jellie	Max	7	21	17	0.471	0.571	1.218	0.647	8	5	3	0	0	7	10	3	2	1	1	0
+7	Dolby	Joe	7	21	12	0.333	0.619	1.202	0.583	4	2	1	1	0	5	6	9	3	1	0	0
+8	Petersons	Jamiks	5	15	11	0.545	0.643	1.37	0.727	6	4	2	0	0	5	7	1	1	0	2	1
+9	Fairfield	Grayson	7	20	15	0.533	0.65	1.45	0.8	8	6	1	0	1	8	9	4	1	1	1	0
+11	Boston	Charlie	7	21	15	0.733	0.81	1.543	0.733	11	11	0	0	0	6	9	5	0	0	1	0
+12	Emery	Jackson	7	19	17	0.412	0.474	1.003	0.529	7	5	2	0	0	3	7	2	2	2	0	0
+13	Kane	Owen	7	18	15	0.2	0.333	0.667	0.333	3	1	2	0	0	2	5	2	6	2	1	0
+20	Strattard	Griffin	5	14	9	0.444	0.643	1.087	0.444	4	4	0	0	0	3	4	5	1	1	0	0
+28	Marcaurelle	Everett	4	11	11	0.182	0.182	0.364	0.182	2	2	0	0	0	0	1	0	5	1	0	0
+33	Eastman	Ben	7	18	12	0.25	0.5	0.75	0.25	3	3	0	0	0	3	5	5	3	1	1	0
+78	McDuffie	Sam	7	20	16	0.25	0.4	0.65	0.25	4	4	0	0	0	6	4	3	2	0	1	0
+Totals			7	234	171	0.398	0.558	1.049	0.491	68	55	11	1	1	55	77	53	34	14	9	1
+
+Pitching stats: 
+Number	Last	First	IP	GP	GS	BF	#P	W	L	SV	SVO	BS	SV%	H	R	ER	BB	SO
+1	Mullen	Cooper	7.1	3	2	51	191	1	0	0	0	0	-	14	13	8	13	6
+3	Johnston	Alex	1.2	2	0	9	28	0	0	2	2	0	100	3	2	2	1	1
+5	Jellie	Max	3.1	3	0	19	54	0	0	1	1	0	100	8	4	4	1	1
+7	Dolby	Joe	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+8	Petersons	Jamiks	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+9	Fairfield	Grayson	4	2	1	15	62	1	0	0	0	0	-	0	0	0	2	4
+11	Boston	Charlie	3.1	2	0	18	76	0	0	0	0	0	-	4	6	3	4	3
+12	Emery	Jackson	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+13	Kane	Owen	1.1	2	0	10	33	0	0	0	0	0	-	4	3	3	2	3
+20	Strattard	Griffin	1	1	0	7	22	0	0	0	0	0	-	3	3	2	0	0
+28	Marcaurelle	Everett	1	1	0	6	26	0	0	1	1	0	100	1	3	3	2	1
+33	Eastman	Ben	1	1	0	6	30	0	0	0	0	0	-	2	1	1	1	3
+78	McDuffie	Sam	16.1	4	4	90	273	2	0	0	0	0	-	29	18	13	9	15
+
+Fielding stats: 
+Number	Last	First	TC	A	PO	FPCT	E	DP	TP	INN	PB	SB	SB-ATT	CS	CS%	PIK	CI	P	C	1B	2B	3B	SS	LF	CF	RF	SF
+1	Mullen	Cooper	8	0	8	1	0	0	0	0	0	0	0-0	0	-	0	0	7.1	0	0.2	1	6.1	1	2	1	4	0
+3	Johnston	Alex	6	1	4	0.833	1	0	0	0	0	0	0-0	0	-	0	0	1.2	0	0	4	3	2.1	11	6.1	2	0
+5	Jellie	Max	14	0	9	0.643	5	0	0	0	0	0	0-0	0	-	0	0	3.1	0	1	9.1	2	9	2	4.2	2	0
+7	Dolby	Joe	13	1	10	0.846	2	0	0	13	3	1	1-Jan	0	0	0	0	0	13	8	0	0	0	0	0	8.1	0
+8	Petersons	Jamiks	13	0	13	1	0	0	0	12.1	1	9	10-Sep	1	10	0	0	0	12.1	1	0	0	2	0	2	4	0
+9	Fairfield	Grayson	8	2	5	0.875	1	0	0	0	0	0	0-0	0	-	0	0	4	0	2	0	14	0	8	0	4	0
+11	Boston	Charlie	23	1	22	1	0	0	0	12	2	7	7-Jul	0	0	0	0	3.1	12	7	2	6	0	1	1.1	1	0
+12	Emery	Jackson	9	0	6	0.667	3	0	0	0	0	0	0-0	0	-	0	0	0	0	0	12.1	1	0	0	10	4	0
+13	Kane	Owen	6	0	5	0.833	1	0	0	0	0	0	0-0	0	-	0	0	1.1	0	4	3	2	1.2	13.1	2	4	0
+20	Strattard	Griffin	10	1	8	0.9	1	0	0	0	0	0	0-0	0	-	0	0	1	0	12.2	0	1	0	0	0	5	0
+28	Marcaurelle	Everett	8	1	7	1	0	0	0	3	3	1	1-Jan	0	0	0	0	1	3	0	3	3	1	3	4	0	0
+33	Eastman	Ben	12	2	8	0.833	2	0	0	0	0	0	0-0	0	-	0	0	1	0	3	0.2	0	19.1	0	5	2	0
+78	McDuffie	Sam	18	2	16	1	0	0	0	0	0	0	0-0	0	-	0	0	16.1	0	1	5	2	4	0	4	0	0
+
+Please include these as a table/tab like the game notes on the html page so I can readily see it. 
+
