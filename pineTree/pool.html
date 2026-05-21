@@ -269,6 +269,24 @@ tr.drag-over{border-top:2px solid var(--accent);}
 
 <script>
 // ── G1 GAME DATA ───────────────────────────────────────────────────
+// Goes 1: Max 1, Alex 2, Everett 3, Joe 4, Owen 5, Jamiks 6
+// Jamiks C 1-4, Joe C 5-6. Jamiks & Sam each sit once.
+const tg1_g1=[
+  [1,"Coop","SIT","SIT","1B","1B","RF","RF"],
+  [2,"Charlie","2B","2B","SIT","3B","SIT","3B"],
+  [3,"Gray","3B","3B","3B","SIT","3B","SIT"],
+  [4,"Jamiks","C","C","C","C","SIT","P"],
+  [5,"Max","P","LF","2B","SIT","CF","SIT"],
+  [6,"Ben","SS","SS","SIT","SS","SIT","SS"],
+  [7,"Sam","CF","CF","SS","SIT","SS","CF"],
+  [8,"Jack","SIT","SIT","CF","CF","2B","2B"],
+  [9,"Joe","SIT","SIT","RF","P","C","C"],
+  [10,"Griffin","1B","1B","SIT","RF","SIT","1B"],
+  [11,"Alex","LF","P","SIT","LF","LF","SIT"],
+  [12,"Everett","RF","SIT","P","SIT","1B","LF"],
+  [13,"Owen","SIT","RF","LF","2B","P","SIT"]
+];
+
 // Goes 2: Max 1-2, Alex 2, Everett 3, Joe 4, Owen 5, Jamiks 6
 // Jamiks C 1-4, Joe C 5-6. Jamiks & Sam each sit once.
 const tg1_g2=[
@@ -276,13 +294,13 @@ const tg1_g2=[
   [2,"Charlie","2B","2B","SIT","3B","SIT","3B"],
   [3,"Gray","3B","3B","3B","SIT","3B","SIT"],
   [4,"Jamiks","C","C","C","C","SIT","P"],
-  [5,"Max","P","LF","2B","SIT","SS","SIT"],
+  [5,"Max","P","P","2B","SIT","SS","SIT"],
   [6,"Ben","SS","SS","SIT","SS","SIT","SS"],
   [7,"Sam","CF","CF","SS","SIT","CF","CF"],
   [8,"Jack","SIT","SIT","CF","2B","2B","2B"],
   [9,"Joe","SIT","SIT","RF","P","C","C"],
   [10,"Griffin","1B","1B","SIT","RF","SIT","1B"],
-  [11,"Alex","LF","P","SIT","LF","LF","SIT"],
+  [11,"Alex","LF","LF","SIT","LF","LF","SIT"],
   [12,"Everett","RF","SIT","P","SIT","RF","LF"],
   [13,"Owen","SIT","RF","LF","CF","P","SIT"]
 ];
@@ -434,6 +452,7 @@ function enableDrag(tbodyId){
 function renumber(tbody){tbody.querySelectorAll('tr').forEach(function(r,i){r.cells[1].textContent=i+1;});}
 
 // ── RENDER ALL ─────────────────────────────────────────────────────
+renderG1('tbl-g1-g1',tg1_g1,['GOES 1','Max P 1','Alex P 2','Everett P 3','Joe P 4','Owen P 5','Jamiks P 6','Jamiks C 1-4','Joe C 5-6']);
 renderG1('tbl-g1-g2',tg1_g2,['GOES 2','Max P 1-2','Alex P 2','Everett P 3','Joe P 4','Owen P 5','Jamiks P 6','Jamiks C 1-4','Joe C 5-6']);
 renderG1('tbl-g1-g3',tg1_g3,['GOES 3','Max P 1-3','Joe P 4','Owen P 5','Jamiks P 6','Jamiks C 1-4','Joe C 5-6']);
 renderG2('tbl-g2-g2',tg2_g2,[]);
