@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maine Force 12U Green · Bracket Play</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap');
+:root{--green:#1a3a1a;--chalk:#fff;--accent:#e8c840;--blue:#90ccff;--purple:#cc99ff;--red:#ff7070;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--green);background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px);font-family:'Source Code Pro',monospace;color:var(--chalk);padding:20px 12px 60px;min-height:100vh;}
+h1{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--accent);margin-bottom:2px;}
+.sub{text-align:center;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:6px;text-transform:uppercase;}
+.warn{text-align:center;font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.1em;color:var(--red);margin-bottom:20px;text-transform:uppercase;}
+.tabs{display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.tab-btn{font-family:'Oswald',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:2px solid rgba(255,255,255,.18);color:rgba(255,255,255,.45);padding:6px 12px;border-radius:4px;cursor:pointer;transition:all .15s;}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:var(--green);}
+.tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.dh{font-family:'Oswald',sans-serif;font-size:.95rem;letter-spacing:.15em;color:rgba(255,255,255,.38);text-align:center;margin-bottom:12px;text-transform:uppercase;}
+.sl{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;padding-left:2px;}
+.card{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:12px;margin-bottom:16px;overflow-x:auto;}
+.leg{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:.66rem;font-family:'Oswald',sans-serif;letter-spacing:.07em;}
+.lp{border-radius:3px;padding:2px 6px;background:rgba(100,180,255,.18);color:var(--blue);}
+.lc{border-radius:3px;padding:2px 6px;background:rgba(180,100,255,.18);color:var(--purple);}
+.ls{border-radius:3px;padding:2px 6px;background:rgba(232,200,64,.14);color:var(--accent);}
+table{width:100%;border-collapse:collapse;font-size:.7rem;white-space:nowrap;}
+thead th{font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:5px 7px;border-bottom:1px solid rgba(232,200,64,.2);text-align:center;font-weight:600;}
+thead th:nth-child(1),thead th:nth-child(2){text-align:left;}
+tbody tr:nth-child(even){background:rgba(255,255,255,.03);}
+tbody td{padding:3px 5px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);}
+tbody td:nth-child(1){text-align:center;color:var(--accent);font-weight:600;font-size:.65rem;width:24px;}
+tbody td:nth-child(2){text-align:left;font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.04em;color:var(--chalk);padding-right:10px;min-width:76px;}
+.pc{display:inline-block;min-width:40px;padding:3px 5px;border-radius:3px;cursor:pointer;font-family:'Oswald',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.04em;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);transition:background .1s;user-select:none;}
+.pc:hover{background:rgba(255,255,255,.14);}
+.pst{background:rgba(100,180,255,.18)!important;color:var(--blue)!important;border-color:rgba(100,180,255,.3)!important;}
+.cst{background:rgba(180,100,255,.18)!important;color:var(--purple)!important;border-color:rgba(180,100,255,.3)!important;}
+.sst{background:rgba(232,200,64,.13)!important;color:var(--accent)!important;border-color:rgba(232,200,64,.28)!important;}
+.ov{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);align-items:center;justify-content:center;}
+.ov.open{display:flex;}
+.pbox{background:#1e3a1e;border:1px solid rgba(232,200,64,.4);border-radius:10px;padding:14px;min-width:240px;box-shadow:0 8px 40px rgba(0,0,0,.6);}
+.pt{font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;text-align:center;}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.pb{font-family:'Oswald',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.05em;padding:8px 4px;border-radius:4px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);color:var(--chalk);cursor:pointer;transition:all .1s;text-align:center;}
+.pb:hover{background:var(--accent);color:var(--green);border-color:var(--accent);}
+.ppp{background:rgba(100,180,255,.2);color:var(--blue);border-color:rgba(100,180,255,.3);}
+.pcp{background:rgba(180,100,255,.2);color:var(--purple);border-color:rgba(180,100,255,.3);}
+.psp{background:rgba(232,200,64,.15);color:var(--accent);border-color:rgba(232,200,64,.28);}
+.pc2{margin-top:8px;width:100%;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.1em;padding:7px;border-radius:4px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.38);cursor:pointer;}
+.pc2:hover{color:var(--chalk);}
+.nr{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.06);}
+.nb{border:1px solid rgba(232,200,64,.45);border-radius:3px;font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.06em;color:var(--accent);padding:2px 8px;}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:460px){.ig{grid-template-columns:1fr;}}
+.ib h4{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;border-bottom:1px solid rgba(232,200,64,.18);padding-bottom:3px;}
+.ib li{font-size:.73rem;color:rgba(255,255,255,.75);line-height:1.9;list-style:none;}
+.ib li .n{display:inline-block;width:22px;color:var(--accent);font-weight:600;}
+.pitch-tracker{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px;margin-bottom:16px;}
+.pt-title{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.pt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+@media(max-width:460px){.pt-grid{grid-template-columns:repeat(2,1fr);}}
+.pt-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:8px 10px;}
+.pt-name{font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.06em;color:var(--chalk);margin-bottom:4px;}
+.pt-bar-wrap{background:rgba(255,255,255,.08);border-radius:3px;height:6px;margin-bottom:4px;overflow:hidden;}
+.pt-bar{height:6px;border-radius:3px;background:var(--accent);transition:width .3s;}
+.pt-bar.warn{background:#f0a030;}
+.pt-bar.danger{background:var(--red);}
+.pt-nums{font-size:.62rem;color:rgba(255,255,255,.45);font-family:'Oswald',sans-serif;letter-spacing:.04em;}
+.pt-input{width:52px;background:transparent;border:1px solid rgba(255,255,255,.18);border-radius:3px;color:var(--chalk);font-family:'Oswald',sans-serif;font-size:.8rem;text-align:center;padding:2px 4px;margin-left:6px;}
+.pt-input:focus{outline:none;border-color:var(--accent);}
+.stats-tbl{font-size:.6rem;}
+.stats-tbl thead th{font-size:.58rem;padding:4px 4px;letter-spacing:.04em;}
+.stats-tbl tbody td{padding:2px 4px;font-size:.6rem;}
+.stats-tbl tbody td:nth-child(1){text-align:center;color:var(--accent);font-weight:600;font-size:.6rem;width:28px;cursor:default;}
+.stats-tbl tbody td:nth-child(2){text-align:left;font-family:'Oswald',sans-serif;font-size:.68rem;color:var(--chalk);min-width:52px;}
+.stats-tbl tbody td:nth-child(3){text-align:left;}
+.stats-tbl thead th:nth-child(1),.stats-tbl thead th:nth-child(2),.stats-tbl thead th:nth-child(3){text-align:left;}
+.hi{color:var(--accent);font-weight:600;}
+.stat-note{font-family:'Oswald',sans-serif;font-size:.62rem;color:rgba(255,255,255,.35);text-align:center;margin-top:6px;letter-spacing:.08em;}
+</style>
+</head>
+<body>
+<h1>&#9918; Maine Force 12U Green</h1>
+<p class="sub">Sunday Bracket Play &#183; Single Elimination &#183; 13 Players</p>
+<p class="warn">&#9888; Monitor pitch counts &#183; 100 pitch max per weekend</p>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="bkt1">BKT 1</button>
+  <button class="tab-btn" data-tab="bkt1n">BKT 1 Notes</button>
+  <button class="tab-btn" data-tab="bkt2">BKT 2</button>
+  <button class="tab-btn" data-tab="bkt2n">BKT 2 Notes</button>
+  <button class="tab-btn" data-tab="bkt3">BKT 3</button>
+  <button class="tab-btn" data-tab="bkt3n">BKT 3 Notes</button>
+  <button class="tab-btn" data-tab="bkt4">BKT 4</button>
+  <button class="tab-btn" data-tab="bkt4n">BKT 4 Notes</button>
+  <button class="tab-btn" data-tab="pitches">Pitches</button>
+  <button class="tab-btn" data-tab="hit">Hitting</button>
+  <button class="tab-btn" data-tab="pitch">Pitching</button>
+  <button class="tab-btn" data-tab="field">Fielding</button>
+</div>
+
+<!-- Position Picker Overlay -->
+<div class="ov" id="ov">
+  <div class="pbox">
+    <div class="pt" id="ptitle">Select Position</div>
+    <div class="pg">
+      <button class="pb ppp" data-pos="P">P</button>
+      <button class="pb pcp" data-pos="C">C</button>
+      <button class="pb" data-pos="1B">1B</button>
+      <button class="pb" data-pos="2B">2B</button>
+      <button class="pb" data-pos="3B">3B</button>
+      <button class="pb" data-pos="SS">SS</button>
+      <button class="pb" data-pos="LF">LF</button>
+      <button class="pb" data-pos="CF">CF</button>
+      <button class="pb" data-pos="RF">RF</button>
+      <button class="pb psp" data-pos="SIT">SIT</button>
+    </div>
+    <button class="pc2" id="cancelBtn">Cancel</button>
+  </div>
+</div>
+
+<!-- BKT 1: Sam starts -->
+<div class="tab-panel active" id="bkt1">
+  <div class="dh">BKT 1 &#183; Sam Starts &#183; 13 Players &#183; 4 Sit/Inn</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <p class="sl">Sam goes 3 &#183; Ben &#183; Max &#183; Owen closes</p><div class="card" id="tb1g3"></div>
+  <p class="sl">Sam goes 4 &#183; Ben &#183; Owen closes</p><div class="card" id="tb1g4"></div>
+  <p class="sl">Sam goes 5 &#183; Owen closes</p><div class="card" id="tb1g5"></div>
+</div>
+
+<!-- BKT 1 Notes -->
+<div class="tab-panel" id="bkt1n">
+  <div class="dh">BKT 1 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order</h4><ul>
+      <li><span class="n">1</span>Cooper Mullen</li>
+      <li><span class="n">2</span>Charlie Boston</li>
+      <li><span class="n">3</span>Grayson Fairfield</li>
+      <li><span class="n">4</span>Jamiks Petersons</li>
+      <li><span class="n">5</span>Max Jellie</li>
+      <li><span class="n">6</span>Ben Eastman</li>
+      <li><span class="n">7</span>Sam McDuffie</li>
+      <li><span class="n">8</span>Jackson Emery</li>
+      <li><span class="n">9</span>Joe Dolby</li>
+      <li><span class="n">10</span>Griffin Strattard</li>
+      <li><span class="n">11</span>Alex Johnston</li>
+      <li><span class="n">12</span>Everett Marcaurelle</li>
+      <li><span class="n">13</span>Owen Kane</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 3)</h4><ul>
+      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-3</li>
+      <li><span class="n">&#9313;</span>Ben Eastman — Inn 4</li>
+      <li><span class="n">&#9314;</span>Max Jellie — Inn 5</li>
+      <li><span class="n">&#9315;</span>Owen Kane — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 4)</h4><ul>
+      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-4</li>
+      <li><span class="n">&#9313;</span>Ben Eastman — Inn 5</li>
+      <li><span class="n">&#9314;</span>Owen Kane — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 5)</h4><ul>
+      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-5</li>
+      <li><span class="n">&#9313;</span>Owen Kane — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — All 6 innings</li>
+      <li>Joe — Backup if needed</li>
+    </ul></div>
+    <div class="ib card"><h4>Sit Balance</h4><ul>
+      <li>4 sit per inning · 6 innings</li>
+      <li>All 12 field players sit twice</li>
+      <li>Jamiks plays all 6 innings</li>
+      <li>No player sits 3 in a row</li>
+      <li>Wide margin: Gray in early relief</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- BKT 2: Coop starts -->
+<div class="tab-panel" id="bkt2">
+  <div class="dh">BKT 2 &#183; Coop Starts &#183; 13 Players &#183; 4 Sit/Inn</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <p class="sl">Coop goes 3 &#183; Ben &#183; Max &#183; Gray closes</p><div class="card" id="tb2g3"></div>
+  <p class="sl">Coop goes 4 &#183; Ben &#183; Gray closes</p><div class="card" id="tb2g4"></div>
+  <p class="sl">Coop goes 5 &#183; Gray closes</p><div class="card" id="tb2g5"></div>
+</div>
+
+<!-- BKT 2 Notes -->
+<div class="tab-panel" id="bkt2n">
+  <div class="dh">BKT 2 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order</h4><ul>
+      <li><span class="n">1</span>Cooper Mullen</li>
+      <li><span class="n">2</span>Charlie Boston</li>
+      <li><span class="n">3</span>Grayson Fairfield</li>
+      <li><span class="n">4</span>Jamiks Petersons</li>
+      <li><span class="n">5</span>Max Jellie</li>
+      <li><span class="n">6</span>Ben Eastman</li>
+      <li><span class="n">7</span>Sam McDuffie</li>
+      <li><span class="n">8</span>Jackson Emery</li>
+      <li><span class="n">9</span>Joe Dolby</li>
+      <li><span class="n">10</span>Griffin Strattard</li>
+      <li><span class="n">11</span>Alex Johnston</li>
+      <li><span class="n">12</span>Everett Marcaurelle</li>
+      <li><span class="n">13</span>Owen Kane</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 3)</h4><ul>
+      <li><span class="n">&#9312;</span>Coop Mullen — Inn 1-3</li>
+      <li><span class="n">&#9313;</span>Ben Eastman — Inn 4</li>
+      <li><span class="n">&#9314;</span>Max Jellie — Inn 5</li>
+      <li><span class="n">&#9315;</span>Grayson Fairfield — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 4)</h4><ul>
+      <li><span class="n">&#9312;</span>Coop Mullen — Inn 1-4</li>
+      <li><span class="n">&#9313;</span>Ben Eastman — Inn 5</li>
+      <li><span class="n">&#9314;</span>Grayson Fairfield — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 5)</h4><ul>
+      <li><span class="n">&#9312;</span>Coop Mullen — Inn 1-5</li>
+      <li><span class="n">&#9313;</span>Grayson Fairfield — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — All 6 innings</li>
+      <li>Joe — Backup if needed</li>
+    </ul></div>
+    <div class="ib card"><h4>Notes</h4><ul>
+      <li>Gray used only in close game</li>
+      <li>Gray 1 inn here → fresh for BKT 3</li>
+      <li>If winning big: Owen or Alex closes</li>
+      <li>Watch Coop pitch count vs BKT 1</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- BKT 3: Gray starts -->
+<div class="tab-panel" id="bkt3">
+  <div class="dh">BKT 3 &#183; Gray Starts &#183; 13 Players &#183; 4 Sit/Inn</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <p class="sl">Gray goes 3 &#183; Ben &#183; Sam or Coop &#183; Owen closes</p><div class="card" id="tb3g3"></div>
+  <p class="sl">Gray goes 4 &#183; Ben &#183; Owen closes</p><div class="card" id="tb3g4"></div>
+  <p class="sl">Gray goes 5 &#183; Owen closes</p><div class="card" id="tb3g5"></div>
+</div>
+
+<!-- BKT 3 Notes -->
+<div class="tab-panel" id="bkt3n">
+  <div class="dh">BKT 3 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order</h4><ul>
+      <li><span class="n">1</span>Cooper Mullen</li>
+      <li><span class="n">2</span>Charlie Boston</li>
+      <li><span class="n">3</span>Grayson Fairfield</li>
+      <li><span class="n">4</span>Jamiks Petersons</li>
+      <li><span class="n">5</span>Max Jellie</li>
+      <li><span class="n">6</span>Ben Eastman</li>
+      <li><span class="n">7</span>Sam McDuffie</li>
+      <li><span class="n">8</span>Jackson Emery</li>
+      <li><span class="n">9</span>Joe Dolby</li>
+      <li><span class="n">10</span>Griffin Strattard</li>
+      <li><span class="n">11</span>Alex Johnston</li>
+      <li><span class="n">12</span>Everett Marcaurelle</li>
+      <li><span class="n">13</span>Owen Kane</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 3)</h4><ul>
+      <li><span class="n">&#9312;</span>Grayson Fairfield — Inn 1-3</li>
+      <li><span class="n">&#9313;</span>Ben Eastman — Inn 4</li>
+      <li><span class="n">&#9314;</span>Sam or Coop — Inn 5</li>
+      <li><span class="n">&#9315;</span>Owen Kane — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 4)</h4><ul>
+      <li><span class="n">&#9312;</span>Grayson Fairfield — Inn 1-4</li>
+      <li><span class="n">&#9313;</span>Ben Eastman — Inn 5</li>
+      <li><span class="n">&#9314;</span>Owen Kane — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 5)</h4><ul>
+      <li><span class="n">&#9312;</span>Grayson Fairfield — Inn 1-5</li>
+      <li><span class="n">&#9313;</span>Owen Kane — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — All 6 innings</li>
+      <li>Joe — Backup if needed</li>
+    </ul></div>
+    <div class="ib card"><h4>Notes</h4><ul>
+      <li>Inn 5 arm: Sam if &lt;70 total pitches</li>
+      <li>Inn 5 arm: Coop if &lt;70 total pitches</li>
+      <li>Otherwise Alex, Everett, or Griffin</li>
+      <li>Check 100-pitch weekend limits</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- BKT 4: Sam / Coop / Gray -->
+<div class="tab-panel" id="bkt4">
+  <div class="dh">BKT 4 &#183; Sam &#8594; Coop &#8594; Gray &#183; 13 Players &#183; 4 Sit/Inn</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <p class="sl">Sam 1-2 &#183; Coop 3-4 &#183; Gray closes 5-6</p><div class="card" id="tb4g3"></div>
+  <p class="sl">Sam 1-3 &#183; Coop 4 &#183; Gray closes 5-6</p><div class="card" id="tb4g4"></div>
+</div>
+
+<!-- BKT 4 Notes -->
+<div class="tab-panel" id="bkt4n">
+  <div class="dh">BKT 4 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order</h4><ul>
+      <li><span class="n">1</span>Cooper Mullen</li>
+      <li><span class="n">2</span>Charlie Boston</li>
+      <li><span class="n">3</span>Grayson Fairfield</li>
+      <li><span class="n">4</span>Jamiks Petersons</li>
+      <li><span class="n">5</span>Max Jellie</li>
+      <li><span class="n">6</span>Ben Eastman</li>
+      <li><span class="n">7</span>Sam McDuffie</li>
+      <li><span class="n">8</span>Jackson Emery</li>
+      <li><span class="n">9</span>Joe Dolby</li>
+      <li><span class="n">10</span>Griffin Strattard</li>
+      <li><span class="n">11</span>Alex Johnston</li>
+      <li><span class="n">12</span>Everett Marcaurelle</li>
+      <li><span class="n">13</span>Owen Kane</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Plan A: Sam 2)</h4><ul>
+      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-2</li>
+      <li><span class="n">&#9313;</span>Coop Mullen — Inn 3-4</li>
+      <li><span class="n">&#9314;</span>Grayson Fairfield — Inn 5-6</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Plan B: Sam 3)</h4><ul>
+      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-3</li>
+      <li><span class="n">&#9313;</span>Coop Mullen — Inn 4</li>
+      <li><span class="n">&#9314;</span>Grayson Fairfield — Inn 5-6</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — All 6 innings</li>
+      <li>Joe — Backup if needed</li>
+    </ul></div>
+    <div class="ib card"><h4>Championship Notes</h4><ul>
+      <li>All three arms on 100-pitch limit</li>
+      <li>This is the "if if if" game</li>
+      <li>Trust the pitch count tracker</li>
+      <li>Ben / Owen for mop-up if needed</li>
+      <li>You got here — trust your team</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- Pitch Count Tracker -->
+<div class="tab-panel" id="pitches">
+  <div class="dh">Weekend Pitch Count Tracker</div>
+  <div class="pitch-tracker">
+    <div class="pt-title">&#9918; Track pitches thrown — 100 max per weekend</div>
+    <div class="pt-grid" id="ptGrid"></div>
+  </div>
+  <div class="card" style="font-family:'Oswald',sans-serif;font-size:.72rem;color:rgba(255,255,255,.5);line-height:2;">
+    <div style="color:var(--accent);font-size:.7rem;letter-spacing:.1em;margin-bottom:6px;">COLOR GUIDE</div>
+    <div>&#9632; <span style="color:var(--accent);">Yellow</span> — Under 70 pitches · Green light</div>
+    <div>&#9632; <span style="color:#f0a030;">Orange</span> — 70–89 pitches · Monitor closely</div>
+    <div>&#9632; <span style="color:var(--red);">Red</span> — 90+ pitches · At or near limit</div>
+    <div style="margin-top:8px;color:rgba(255,255,255,.35);">Tap the number to edit. Counts persist per session.</div>
+  </div>
+</div>
+
+<!-- Hitting Stats -->
+<div class="tab-panel" id="hit">
+  <div class="dh">Hitting Stats &#183; 2026 Season</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="stats-tbl">
+      <thead><tr><th>#</th><th>Last</th><th>First</th><th>GP</th><th>PA</th><th>AB</th><th>AVG</th><th>OBP</th><th>OPS</th><th>SLG</th><th>H</th><th>1B</th><th>2B</th><th>3B</th><th>HR</th><th>RBI</th><th>R</th><th>BB</th><th>SO</th><th>K-L</th><th>HBP</th><th>SAC</th></tr></thead>
+      <tbody>
+        <tr><td>11</td><td>Boston</td><td>Charlie</td><td>7</td><td>21</td><td>15</td><td class="hi">.733</td><td class="hi">.810</td><td class="hi">1.543</td><td>.733</td><td class="hi">11</td><td>11</td><td>0</td><td>0</td><td>0</td><td>6</td><td>9</td><td>5</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>9</td><td>Fairfield</td><td>Grayson</td><td>7</td><td>20</td><td>15</td><td class="hi">.533</td><td>.650</td><td class="hi">1.450</td><td class="hi">.800</td><td>8</td><td>6</td><td>1</td><td>0</td><td>1</td><td>8</td><td class="hi">9</td><td>4</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>Mullen</td><td>Cooper</td><td>5</td><td>16</td><td>8</td><td class="hi">.625</td><td class="hi">.813</td><td class="hi">1.438</td><td>.625</td><td>5</td><td>5</td><td>0</td><td>0</td><td>0</td><td>2</td><td class="hi">7</td><td class="hi">7</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>8</td><td>Petersons</td><td>Jamiks</td><td>5</td><td>15</td><td>11</td><td>.545</td><td>.643</td><td>1.370</td><td>.727</td><td>6</td><td>4</td><td>2</td><td>0</td><td>0</td><td>5</td><td>7</td><td>1</td><td>1</td><td>0</td><td>2</td><td>1</td></tr>
+        <tr><td>5</td><td>Jellie</td><td>Max</td><td>7</td><td>21</td><td>17</td><td>.471</td><td>.571</td><td>1.218</td><td>.647</td><td>8</td><td>5</td><td>3</td><td>0</td><td>0</td><td>7</td><td class="hi">10</td><td>3</td><td>2</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>7</td><td>Dolby</td><td>Joe</td><td>7</td><td>21</td><td>12</td><td>.333</td><td>.619</td><td>1.202</td><td>.583</td><td>4</td><td>2</td><td>1</td><td>1</td><td>0</td><td>5</td><td>6</td><td class="hi">9</td><td>3</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>20</td><td>Strattard</td><td>Griffin</td><td>5</td><td>14</td><td>9</td><td>.444</td><td>.643</td><td>1.087</td><td>.444</td><td>4</td><td>4</td><td>0</td><td>0</td><td>0</td><td>3</td><td>4</td><td>5</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>12</td><td>Emery</td><td>Jackson</td><td>7</td><td>19</td><td>17</td><td>.412</td><td>.474</td><td>1.003</td><td>.529</td><td>7</td><td>5</td><td>2</td><td>0</td><td>0</td><td>3</td><td>7</td><td>2</td><td>2</td><td>2</td><td>0</td><td>0</td></tr>
+        <tr><td>3</td><td>Johnston</td><td>Alex</td><td>7</td><td>20</td><td>13</td><td>.231</td><td>.500</td><td>.731</td><td>.231</td><td>3</td><td>3</td><td>0</td><td>0</td><td>0</td><td>5</td><td>3</td><td class="hi">7</td><td>7</td><td>3</td><td>0</td><td>0</td></tr>
+        <tr><td>33</td><td>Eastman</td><td>Ben</td><td>7</td><td>18</td><td>12</td><td>.250</td><td>.500</td><td>.750</td><td>.250</td><td>3</td><td>3</td><td>0</td><td>0</td><td>0</td><td>3</td><td>5</td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>78</td><td>McDuffie</td><td>Sam</td><td>7</td><td>20</td><td>16</td><td>.250</td><td>.400</td><td>.650</td><td>.250</td><td>4</td><td>4</td><td>0</td><td>0</td><td>0</td><td>6</td><td>4</td><td>3</td><td>2</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>13</td><td>Kane</td><td>Owen</td><td>7</td><td>18</td><td>15</td><td>.200</td><td>.333</td><td>.667</td><td>.333</td><td>3</td><td>1</td><td>2</td><td>0</td><td>0</td><td>2</td><td>5</td><td>2</td><td>6</td><td>2</td><td>1</td><td>0</td></tr>
+        <tr><td>28</td><td>Marcaurelle</td><td>Everett</td><td>4</td><td>11</td><td>11</td><td>.182</td><td>.182</td><td>.364</td><td>.182</td><td>2</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>5</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr style="border-top:1px solid rgba(232,200,64,.3);"><td></td><td colspan="2" style="text-align:left;font-family:'Oswald',sans-serif;font-size:.65rem;color:var(--accent);">TOTALS</td><td>7</td><td>234</td><td>171</td><td>.398</td><td>.558</td><td>1.049</td><td>.491</td><td>68</td><td>55</td><td>11</td><td>1</td><td>1</td><td>55</td><td>77</td><td>53</td><td>34</td><td>14</td><td>9</td><td>1</td></tr>
+      </tbody>
+    </table>
+    <p class="stat-note">Sorted by OPS · Highlighted = team best in category</p>
+  </div>
+</div>
+
+<!-- Pitching Stats -->
+<div class="tab-panel" id="pitch">
+  <div class="dh">Pitching Stats &#183; 2026 Season</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="stats-tbl">
+      <thead><tr><th>#</th><th>Last</th><th>First</th><th>IP</th><th>GP</th><th>GS</th><th>BF</th><th>#P</th><th>W</th><th>L</th><th>SV</th><th>H</th><th>R</th><th>ER</th><th>BB</th><th>SO</th></tr></thead>
+      <tbody>
+        <tr><td>78</td><td>McDuffie</td><td>Sam</td><td class="hi">16.1</td><td>4</td><td class="hi">4</td><td class="hi">90</td><td class="hi">273</td><td class="hi">2</td><td>0</td><td>0</td><td>29</td><td>18</td><td>13</td><td>9</td><td class="hi">15</td></tr>
+        <tr><td>1</td><td>Mullen</td><td>Cooper</td><td>7.1</td><td>3</td><td>2</td><td>51</td><td>191</td><td>1</td><td>0</td><td>0</td><td>14</td><td>13</td><td>8</td><td>13</td><td>6</td></tr>
+        <tr><td>9</td><td>Fairfield</td><td>Grayson</td><td>4.0</td><td>2</td><td>1</td><td>15</td><td>62</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>4</td></tr>
+        <tr><td>11</td><td>Boston</td><td>Charlie</td><td>3.1</td><td>2</td><td>0</td><td>18</td><td>76</td><td>0</td><td>0</td><td>0</td><td>4</td><td>6</td><td>3</td><td>4</td><td>3</td></tr>
+        <tr><td>5</td><td>Jellie</td><td>Max</td><td>3.1</td><td>3</td><td>0</td><td>19</td><td>54</td><td>0</td><td>0</td><td>1</td><td>8</td><td>4</td><td>4</td><td>1</td><td>1</td></tr>
+        <tr><td>13</td><td>Kane</td><td>Owen</td><td>1.1</td><td>2</td><td>0</td><td>10</td><td>33</td><td>0</td><td>0</td><td>0</td><td>4</td><td>3</td><td>3</td><td>2</td><td>3</td></tr>
+        <tr><td>3</td><td>Johnston</td><td>Alex</td><td>1.2</td><td>2</td><td>0</td><td>9</td><td>28</td><td>0</td><td>0</td><td>2</td><td>3</td><td>2</td><td>2</td><td>1</td><td>1</td></tr>
+        <tr><td>28</td><td>Marcaurelle</td><td>Everett</td><td>1.0</td><td>1</td><td>0</td><td>6</td><td>26</td><td>0</td><td>0</td><td>1</td><td>1</td><td>3</td><td>3</td><td>2</td><td>1</td></tr>
+        <tr><td>33</td><td>Eastman</td><td>Ben</td><td>1.0</td><td>1</td><td>0</td><td>6</td><td>30</td><td>0</td><td>0</td><td>0</td><td>2</td><td>1</td><td>1</td><td>1</td><td>3</td></tr>
+        <tr><td>20</td><td>Strattard</td><td>Griffin</td><td>1.0</td><td>1</td><td>0</td><td>7</td><td>22</td><td>0</td><td>0</td><td>0</td><td>3</td><td>3</td><td>2</td><td>0</td><td>0</td></tr>
+        <tr><td>7</td><td>Dolby</td><td>Joe</td><td>—</td><td>0</td><td>0</td><td>—</td><td>—</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>8</td><td>Petersons</td><td>Jamiks</td><td>—</td><td>0</td><td>0</td><td>—</td><td>—</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>12</td><td>Emery</td><td>Jackson</td><td>—</td><td>0</td><td>0</td><td>—</td><td>—</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <p class="stat-note">Sorted by IP · Pre-tournament stats only</p>
+  </div>
+</div>
+
+<!-- Fielding Stats -->
+<div class="tab-panel" id="field">
+  <div class="dh">Fielding Stats &#183; 2026 Season</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="stats-tbl">
+      <thead><tr><th>#</th><th>Last</th><th>First</th><th>TC</th><th>PO</th><th>A</th><th>E</th><th>FPCT</th><th>INN</th><th>P</th><th>C</th><th>1B</th><th>2B</th><th>3B</th><th>SS</th><th>LF</th><th>CF</th><th>RF</th></tr></thead>
+      <tbody>
+        <tr><td>11</td><td>Boston</td><td>Charlie</td><td class="hi">23</td><td class="hi">22</td><td>1</td><td>0</td><td class="hi">1.000</td><td>12</td><td>3.1</td><td>12</td><td>7</td><td>2</td><td>6</td><td>0</td><td>1</td><td>1.1</td><td>1</td></tr>
+        <tr><td>78</td><td>McDuffie</td><td>Sam</td><td class="hi">18</td><td class="hi">16</td><td>2</td><td>0</td><td class="hi">1.000</td><td>—</td><td>16.1</td><td>0</td><td>1</td><td>5</td><td>2</td><td>4</td><td>0</td><td>4</td><td>0</td></tr>
+        <tr><td>8</td><td>Petersons</td><td>Jamiks</td><td>13</td><td>13</td><td>0</td><td>0</td><td class="hi">1.000</td><td>12.1</td><td>0</td><td>12.1</td><td>1</td><td>0</td><td>2</td><td>0</td><td>2</td><td>4</td><td>0</td></tr>
+        <tr><td>1</td><td>Mullen</td><td>Cooper</td><td>8</td><td>8</td><td>0</td><td>0</td><td class="hi">1.000</td><td>—</td><td>7.1</td><td>0</td><td>0.2</td><td>1</td><td>6.1</td><td>1</td><td>2</td><td>1</td><td>4</td></tr>
+        <tr><td>28</td><td>Marcaurelle</td><td>Everett</td><td>8</td><td>7</td><td>1</td><td>0</td><td class="hi">1.000</td><td>3</td><td>1</td><td>3</td><td>0</td><td>3</td><td>3</td><td>1</td><td>3</td><td>4</td><td>0</td></tr>
+        <tr><td>7</td><td>Dolby</td><td>Joe</td><td>13</td><td>10</td><td>1</td><td>2</td><td>.846</td><td>13</td><td>0</td><td>13</td><td>8</td><td>0</td><td>0</td><td>0</td><td>0</td><td>8.1</td><td>0</td></tr>
+        <tr><td>9</td><td>Fairfield</td><td>Grayson</td><td>8</td><td>5</td><td>2</td><td>1</td><td>.875</td><td>—</td><td>4</td><td>0</td><td>2</td><td>0</td><td>14</td><td>0</td><td>8</td><td>0</td><td>4</td></tr>
+        <tr><td>20</td><td>Strattard</td><td>Griffin</td><td>10</td><td>8</td><td>1</td><td>1</td><td>.900</td><td>—</td><td>1</td><td>0</td><td>12.2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>5</td></tr>
+        <tr><td>5</td><td>Jellie</td><td>Max</td><td>14</td><td>9</td><td>0</td><td>5</td><td>.643</td><td>—</td><td>3.1</td><td>0</td><td>1</td><td>9.1</td><td>2</td><td>9</td><td>2</td><td>4.2</td><td>2</td></tr>
+        <tr><td>12</td><td>Emery</td><td>Jackson</td><td>9</td><td>6</td><td>0</td><td>3</td><td>.667</td><td>—</td><td>0</td><td>0</td><td>0</td><td>12.1</td><td>1</td><td>0</td><td>0</td><td>10</td><td>4</td></tr>
+        <tr><td>13</td><td>Kane</td><td>Owen</td><td>6</td><td>5</td><td>0</td><td>1</td><td>.833</td><td>—</td><td>1.1</td><td>0</td><td>4</td><td>3</td><td>2</td><td>1.2</td><td>13.1</td><td>2</td><td>4</td></tr>
+        <tr><td>33</td><td>Eastman</td><td>Ben</td><td>12</td><td>8</td><td>2</td><td>2</td><td>.833</td><td>—</td><td>1</td><td>0</td><td>3</td><td>0.2</td><td>0</td><td class="hi">19.1</td><td>0</td><td>5</td><td>2</td></tr>
+        <tr><td>3</td><td>Johnston</td><td>Alex</td><td>6</td><td>4</td><td>1</td><td>1</td><td>.833</td><td>—</td><td>1.2</td><td>0</td><td>0</td><td>4</td><td>3</td><td>2.1</td><td>11</td><td>6.1</td><td>2</td></tr>
+      </tbody>
+    </table>
+    <p class="stat-note">Sorted by FPCT then TC · INN = innings caught · position cols = innings at position</p>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// GAME DATA
+// 13 players · 4 sit/inning · Jamiks catches all 6 (0 sits)
+// All others sit exactly twice · No 3 consecutive sits
+//
+// Sit grid (shared across BKT 1, 2, 3):
+// Inn1: Coop, Charlie, Joe, Ben
+// Inn2: Gray, Jack, Alex, Max
+// Inn3: Coop, Everett, Griffin, Ben
+// Inn4: Sam/starter, Charlie, Alex, Owen
+// Inn5: Sam/starter, Gray, Joe, Owen
+// Inn6: Jack, Griffin, Everett, Max
+//
+// Pitcher rows change per goes plan.
+// Strong defense: Charlie(1B), Ben(SS), Gray(3B), Max(2B/SS),
+//                 Jack(CF), Jamiks(C), Everett(RF), Alex(SS/3B)
+// ═══════════════════════════════════════════════════════════════════
+
+// ── BKT 1: Sam starts ─────────────────────────────────────────────
+// Goes 3: Sam P 1-3, Ben P 4, Max P 5, Owen P 6
+const tb1g3=[
+  [1,"Coop","SIT","RF","SIT","1B","RF","1B"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","3B","SIT","3B","3B","SIT","3B"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","P","SIT"],
+  [6,"Ben","SIT","SS","SIT","P","SS","SS"],
+  [7,"Sam","P","P","P","SIT","SIT","CF"],
+  [8,"Jack","CF","SIT","CF","CF","2B","SIT"],
+  [9,"Joe","SIT","3B","RF","RF","SIT","RF"],
+  [10,"Griffin","1B","RF","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","2B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","LF","LF","SIT","SIT","P"]
+];
+// Goes 4: Sam P 1-4, Ben P 5, Owen P 6
+const tb1g4=[
+  [1,"Coop","SIT","RF","SIT","1B","RF","1B"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","3B","SIT","3B","3B","SIT","3B"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","SS","SIT"],
+  [6,"Ben","SIT","SS","SIT","RF","P","SS"],
+  [7,"Sam","P","P","P","P","SIT","SIT"],
+  [8,"Jack","CF","SIT","CF","CF","2B","SIT"],
+  [9,"Joe","SIT","3B","RF","LF","SIT","RF"],
+  [10,"Griffin","1B","RF","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","2B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","LF","LF","SIT","SIT","P"]
+];
+// Goes 5: Sam P 1-5, Owen P 6
+const tb1g5=[
+  [1,"Coop","SIT","RF","SIT","1B","RF","1B"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","3B","SIT","3B","3B","SIT","3B"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","SS","SIT"],
+  [6,"Ben","SIT","SS","SIT","RF","RF","SS"],
+  [7,"Sam","P","P","P","P","P","SIT"],
+  [8,"Jack","CF","SIT","CF","CF","2B","SIT"],
+  [9,"Joe","SIT","3B","RF","LF","SIT","RF"],
+  [10,"Griffin","1B","RF","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","2B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","LF","LF","SIT","SIT","P"]
+];
+
+// ── BKT 2: Coop starts ────────────────────────────────────────────
+// Goes 3: Coop P 1-3, Ben P 4, Max P 5, Gray P 6
+const tb2g3=[
+  [1,"Coop","P","P","P","SIT","SIT","RF"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","3B","SIT","3B","3B","SIT","P"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","P","SIT"],
+  [6,"Ben","SIT","SS","SIT","P","SS","SS"],
+  [7,"Sam","CF","CF","CF","LF","CF","CF"],
+  [8,"Jack","SIT","3B","CF","CF","2B","SIT"],
+  [9,"Joe","SIT","RF","RF","RF","SIT","2B"],
+  [10,"Griffin","1B","1B","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","1B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","SIT","LF","SIT","LF","LF"]
+];
+// Goes 4: Coop P 1-4, Ben P 5, Gray P 6
+const tb2g4=[
+  [1,"Coop","P","P","P","P","SIT","RF"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","3B","SIT","3B","3B","SIT","P"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","SS","SIT"],
+  [6,"Ben","SIT","SS","SIT","RF","P","SS"],
+  [7,"Sam","CF","CF","CF","LF","CF","CF"],
+  [8,"Jack","SIT","3B","CF","CF","2B","SIT"],
+  [9,"Joe","SIT","RF","RF","LF","SIT","2B"],
+  [10,"Griffin","1B","1B","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","1B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","SIT","LF","SIT","LF","LF"]
+];
+// Goes 5: Coop P 1-5, Gray P 6
+const tb2g5=[
+  [1,"Coop","P","P","P","P","P","RF"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","3B","SIT","3B","3B","SIT","P"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","SS","SIT"],
+  [6,"Ben","SIT","SS","SIT","RF","RF","SS"],
+  [7,"Sam","CF","CF","CF","LF","CF","CF"],
+  [8,"Jack","SIT","3B","CF","CF","2B","SIT"],
+  [9,"Joe","SIT","RF","RF","LF","SIT","2B"],
+  [10,"Griffin","1B","1B","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","1B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","SIT","LF","SIT","LF","LF"]
+];
+
+// ── BKT 3: Gray starts ────────────────────────────────────────────
+// Goes 3: Gray P 1-3, Ben P 4, Sam P 5, Owen P 6
+const tb3g3=[
+  [1,"Coop","SIT","RF","SIT","1B","RF","1B"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","P","P","P","SIT","SIT","3B"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","2B","SIT"],
+  [6,"Ben","SIT","SS","SIT","P","SS","SS"],
+  [7,"Sam","CF","CF","CF","LF","P","CF"],
+  [8,"Jack","3B","SIT","3B","CF","2B","SIT"],
+  [9,"Joe","SIT","3B","RF","RF","SIT","RF"],
+  [10,"Griffin","1B","RF","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","2B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","LF","LF","SIT","SIT","P"]
+];
+// Goes 4: Gray P 1-4, Ben P 5, Owen P 6
+const tb3g4=[
+  [1,"Coop","SIT","RF","SIT","1B","RF","1B"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","P","P","P","P","SIT","3B"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","SS","SIT"],
+  [6,"Ben","SIT","SS","SIT","RF","P","SS"],
+  [7,"Sam","CF","CF","CF","LF","CF","SIT"],
+  [8,"Jack","3B","SIT","3B","CF","2B","SIT"],
+  [9,"Joe","SIT","3B","RF","LF","SIT","RF"],
+  [10,"Griffin","1B","RF","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","2B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","LF","LF","SIT","SIT","P"]
+];
+// Goes 5: Gray P 1-5, Owen P 6
+const tb3g5=[
+  [1,"Coop","SIT","RF","SIT","1B","RF","1B"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","P","P","P","P","P","3B"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","SS","SIT"],
+  [6,"Ben","SIT","SS","SIT","RF","RF","SS"],
+  [7,"Sam","CF","CF","CF","LF","CF","SIT"],
+  [8,"Jack","3B","SIT","3B","CF","2B","SIT"],
+  [9,"Joe","SIT","3B","RF","LF","SIT","RF"],
+  [10,"Griffin","1B","RF","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","2B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","LF","LF","SIT","SIT","P"]
+];
+
+// ── BKT 4: Sam → Coop → Gray ──────────────────────────────────────
+// Plan A: Sam P 1-2, Coop P 3-4, Gray P 5-6
+const tb4g3=[
+  [1,"Coop","SIT","RF","P","P","SIT","RF"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","3B","SIT","3B","3B","P","P"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","SS","SIT"],
+  [6,"Ben","SIT","SS","SIT","RF","RF","SS"],
+  [7,"Sam","P","P","SIT","SIT","CF","CF"],
+  [8,"Jack","CF","SIT","CF","CF","2B","SIT"],
+  [9,"Joe","SIT","3B","RF","LF","SIT","RF"],
+  [10,"Griffin","1B","RF","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","2B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","LF","LF","SIT","SIT","LF"]
+];
+// Plan B: Sam P 1-3, Coop P 4, Gray P 5-6
+const tb4g4=[
+  [1,"Coop","SIT","RF","SIT","P","SIT","RF"],
+  [2,"Charlie","SIT","1B","1B","SIT","LF","LF"],
+  [3,"Gray","3B","SIT","3B","3B","P","P"],
+  [4,"Jamiks","C","C","C","C","C","C"],
+  [5,"Max","2B","SIT","2B","SS","SS","SIT"],
+  [6,"Ben","SIT","SS","SIT","RF","RF","SS"],
+  [7,"Sam","P","P","P","SIT","SIT","CF"],
+  [8,"Jack","CF","SIT","CF","CF","2B","SIT"],
+  [9,"Joe","SIT","3B","RF","LF","SIT","RF"],
+  [10,"Griffin","1B","RF","SIT","1B","1B","SIT"],
+  [11,"Alex","SS","SIT","SS","SIT","3B","2B"],
+  [12,"Everett","RF","CF","SIT","LF","CF","SIT"],
+  [13,"Owen","LF","LF","LF","SIT","CF","LF"]
+];
+
+// ── PITCH COUNT TRACKER ───────────────────────────────────────────
+var pitchers=[
+  {name:"Sam",max:100,val:0},
+  {name:"Coop",max:100,val:0},
+  {name:"Gray",max:100,val:0},
+  {name:"Max",max:100,val:0},
+  {name:"Ben",max:100,val:0},
+  {name:"Owen",max:100,val:0}
+];
+function buildTracker(){
+  var g=document.getElementById('ptGrid');
+  g.innerHTML='';
+  pitchers.forEach(function(p,i){
+    var pct=Math.min(100,Math.round(p.val/p.max*100));
+    var cls=p.val>=90?'danger':p.val>=70?'warn':'';
+    var html='<div class="pt-card">';
+    html+='<div class="pt-name">'+p.name+'<input class="pt-input" type="number" min="0" max="150" value="'+p.val+'" data-i="'+i+'"></div>';
+    html+='<div class="pt-bar-wrap"><div class="pt-bar '+cls+'" style="width:'+pct+'%"></div></div>';
+    html+='<div class="pt-nums">'+p.val+' / '+p.max+' pitches</div>';
+    html+='</div>';
+    g.innerHTML+=html;
+  });
+  g.querySelectorAll('.pt-input').forEach(function(inp){
+    inp.addEventListener('input',function(){
+      var i=parseInt(this.getAttribute('data-i'));
+      pitchers[i].val=parseInt(this.value)||0;
+      buildTracker();
+    });
+  });
+}
+buildTracker();
+
+// ── POSITION PICKER ───────────────────────────────────────────────
+var _aid=null;
+document.querySelector('.pg').addEventListener('click',function(e){
+  var btn=e.target.closest('[data-pos]');
+  if(!btn||!_aid)return;
+  var pos=btn.getAttribute('data-pos');
+  var el=document.getElementById(_aid);
+  el.textContent=pos;el.className='pc '+sf(pos);closeOv();
+});
+document.getElementById('cancelBtn').addEventListener('click',closeOv);
+document.getElementById('ov').addEventListener('click',function(e){if(e.target===this)closeOv();});
+function closeOv(){document.getElementById('ov').classList.remove('open');_aid=null;}
+function sf(v){return v==='P'?'pst':v==='C'?'cst':v==='SIT'?'sst':'';}
+document.addEventListener('click',function(e){
+  var el=e.target.closest('.pc');if(!el)return;
+  _aid=el.id;
+  var cells=el.closest('tr').cells;
+  var name=cells[1].textContent;
+  var inn=el.closest('td').cellIndex-1;
+  document.getElementById('ptitle').textContent=name+' — Inn '+inn;
+  document.getElementById('ov').classList.add('open');
+});
+
+// ── TAB SWITCHING ─────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+    document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+    btn.classList.add('active');
+  });
+});
+
+// ── RENDER TABLES ─────────────────────────────────────────────────
+function renderTable(cid,data,notes){
+  var div=document.getElementById(cid);if(!div)return;
+  if(!data||!data.length){div.innerHTML='<p style="font-family:Oswald;font-size:.72rem;color:rgba(255,255,255,.3);text-align:center;padding:16px;">TBD</p>';return;}
+  var h='<table><thead><tr><th>Bat</th><th>Player</th><th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th></tr></thead><tbody>';
+  for(var pi=0;pi<data.length;pi++){
+    var row=data[pi];var cells='';
+    for(var i=0;i<6;i++){var v=row[i+2];var id=cid+'-r'+pi+'-i'+i;cells+='<td><span class="pc '+sf(v)+'" id="'+id+'">'+v+'</span></td>';}
+    h+='<tr><td>'+row[0]+'</td><td>'+row[1]+'</td>'+cells+'</tr>';
+  }
+  h+='</tbody></table>';
+  if(notes&&notes.length){h+='<div class="nr">';for(var n=0;n<notes.length;n++)h+='<span class="nb">'+notes[n]+'</span>';h+='</div>';}
+  div.innerHTML=h;
+}
+
+// ── RENDER ALL ────────────────────────────────────────────────────
+renderTable('tb1g3',tb1g3,['BKT 1 · GOES 3','Sam P 1-3','Ben P 4','Max P 5','Owen P 6','Jamiks C all']);
+renderTable('tb1g4',tb1g4,['BKT 1 · GOES 4','Sam P 1-4','Ben P 5','Owen P 6','Jamiks C all']);
+renderTable('tb1g5',tb1g5,['BKT 1 · GOES 5','Sam P 1-5','Owen P 6','Jamiks C all']);
+renderTable('tb2g3',tb2g3,['BKT 2 · GOES 3','Coop P 1-3','Ben P 4','Max P 5','Gray P 6','Jamiks C all']);
+renderTable('tb2g4',tb2g4,['BKT 2 · GOES 4','Coop P 1-4','Ben P 5','Gray P 6','Jamiks C all']);
+renderTable('tb2g5',tb2g5,['BKT 2 · GOES 5','Coop P 1-5','Gray P 6','Jamiks C all']);
+renderTable('tb3g3',tb3g3,['BKT 3 · GOES 3','Gray P 1-3','Ben P 4','Sam P 5','Owen P 6','Jamiks C all']);
+renderTable('tb3g4',tb3g4,['BKT 3 · GOES 4','Gray P 1-4','Ben P 5','Owen P 6','Jamiks C all']);
+renderTable('tb3g5',tb3g5,['BKT 3 · GOES 5','Gray P 1-5','Owen P 6','Jamiks C all']);
+renderTable('tb4g3',tb4g3,['BKT 4 · PLAN A','Sam P 1-2','Coop P 3-4','Gray P 5-6','Jamiks C all']);
+renderTable('tb4g4',tb4g4,['BKT 4 · PLAN B','Sam P 1-3','Coop P 4','Gray P 5-6','Jamiks C all']);
+</script>
+</body>
+</html>
