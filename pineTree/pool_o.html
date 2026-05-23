@@ -77,10 +77,10 @@ tr.drag-over{border-top:2px solid var(--accent);}
 <h1>&#9918; Maine Force 12U Green</h1>
 <p class="sub">Tournament &#183; All 12 Players &#183; Tap cells to edit &#183; Drag G2 rows to reorder</p>
 <div class="tabs">
-  <button class="tab-btn active" data-tab="g2">G1</button>
-  <button class="tab-btn" data-tab="g2-notes">G1 Notes</button>
-  <button class="tab-btn" data-tab="g1">G2</button>
-  <button class="tab-btn" data-tab="g1-notes">G2 Notes</button>
+  <button class="tab-btn active" data-tab="g1">G1</button>
+  <button class="tab-btn" data-tab="g1-notes">G1 Notes</button>
+  <button class="tab-btn" data-tab="g2">G2</button>
+  <button class="tab-btn" data-tab="g2-notes">G2 Notes</button>
   <button class="tab-btn" data-tab="hit">Hitting</button>
   <button class="tab-btn" data-tab="pitch">Pitching</button>
   <button class="tab-btn" data-tab="field">Fielding</button>
@@ -105,77 +105,17 @@ tr.drag-over{border-top:2px solid var(--accent);}
   </div>
 </div>
 
-<!-- G2 (was G1) -->
-<div class="tab-panel" id="g1">
-  <div class="dh">G2 &#183; 12 Players &#183; 3 Sit/Inning</div>
+<!-- G1 -->
+<div class="tab-panel active" id="g1">
+  <div class="dh">G1 &#183; 12 Players &#183; 3 Sit/Inning</div>
   <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
   <p class="sl">Max goes 1 &#183; Alex &#183; Everett &#183; Joe &#183; Owen &#183; Jamiks closes</p><div class="card" id="tbl-g1-g1"></div>
   <p class="sl">Max goes 2 &#183; Alex &#183; Everett &#183; Joe &#183; Owen &#183; Jamiks closes</p><div class="card" id="tbl-g1-g2"></div>
   <p class="sl">Max goes 3 &#183; Joe &#183; Owen &#183; Jamiks closes</p><div class="card" id="tbl-g1-g3"></div>
 </div>
 
-<!-- G2 Notes (was G1 Notes) -->
+<!-- G1 Notes -->
 <div class="tab-panel" id="g1-notes">
-  <div class="dh">G2 &#183; Notes</div>
-  <div class="ig">
-    <div class="ib card"><h4>Batting Order</h4><ul>
-      <li><span class="n">1</span>Cooper Mullen</li>
-      <li><span class="n">2</span>Charlie Boston</li>
-      <li><span class="n">3</span>Grayson Fairfield</li>
-      <li><span class="n">4</span>Jamiks Petersons</li>
-      <li><span class="n">5</span>Max Jellie</li>
-      <li><span class="n">6</span>Sam McDuffie</li>
-      <li><span class="n">7</span>Jackson Emery</li>
-      <li><span class="n">8</span>Joe Dolby</li>
-      <li><span class="n">9</span>Griffin Strattard</li>
-      <li><span class="n">10</span>Alex Johnston</li>
-      <li><span class="n">11</span>Everett Marcaurelle</li>
-      <li><span class="n">12</span>Owen Kane</li>
-    </ul></div>
-    <div class="ib card"><h4>Pitching Order (Goes 1)</h4><ul>
-      <li><span class="n">&#9312;</span>Max Jellie — Inn 1</li>
-      <li><span class="n">&#9313;</span>Alex Johnston — Inn 2</li>
-      <li><span class="n">&#9314;</span>Everett Marcaurelle — Inn 3</li>
-      <li><span class="n">&#9315;</span>Joe Dolby — Inn 4</li>
-      <li><span class="n">&#9316;</span>Owen Kane — Inn 5</li>
-      <li><span class="n">&#9317;</span>Jamiks Petersons — Inn 6</li>
-    </ul></div>
-    <div class="ib card"><h4>Pitching Order (Goes 2)</h4><ul>
-      <li><span class="n">&#9312;</span>Max Jellie — Inn 1-2</li>
-      <li><span class="n">&#9313;</span>Everett Marcaurelle — Inn 3</li>
-      <li><span class="n">&#9314;</span>Joe Dolby — Inn 4</li>
-      <li><span class="n">&#9315;</span>Owen Kane — Inn 5</li>
-      <li><span class="n">&#9317;</span>Jamiks Petersons — Inn 6</li>
-    </ul></div>
-    <div class="ib card"><h4>Pitching Order (Goes 3)</h4><ul>
-      <li><span class="n">&#9312;</span>Max Jellie — Inn 1-3</li>
-      <li><span class="n">&#9313;</span>Joe Dolby — Inn 4</li>
-      <li><span class="n">&#9314;</span>Owen Kane — Inn 5</li>
-      <li><span class="n">&#9315;</span>Jamiks Petersons — Inn 6</li>
-    </ul></div>
-    <div class="ib card"><h4>Catching</h4><ul>
-      <li>Jamiks — Inn 1, 2, 3, 4</li>
-      <li>Joe — Inn 5, 6</li>
-    </ul></div>
-    <div class="ib card"><h4>Sit Balance &#183; G2</h4><ul>
-      <li>3 sit per inning · 6 innings</li>
-      <li>6 players sit twice · 6 sit once</li>
-      <li>Jamiks &amp; Sam sit once</li>
-      <li>No player sits 3 in a row</li>
-    </ul></div>
-  </div>
-</div>
-<!-- G1 (was G2) -->
-<div class="tab-panel active" id="g2">
-  <div class="dh">G1 &#183; 12 Players &#183; 3 Sit/Inning</div>
-  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span><span class="ldrag">&#8597; drag rows to reorder batting</span></div>
-  <p class="sl">Griffin goes 1 &#183; Jamiks &#183; Alex &#183; Everett &#183; Joe &#183; Owen closes</p><div class="card" id="tbl-g2-g1"></div>
-  <p class="sl">Griffin goes 2 &#183; Jamiks &#183; Alex &#183; Everett &#183; Joe closes</p><div class="card" id="tbl-g2-g2"></div>
-  <p class="sl">Griffin goes 3 &#183; Jamiks &#183; Alex &#183; Everett closes</p><div class="card" id="tbl-g2-g3"></div>
-</div>
-
-<!-- G1 Notes (was G2 Notes) -->
-<div class="tab-panel" id="g2-notes">
   <div class="dh">G1 &#183; Notes</div>
   <div class="ig">
     <div class="ib card"><h4>Batting Order</h4><ul>
@@ -192,26 +132,63 @@ tr.drag-over{border-top:2px solid var(--accent);}
       <li><span class="n">11</span>Everett Marcaurelle</li>
       <li><span class="n">12</span>Owen Kane</li>
     </ul></div>
-    <div class="ib card"><h4>Pitching Order (Goes 1)</h4><ul>
-      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-2</li>
+    <div class="ib card"><h4>Pitching Order (Goes 2)</h4><ul>
+      <li><span class="n">&#9312;</span>Max Jellie — Inn 1</li>
+      <li><span class="n">&#9313;</span>Alex Johnston — Inn 2</li>
+      <li><span class="n">&#9314;</span>Everett Marcaurelle — Inn 3</li>
+      <li><span class="n">&#9315;</span>Joe Dolby — Inn 4</li>
+      <li><span class="n">&#9316;</span>Owen Kane — Inn 5</li>
+      <li><span class="n">&#9317;</span>Jamiks Petersons — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — Inn 1, 2, 3, 4</li>
+      <li>Joe — Inn 5, 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Sit Balance &#183; G1</h4><ul>
+      <li>3 sit per inning · 6 innings</li>
+      <li><b>6 players sit twice</b></li>
+      <li><b>Jamiks &amp; Sam sit once</b></li>
+      <li><b>Grayson available in 6th to close if important</b></li>
+      <li>Max 2 consecutive sits OK</li>
+      <li>No player sits 3 in a row</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- G2 -->
+<div class="tab-panel" id="g2">
+  <div class="dh">G2 &#183; 12 Players &#183; 3 Sit/Inning</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span><span class="ldrag">&#8597; drag rows to reorder batting</span></div>
+  <p class="sl">Griffin goes 1 &#183; Jamiks &#183; Alex &#183; Everett &#183; Joe &#183; Owen closes</p><div class="card" id="tbl-g2-g1"></div>
+  <p class="sl">Griffin goes 2 &#183; Jamiks &#183; Alex &#183; Everett &#183; Joe closes</p><div class="card" id="tbl-g2-g2"></div>
+  <p class="sl">Griffin goes 3 &#183; Jamiks &#183; Alex &#183; Everett closes</p><div class="card" id="tbl-g2-g3"></div>
+</div>
+
+<!-- G2 Notes placeholder -->
+<div class="tab-panel" id="g2-notes">
+  <div class="dh">G2 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order</h4><ul>
+      <li><span class="n">1</span>Cooper Mullen</li>
+      <li><span class="n">2</span>Charlie Boston</li>
+      <li><span class="n">3</span>Grayson Fairfield</li>
+      <li><span class="n">4</span>Jamiks Petersons</li>
+      <li><span class="n">5</span>Max Jellie</li>
+      <li><span class="n">6</span>Sam McDuffie</li>
+      <li><span class="n">7</span>Jackson Emery</li>
+      <li><span class="n">8</span>Joe Dolby</li>
+      <li><span class="n">9</span>Griffin Strattard</li>
+      <li><span class="n">10</span>Alex Johnston</li>
+      <li><span class="n">11</span>Everett Marcaurelle</li>
+      <li><span class="n">12</span>Owen Kane</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching Order </h4><ul>
+      <li><span class="n">&#9312;</span>Griffin Strattard — Inn 1</li>
       <li><span class="n">&#9313;</span>Jamiks Petersons — Inn 2</li>
       <li><span class="n">&#9314;</span>Alex Johnston — Inn 3</li>
       <li><span class="n">&#9315;</span>Everett Marcaurelle — Inn 4</li>
       <li><span class="n">&#9316;</span>Joe Dolby — Inn 5</li>
       <li><span class="n">&#9317;</span>Owen Kane — Inn 6</li>
-    </ul></div>
-    <div class="ib card"><h4>Pitching Order (Goes 2)</h4><ul>
-      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-2</li>
-      <li><span class="n">&#9313;</span>Jamiks Petersons — Inn 3</li>
-      <li><span class="n">&#9314;</span>Alex Johnston — Inn 4</li>
-      <li><span class="n">&#9315;</span>Everett Marcaurelle — Inn 5</li>
-      <li><span class="n">&#9316;</span>Joe Dolby — Inn 6</li>
-    </ul></div>
-    <div class="ib card"><h4>Pitching Order (Goes 3)</h4><ul>
-      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-2</li>
-      <li><span class="n">&#9313;</span>Jamiks Petersons — Inn 4</li>
-      <li><span class="n">&#9314;</span>Alex Johnston — Inn 5</li>
-      <li><span class="n">&#9315;</span>Everett Marcaurelle — Inn 6</li>
     </ul></div>
     <div class="ib card"><h4>Catching</h4><ul>
       <li>Joe — Inn 1, 2 (all goes)</li>
@@ -221,13 +198,17 @@ tr.drag-over{border-top:2px solid var(--accent);}
     </ul></div>
     <div class="ib card"><h4>Sit Balance &#183; G1</h4><ul>
       <li>3 sit per inning · 6 innings</li>
-      <li>G2 twice-sitters sit once</li>
-      <li>G2 once-sitters sit twice</li>
+      <li><b>6 players sit twice</b></li>
+      <li><b>Jamiks &amp; Sam sit once</b></li>
+      <li><b>Grayson available in 6th to close if important</b></li>
+       <li>G1 twice-sitters sit once</li>
+      <li>G1 once-sitters sit twice</li>
       <li>No player sits 3 in a row</li>
-      <li>Sam / Max cover SS when needed</li>
+      <li>Sam&#47;Max cover SS when needed</li>
     </ul></div>
   </div>
 </div>
+
 
 <!-- Hitting Stats -->
 <div class="tab-panel" id="hit">
@@ -379,52 +360,52 @@ const tg1_g3=[
 // Goes 1 — Griffin P inn 1 · Jamiks P inn 2 · Alex P inn 3 · Everett P inn 4 · Joe P inn 5 · Owen P inn 6
 
 const tg2_g1=[
-  [1,"Coop","SIT","SIT","P","P","2B","2B"],
-  [2,"Charlie","SIT","1B","1B","3B","3B","3B"],
-  [3,"Gray","3B","3B","3B","SIT","SIT","P"],
-  [4,"Jamiks","SIT","SIT","C","C","C","C"],
-  [5,"Max","SS","SS","SS","2B","SIT","SIT"],
-  [6,"Sam","P","P","SIT","SS","SS","SS"],
-  [7,"Jack","2B","2B","RF","RF","SIT","CF"],
-  [8,"Joe","C","C","SIT","SIT","RF","RF"],
-  [9,"Griffin","1B","SIT","SIT","1B","1B","1B"],
-  [10,"Alex","CF","CF","CF","SIT","LF","LF"],
-  [11,"Everett","RF","RF","2B","CF","CF","SIT"],
-  [12,"Owen","LF","LF","LF","LF","P","SIT"]
+  [1,"Coop","SIT","SIT","RF","1B","1B","RF"],
+  [2,"Charlie","SIT","LF","1B","3B","LF","3B"],
+  [3,"Gray","1B","1B","3B","SIT","3B","SIT"],
+  [4,"Jamiks","SIT","P","C","C","C","C"],
+  [5,"Max","2B","2B","SIT","SS","SS","2B"],
+  [6,"Sam","SS","SS","SS","SIT","SIT","SS"],
+  [7,"Jack","3B","SIT","CF","2B","SIT","CF"],
+  [8,"Joe","C","C","SIT","SIT","P","RF"],
+  [9,"Griffin","P","SIT","RF","RF","RF","1B"],
+  [10,"Alex","CF","CF","P","2B","2B","SIT"],
+  [11,"Everett","RF","RF","SIT","P","CF","SIT"],
+  [12,"Owen","LF","SIT","LF","LF","CF","P"]
 ];
 
 // Goes 2 — Griffin P inn 1-2 · Jamiks P inn 3 · Alex P inn 4 · Everett P inn 5 · Joe P inn 6
 
 const tg2_g2=[
-  [1,"Coop","SIT","SIT","P","P","2B","2B"],
-  [2,"Charlie","SIT","1B","1B","3B","3B","3B"],
-  [3,"Gray","3B","3B","3B","SIT","SIT","P"],
-  [4,"Jamiks","SIT","SIT","C","C","C","C"],
-  [5,"Max","SS","SS","SS","2B","SIT","SIT"],
-  [6,"Sam","P","P","SIT","SS","SS","SS"],
-  [7,"Jack","2B","2B","RF","RF","SIT","CF"],
-  [8,"Joe","C","C","SIT","SIT","RF","RF"],
-  [9,"Griffin","1B","SIT","SIT","1B","1B","1B"],
-  [10,"Alex","CF","CF","CF","SIT","LF","LF"],
-  [11,"Everett","RF","RF","2B","CF","CF","SIT"],
-  [12,"Owen","LF","LF","LF","LF","P","SIT"]
+  [1,"Coop","SIT","SIT","RF","1B","1B","RF"],
+  [2,"Charlie","SIT","LF","1B","3B","LF","3B"],
+  [3,"Gray","1B","1B","3B","SIT","3B","SIT"],
+  [4,"Jamiks","SIT","SIT","P","C","C","C"],
+  [5,"Max","2B","2B","SIT","SS","SS","2B"],
+  [6,"Sam","SS","SS","SS","SIT","SIT","SS"],
+  [7,"Jack","3B","3B","CF","2B","SIT","CF"],
+  [8,"Joe","C","C","C","SIT","SIT","P"],
+  [9,"Griffin","P","P","SIT","RF","RF","1B"],
+  [10,"Alex","CF","CF","2B","P","2B","SIT"],
+  [11,"Everett","RF","RF","SIT","CF","P","SIT"],
+  [12,"Owen","LF","SIT","LF","LF","CF","LF"]
 ];
 
 // Goes 3 — Griffin P inn 1-3 · Jamiks P inn 4 · Alex P inn 5 · Everett P inn 6
 
 const tg2_g3=[
-  [1,"Coop","SIT","SIT","P","P","2B","2B"],
-  [2,"Charlie","SIT","1B","1B","3B","3B","3B"],
-  [3,"Gray","3B","3B","3B","SIT","SIT","P"],
-  [4,"Jamiks","SIT","SIT","C","C","C","C"],
-  [5,"Max","SS","SS","SS","2B","SIT","SIT"],
-  [6,"Sam","P","P","SIT","SS","SS","SS"],
-  [7,"Jack","2B","2B","RF","RF","SIT","CF"],
-  [8,"Joe","C","C","SIT","SIT","RF","RF"],
-  [9,"Griffin","1B","SIT","SIT","1B","1B","1B"],
-  [10,"Alex","CF","CF","CF","SIT","LF","LF"],
-  [11,"Everett","RF","RF","2B","CF","CF","SIT"],
-  [12,"Owen","LF","LF","LF","LF","P","SIT"]
+  [1,"Coop","SIT","SIT","RF","1B","1B","RF"],
+  [2,"Charlie","SIT","LF","1B","3B","LF","3B"],
+  [3,"Gray","1B","1B","3B","SIT","3B","SIT"],
+  [4,"Jamiks","SIT","SIT","C","P","C","C"],
+  [5,"Max","2B","2B","SIT","SS","SS","2B"],
+  [6,"Sam","SS","SS","SS","SIT","SIT","SS"],
+  [7,"Jack","3B","3B","CF","2B","SIT","CF"],
+  [8,"Joe","C","C","RF","C","SIT","SIT"],
+  [9,"Griffin","P","P","P","RF","RF","1B"],
+  [10,"Alex","CF","CF","2B","2B","P","SIT"],
+  [11,"Everett","RF","RF","SIT","CF","CF","P"],
+  [12,"Owen","LF","SIT","LF","LF","CF","LF"]
 ];
 
 var _aid = null;
@@ -552,12 +533,12 @@ function enableDrag(tbodyId){
 function renumber(tbody){tbody.querySelectorAll('tr').forEach(function(r,i){r.cells[1].textContent=i+1;});}
 
 // ── RENDER ALL ─────────────────────────────────────────────────────
-renderG2('tbl-g2-g1',tg2_g1,['GOES 1','Griffin P 1','Jamiks P 2','Alex P 3','Everett P 4','Joe P 5','Owen P 6','Joe C 1-2','Jamiks C 3-6']);
-renderG2('tbl-g2-g2',tg2_g2,['GOES 2','Griffin P 1-2','Jamiks P 3','Alex P 4','Everett P 5','Joe P 6','Joe C 1-3','Jamiks C 4-6']);
-renderG2('tbl-g2-g3',tg2_g3,['GOES 3','Griffin P 1-3','Jamiks P 4','Alex P 5','Everett P 6','Joe C 1-2','Jamiks C 3','Joe C 4','Jamiks C 5-6']);
 renderG1('tbl-g1-g1',tg1_g1,['GOES 1','Max P 1','Alex P 2','Everett P 3','Joe P 4','Owen P 5','Jamiks P 6','Jamiks C 1-4','Joe C 5-6']);
-renderG1('tbl-g1-g2',tg1_g2,['GOES 2','Max P 1-2','Everett P 3','Joe P 4','Owen P 5','Jamiks P 6','Jamiks C 1-4','Joe C 5-6']);
+renderG1('tbl-g1-g2',tg1_g2,['GOES 2','Max P 1-2','Alex P 2','Everett P 3','Joe P 4','Owen P 5','Jamiks P 6','Jamiks C 1-4','Joe C 5-6']);
 renderG1('tbl-g1-g3',tg1_g3,['GOES 3','Max P 1-3','Joe P 4','Owen P 5','Jamiks P 6','Jamiks C 1-4','Joe C 5-6']);
+renderG2('tbl-g2-g1',tg2_g1,[]);
+renderG2('tbl-g2-g2',tg2_g2,[]);
+renderG2('tbl-g2-g3',tg2_g3,[]);
 </script>
 </body>
 </html>
