@@ -307,7 +307,7 @@ tr.drag-over{border-top:2px solid var(--accent);}
 // ── G1 GAME DATA ───────────────────────────────────────────────────
 // Goes 1 — Max P inn 1, Alex P inn 2, Everett P inn 3, Joe P inn 4, Owen P inn 5, Jamiks P inn 6
 
-const tg1_g1=[
+const tg2_g1=[
   [1,"Coop","2B","SIT","2B","2B","CF","CF"],
   [2,"Charlie","RF","2B","SIT","3B","SIT","3B"],
   [3,"Gray","3B","3B","3B","SIT","3B","SIT"],
@@ -324,7 +324,7 @@ const tg1_g1=[
 
 // Goes 2: Max 1-2, Alex 2, Everett 3, Joe 4, Owen 5, Jamiks 6
 // Jamiks C 1-4, Joe C 5-6. Jamiks & Sam each sit once.
-const tg1_g2=[
+const tg2_g2=[
   [1,"Coop","2B","SIT","2B","2B","CF","CF"],
   [2,"Charlie","RF","2B","SIT","3B","SIT","3B"],
   [3,"Gray","3B","3B","3B","SIT","3B","SIT"],
@@ -341,7 +341,7 @@ const tg1_g2=[
 
 // Goes 3: Max 1-3, Joe 4, Owen 5, Jamiks 6
 // Pitcher rows changed: Max stays P inn3; Alex back to LF inn2; Everett back to RF inn3
-const tg1_g3=[
+const tg2_g3=[
   [1,"Coop","2B","SIT","2B","2B","CF","CF"],
   [2,"Charlie","RF","2B","SIT","3B","SIT","3B"],
   [3,"Gray","3B","3B","3B","SIT","3B","SIT"],
@@ -359,53 +359,53 @@ const tg1_g3=[
 // G2 placeholders (to be filled after G1)
 // Goes 1 — Griffin P inn 1 · Jamiks P inn 2 · Alex P inn 3 · Everett P inn 4 · Joe P inn 5 · Owen P inn 6
 
-const tg2_g1=[
-  [1,"Coop","SIT","SIT","RF","1B","1B","RF"],
-  [2,"Charlie","SIT","LF","1B","3B","LF","3B"],
-  [3,"Gray","1B","1B","3B","SIT","3B","SIT"],
-  [4,"Jamiks","SIT","P","C","C","C","C"],
-  [5,"Max","2B","2B","SIT","SS","SS","2B"],
-  [6,"Sam","SS","SS","SS","SIT","SIT","SS"],
-  [7,"Jack","3B","SIT","CF","2B","SIT","CF"],
-  [8,"Joe","C","C","SIT","SIT","P","RF"],
-  [9,"Griffin","P","SIT","RF","RF","RF","1B"],
-  [10,"Alex","CF","CF","P","2B","2B","SIT"],
-  [11,"Everett","RF","RF","SIT","P","CF","SIT"],
-  [12,"Owen","LF","SIT","LF","LF","CF","P"]
+const tg1_g1=[
+  [1,"Coop","SIT","SIT","P","P","2B","2B"],
+  [2,"Charlie","SIT","1B","1B","3B","3B","3B"],
+  [3,"Gray","3B","3B","3B","SIT","SIT","P"],
+  [4,"Jamiks","SIT","SIT","C","C","C","C"],
+  [5,"Max","SS","SS","SS","2B","SIT","SIT"],
+  [6,"Sam","P","P","SIT","SS","SS","SS"],
+  [7,"Jack","2B","2B","RF","RF","SIT","CF"],
+  [8,"Joe","C","C","SIT","SIT","RF","RF"],
+  [9,"Griffin","1B","SIT","SIT","1B","1B","1B"],
+  [10,"Alex","CF","CF","CF","SIT","LF","LF"],
+  [11,"Everett","RF","RF","2B","CF","CF","SIT"],
+  [12,"Owen","LF","LF","LF","LF","P","SIT"]
 ];
 
 // Goes 2 — Griffin P inn 1-2 · Jamiks P inn 3 · Alex P inn 4 · Everett P inn 5 · Joe P inn 6
 
-const tg2_g2=[
-  [1,"Coop","SIT","SIT","RF","1B","1B","RF"],
-  [2,"Charlie","SIT","LF","1B","3B","LF","3B"],
-  [3,"Gray","1B","1B","3B","SIT","3B","SIT"],
-  [4,"Jamiks","SIT","SIT","P","C","C","C"],
-  [5,"Max","2B","2B","SIT","SS","SS","2B"],
-  [6,"Sam","SS","SS","SS","SIT","SIT","SS"],
-  [7,"Jack","3B","3B","CF","2B","SIT","CF"],
-  [8,"Joe","C","C","C","SIT","SIT","P"],
-  [9,"Griffin","P","P","SIT","RF","RF","1B"],
-  [10,"Alex","CF","CF","2B","P","2B","SIT"],
-  [11,"Everett","RF","RF","SIT","CF","P","SIT"],
-  [12,"Owen","LF","SIT","LF","LF","CF","LF"]
+const tg1_g2=[
+  [1,"Coop","SIT","SIT","P","P","2B","2B"],
+  [2,"Charlie","SIT","1B","1B","3B","3B","3B"],
+  [3,"Gray","3B","3B","3B","SIT","SIT","P"],
+  [4,"Jamiks","SIT","SIT","C","C","C","C"],
+  [5,"Max","SS","SS","SS","2B","SIT","SIT"],
+  [6,"Sam","P","P","SIT","SS","SS","SS"],
+  [7,"Jack","2B","2B","RF","RF","SIT","CF"],
+  [8,"Joe","C","C","SIT","SIT","RF","RF"],
+  [9,"Griffin","1B","SIT","SIT","1B","1B","1B"],
+  [10,"Alex","CF","CF","CF","SIT","LF","LF"],
+  [11,"Everett","RF","RF","2B","CF","CF","SIT"],
+  [12,"Owen","LF","LF","LF","LF","P","SIT"]
 ];
 
 // Goes 3 — Griffin P inn 1-3 · Jamiks P inn 4 · Alex P inn 5 · Everett P inn 6
 
-const tg2_g3=[
-  [1,"Coop","SIT","SIT","RF","1B","1B","RF"],
-  [2,"Charlie","SIT","LF","1B","3B","LF","3B"],
-  [3,"Gray","1B","1B","3B","SIT","3B","SIT"],
-  [4,"Jamiks","SIT","SIT","C","P","C","C"],
-  [5,"Max","2B","2B","SIT","SS","SS","2B"],
-  [6,"Sam","SS","SS","SS","SIT","SIT","SS"],
-  [7,"Jack","3B","3B","CF","2B","SIT","CF"],
-  [8,"Joe","C","C","RF","C","SIT","SIT"],
-  [9,"Griffin","P","P","P","RF","RF","1B"],
-  [10,"Alex","CF","CF","2B","2B","P","SIT"],
-  [11,"Everett","RF","RF","SIT","CF","CF","P"],
-  [12,"Owen","LF","SIT","LF","LF","CF","LF"]
+const tg1_g2=[
+  [1,"Coop","SIT","SIT","P","P","2B","2B"],
+  [2,"Charlie","SIT","1B","1B","3B","3B","3B"],
+  [3,"Gray","3B","3B","3B","SIT","SIT","P"],
+  [4,"Jamiks","SIT","SIT","C","C","C","C"],
+  [5,"Max","SS","SS","SS","2B","SIT","SIT"],
+  [6,"Sam","P","P","SIT","SS","SS","SS"],
+  [7,"Jack","2B","2B","RF","RF","SIT","CF"],
+  [8,"Joe","C","C","SIT","SIT","RF","RF"],
+  [9,"Griffin","1B","SIT","SIT","1B","1B","1B"],
+  [10,"Alex","CF","CF","CF","SIT","LF","LF"],
+  [11,"Everett","RF","RF","2B","CF","CF","SIT"],
+  [12,"Owen","LF","LF","LF","LF","P","SIT"]
 ];
 
 var _aid = null;
