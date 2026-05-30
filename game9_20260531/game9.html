@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maine Force 12U · Doubleheader</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap');
+:root{--green:#1a3a1a;--chalk:#fff;--accent:#e8c840;--blue:#90ccff;--purple:#cc99ff;--red:#ff7070;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--green);background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px);font-family:'Source Code Pro',monospace;color:var(--chalk);padding:20px 12px 60px;min-height:100vh;}
+h1{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--accent);margin-bottom:2px;}
+.sub{text-align:center;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:20px;text-transform:uppercase;}
+.tabs{display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.tab-btn{font-family:'Oswald',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:2px solid rgba(255,255,255,.18);color:rgba(255,255,255,.45);padding:6px 12px;border-radius:4px;cursor:pointer;transition:all .15s;}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:var(--green);}
+.tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.dh{font-family:'Oswald',sans-serif;font-size:.95rem;letter-spacing:.15em;color:rgba(255,255,255,.38);text-align:center;margin-bottom:12px;text-transform:uppercase;}
+.sl{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;padding-left:2px;}
+.card{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:12px;margin-bottom:14px;overflow-x:auto;}
+.leg{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:.66rem;font-family:'Oswald',sans-serif;letter-spacing:.07em;}
+.lp{border-radius:3px;padding:2px 6px;background:rgba(100,180,255,.18);color:var(--blue);}
+.lc{border-radius:3px;padding:2px 6px;background:rgba(180,100,255,.18);color:var(--purple);}
+.ls{border-radius:3px;padding:2px 6px;background:rgba(232,200,64,.14);color:var(--accent);}
+table{width:100%;border-collapse:collapse;font-size:.7rem;white-space:nowrap;}
+thead th{font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:5px 7px;border-bottom:1px solid rgba(232,200,64,.2);text-align:center;font-weight:600;}
+thead th:nth-child(1),thead th:nth-child(2){text-align:left;}
+tbody tr:nth-child(even){background:rgba(255,255,255,.04);}
+tbody td{padding:3px 5px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);}
+tbody td:nth-child(1){text-align:center;color:var(--accent);font-weight:600;font-size:.65rem;width:24px;}
+tbody td:nth-child(2){text-align:left;font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.04em;color:var(--chalk);padding-right:10px;min-width:76px;}
+.pc{display:inline-block;min-width:40px;padding:3px 5px;border-radius:3px;cursor:pointer;font-family:'Oswald',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.04em;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);transition:background .1s;user-select:none;}
+.pc:hover{background:rgba(255,255,255,.14);}
+.pst{background:rgba(100,180,255,.18)!important;color:var(--blue)!important;border-color:rgba(100,180,255,.3)!important;}
+.cst{background:rgba(180,100,255,.18)!important;color:var(--purple)!important;border-color:rgba(180,100,255,.3)!important;}
+.sst{background:rgba(232,200,64,.13)!important;color:var(--accent)!important;border-color:rgba(232,200,64,.28)!important;}
+.ov{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);align-items:center;justify-content:center;}
+.ov.open{display:flex;}
+.pbox{background:#1e3a1e;border:1px solid rgba(232,200,64,.4);border-radius:10px;padding:14px;min-width:240px;box-shadow:0 8px 40px rgba(0,0,0,.6);}
+.ptl{font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;text-align:center;}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.pb{font-family:'Oswald',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.05em;padding:8px 4px;border-radius:4px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);color:var(--chalk);cursor:pointer;transition:all .1s;text-align:center;}
+.pb:hover{background:var(--accent);color:var(--green);border-color:var(--accent);}
+.ppp{background:rgba(100,180,255,.2);color:var(--blue);border-color:rgba(100,180,255,.3);}
+.pcp{background:rgba(180,100,255,.2);color:var(--purple);border-color:rgba(180,100,255,.3);}
+.psp{background:rgba(232,200,64,.15);color:var(--accent);border-color:rgba(232,200,64,.28);}
+.pc2{margin-top:8px;width:100%;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.1em;padding:7px;border-radius:4px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.38);cursor:pointer;}
+.pc2:hover{color:var(--chalk);}
+.nr{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.06);}
+.nb{border:1px solid rgba(232,200,64,.45);border-radius:3px;font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.06em;color:var(--accent);padding:2px 8px;}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:460px){.ig{grid-template-columns:1fr;}}
+.ib h4{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;border-bottom:1px solid rgba(232,200,64,.18);padding-bottom:3px;}
+.ib li{font-size:.73rem;color:rgba(255,255,255,.75);line-height:1.9;list-style:none;}
+.ib li .n{display:inline-block;width:22px;color:var(--accent);font-weight:600;}
+.stats-tbl{font-size:.58rem;}
+.stats-tbl thead th{font-size:.56rem;padding:3px 4px;letter-spacing:.03em;}
+.stats-tbl tbody td{padding:2px 4px;font-size:.58rem;}
+.stats-tbl tbody td:nth-child(1){text-align:center;color:var(--accent);font-weight:600;width:24px;cursor:default;}
+.stats-tbl tbody td:nth-child(2){text-align:left;font-family:'Oswald',sans-serif;font-size:.66rem;color:var(--chalk);min-width:48px;}
+.stats-tbl tbody td:nth-child(3){text-align:left;min-width:44px;}
+.stats-tbl thead th:nth-child(1),.stats-tbl thead th:nth-child(2),.stats-tbl thead th:nth-child(3){text-align:left;}
+.hi{color:var(--accent);font-weight:600;}
+.stat-note{font-family:'Oswald',sans-serif;font-size:.6rem;color:rgba(255,255,255,.3);text-align:center;margin-top:6px;letter-spacing:.07em;}
+</style>
+</head>
+<body>
+<h1>&#9918; Maine Force 12U Green</h1>
+<p class="sub">Doubleheader &#183; 4-Inning Games &#183; 13 Players &#183; Little League Playoff Weekend</p>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="g1">G1</button>
+  <button class="tab-btn" data-tab="g1n">G1 Notes</button>
+  <button class="tab-btn" data-tab="g2">G2</button>
+  <button class="tab-btn" data-tab="g2n">G2 Notes</button>
+  <button class="tab-btn" data-tab="hit">Hitting</button>
+  <button class="tab-btn" data-tab="pit">Pitching</button>
+  <button class="tab-btn" data-tab="fld">Fielding</button>
+</div>
+
+<div class="ov" id="ov">
+  <div class="pbox">
+    <div class="ptl" id="ptitle">Select Position</div>
+    <div class="pg">
+      <button class="pb ppp" data-pos="P">P</button>
+      <button class="pb pcp" data-pos="C">C</button>
+      <button class="pb" data-pos="1B">1B</button>
+      <button class="pb" data-pos="2B">2B</button>
+      <button class="pb" data-pos="3B">3B</button>
+      <button class="pb" data-pos="SS">SS</button>
+      <button class="pb" data-pos="LF">LF</button>
+      <button class="pb" data-pos="CF">CF</button>
+      <button class="pb" data-pos="RF">RF</button>
+      <button class="pb psp" data-pos="SIT">SIT</button>
+    </div>
+    <button class="pc2" id="cancelBtn">Cancel</button>
+  </div>
+</div>
+
+<!-- G1 -->
+<div class="tab-panel active" id="g1">
+  <div class="dh">G1 &#183; Sam starts &#183; Grayson closes &#183; 13 Players &#183; 4 Innings</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <p class="sl">Sam goes 2 &#183; Grayson closes inn 3-4 &#183; Joe available inn 3 if needed</p>
+  <div class="card" id="tg1g2"></div>
+  <p class="sl">Sam goes 3 &#183; Grayson closes inn 4</p>
+  <div class="card" id="tg1g3"></div>
+</div>
+
+<!-- G1 Notes -->
+<div class="tab-panel" id="g1n">
+  <div class="dh">G1 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order</h4><ul>
+      <li><span class="n">1</span>Cooper Mullen</li>
+      <li><span class="n">2</span>Charlie Boston</li>
+      <li><span class="n">3</span>Grayson Fairfield</li>
+      <li><span class="n">4</span>Jamiks Petersons</li>
+      <li><span class="n">5</span>Max Jellie</li>
+      <li><span class="n">6</span>Griffin Strattard</li>
+      <li><span class="n">7</span>Sam McDuffie</li>
+      <li><span class="n">8</span>Jackson Emery</li>
+      <li><span class="n">9</span>Joe Dolby</li>
+      <li><span class="n">10</span>Alex Johnston</li>
+      <li><span class="n">11</span>Ben Eastman</li>
+      <li><span class="n">12</span>Everett Marcaurelle</li>
+      <li><span class="n">13</span>Owen Kane</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 2)</h4><ul>
+      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-2</li>
+      <li><span class="n">&#9313;</span>Grayson Fairfield — Inn 3-4</li>
+      <li><span class="n">&#9314;</span>Joe Dolby — Inn 3 if needed</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 3)</h4><ul>
+      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-3</li>
+      <li><span class="n">&#9313;</span>Grayson Fairfield — Inn 4</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — Inn 1, 2</li>
+      <li>Charlie — Inn 3, 4</li>
+    </ul></div>
+    <div class="ib card"><h4>Sit Balance &#183; G1</h4><ul>
+      <li>All 13 players sit at least once</li>
+      <li>Sit-twice: Alex, Everett, Owen</li>
+      <li>Sam, Gray, Jamiks sit once each</li>
+      <li>Ben holds SS inn 1-2 (Sam pitching)</li>
+      <li>Sam covers SS inn 3-4 (done pitching)</li>
+    </ul></div>
+    <div class="ib card"><h4>Strategy</h4><ul>
+      <li>4 innings — every out counts</li>
+      <li>Sam: 18 K on season, best strikeout arm</li>
+      <li>Gray: 4.20 ERA, 2 saves — reliable closer</li>
+      <li>Joe available for 1 inning in pinch</li>
+      <li>Pull Sam if he walks 2 in a row</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- G2 -->
+<div class="tab-panel" id="g2">
+  <div class="dh">G2 &#183; Coop starts &#183; Grayson closes &#183; 13 Players &#183; 4 Innings</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <p class="sl">Coop goes 2 &#183; Grayson closes inn 3-4 &#183; Jamiks available inn 3 if needed</p>
+  <div class="card" id="tg2g2"></div>
+  <p class="sl">Coop goes 3 &#183; Grayson closes inn 4</p>
+  <div class="card" id="tg2g3"></div>
+</div>
+
+<!-- G2 Notes -->
+<div class="tab-panel" id="g2n">
+  <div class="dh">G2 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order</h4><ul>
+      <li><span class="n">1</span>Cooper Mullen</li>
+      <li><span class="n">2</span>Charlie Boston</li>
+      <li><span class="n">3</span>Grayson Fairfield</li>
+      <li><span class="n">4</span>Jamiks Petersons</li>
+      <li><span class="n">5</span>Max Jellie</li>
+      <li><span class="n">6</span>Griffin Strattard</li>
+      <li><span class="n">7</span>Sam McDuffie</li>
+      <li><span class="n">8</span>Jackson Emery</li>
+      <li><span class="n">9</span>Joe Dolby</li>
+      <li><span class="n">10</span>Alex Johnston</li>
+      <li><span class="n">11</span>Ben Eastman</li>
+      <li><span class="n">12</span>Everett Marcaurelle</li>
+      <li><span class="n">13</span>Owen Kane</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 2)</h4><ul>
+      <li><span class="n">&#9312;</span>Coop Mullen — Inn 1-2</li>
+      <li><span class="n">&#9313;</span>Grayson Fairfield — Inn 3-4</li>
+      <li><span class="n">&#9314;</span>Jamiks Petersons — Inn 3 if needed</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching (Goes 3)</h4><ul>
+      <li><span class="n">&#9312;</span>Coop Mullen — Inn 1-3</li>
+      <li><span class="n">&#9313;</span>Grayson Fairfield — Inn 4</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — Inn 1, 2</li>
+      <li>Joe Dolby — Inn 3, 4</li>
+    </ul></div>
+    <div class="ib card"><h4>Sit Balance &#183; G2</h4><ul>
+      <li>All 13 players sit at least once</li>
+      <li>Sit-twice: Sam, Jack, Ben</li>
+      <li>Different 3 from G1 (Alex/Everett/Owen)</li>
+      <li>SS: Ben inn 1, Sam inn 2, Ben inn 4</li>
+      <li>Griffin anchors 1B inn 1-3</li>
+    </ul></div>
+    <div class="ib card"><h4>Strategy</h4><ul>
+      <li>Coop: .529 AVG and your best remaining arm</li>
+      <li>Gray: fresh closer, 100% SV% on season</li>
+      <li>Jamiks free to play field — adds flexibility</li>
+      <li>Joe catches inn 3-4 — proven behind the plate</li>
+      <li>Jamiks available on mound if Coop struggles</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- Hitting Stats -->
+<div class="tab-panel" id="hit">
+  <div class="dh">Hitting Stats &#183; 2026 Season</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="stats-tbl">
+      <thead><tr><th>#</th><th>Last</th><th>First</th><th>GP</th><th>PA</th><th>AVG</th><th>OBP</th><th>OPS</th><th>SLG</th><th>H</th><th>2B</th><th>HR</th><th>RBI</th><th>R</th><th>BB</th><th>SO</th><th>SB</th><th>QAB%</th><th>BABIP</th><th>BA/RISP</th></tr></thead>
+      <tbody>
+        <tr><td>9</td><td>Fairfield</td><td>Grayson</td><td>11</td><td>31</td><td class="hi">.522</td><td>.645</td><td class="hi">1.384</td><td class="hi">.739</td><td class="hi">12</td><td>2</td><td>1</td><td class="hi">11</td><td class="hi">12</td><td>6</td><td>1</td><td>5</td><td>38.71</td><td>.524</td><td>.615</td></tr>
+        <tr><td>8</td><td>Petersons</td><td>Jamiks</td><td>9</td><td>26</td><td>.450</td><td>.560</td><td>1.310</td><td>.750</td><td>9</td><td>3</td><td>1</td><td>9</td><td>11</td><td>3</td><td>3</td><td>3</td><td>46.15</td><td>.500</td><td>.500</td></tr>
+        <tr><td>5</td><td>Jellie</td><td>Max</td><td>11</td><td>31</td><td>.500</td><td>.613</td><td>1.280</td><td>.667</td><td>12</td><td>4</td><td>0</td><td>7</td><td>16</td><td>6</td><td>8</td><td>45.16</td><td>.545</td><td>.500</td></tr>
+        <tr><td>1</td><td>Mullen</td><td>Cooper</td><td>9</td><td>27</td><td class="hi">.529</td><td class="hi">.704</td><td>1.292</td><td>.588</td><td>9</td><td>1</td><td>0</td><td>2</td><td class="hi">12</td><td class="hi">9</td><td>2</td><td class="hi">7</td><td>40.74</td><td>.600</td><td>.500</td></tr>
+        <tr><td>20</td><td>Strattard</td><td>Griffin</td><td>9</td><td>23</td><td>.533</td><td>.696</td><td>1.229</td><td>.533</td><td>8</td><td>0</td><td>0</td><td>5</td><td>6</td><td>8</td><td>2</td><td>0</td><td class="hi">.615</td><td class="hi">.625</td></tr>
+        <tr><td>11</td><td>Boston</td><td>Charlie</td><td>11</td><td>32</td><td>.560</td><td>.656</td><td>1.216</td><td>.560</td><td>14</td><td>0</td><td>0</td><td>9</td><td>12</td><td>6</td><td>5</td><td>34.38</td><td>.560</td><td>.692</td></tr>
+        <tr><td>7</td><td>Dolby</td><td>Joe</td><td>11</td><td>30</td><td>.333</td><td>.600</td><td>1.100</td><td>.500</td><td>6</td><td>1</td><td>0</td><td>10</td><td>7</td><td class="hi">12</td><td>1</td><td class="hi">63.33</td><td>.429</td><td>.250</td></tr>
+        <tr><td>12</td><td>Emery</td><td>Jackson</td><td>11</td><td>28</td><td>.348</td><td>.464</td><td>.899</td><td>.435</td><td>8</td><td>2</td><td>0</td><td>5</td><td>10</td><td>5</td><td>4</td><td>46.43</td><td>.444</td><td>.385</td></tr>
+        <tr><td>33</td><td>Eastman</td><td>Ben</td><td>7</td><td>18</td><td>.250</td><td>.500</td><td>.750</td><td>.250</td><td>3</td><td>0</td><td>0</td><td>3</td><td>5</td><td>5</td><td>0</td><td>50.00</td><td>.333</td><td>.286</td></tr>
+        <tr><td>3</td><td>Johnston</td><td>Alex</td><td>11</td><td>29</td><td>.190</td><td>.414</td><td>.604</td><td>.190</td><td>4</td><td>0</td><td>0</td><td>8</td><td>4</td><td>7</td><td>3</td><td>48.28</td><td>.444</td><td>.267</td></tr>
+        <tr><td>78</td><td>McDuffie</td><td>Sam</td><td>11</td><td>29</td><td>.240</td><td>.345</td><td>.585</td><td>.240</td><td>6</td><td>0</td><td>0</td><td>10</td><td>7</td><td>3</td><td>3</td><td>24.14</td><td>.261</td><td>.333</td></tr>
+        <tr><td>13</td><td>Kane</td><td>Owen</td><td>11</td><td>26</td><td>.174</td><td>.269</td><td>.530</td><td>.261</td><td>4</td><td>2</td><td>0</td><td>3</td><td>6</td><td>2</td><td>1</td><td>30.77</td><td>.250</td><td>.100</td></tr>
+        <tr><td>28</td><td>Marcaurelle</td><td>Everett</td><td>8</td><td>19</td><td>.158</td><td>.158</td><td>.316</td><td>.158</td><td>3</td><td>0</td><td>0</td><td>0</td><td>3</td><td>0</td><td>1</td><td>5.26</td><td>.214</td><td>.000</td></tr>
+      </tbody>
+    </table>
+    <p class="stat-note">Sorted by OPS · Griffin: highest QAB% on team (60.87%)</p>
+  </div>
+</div>
+
+<!-- Pitching Stats -->
+<div class="tab-panel" id="pit">
+  <div class="dh">Pitching Stats &#183; 2026 Season</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="stats-tbl">
+      <thead><tr><th>#</th><th>Last</th><th>First</th><th>IP</th><th>GS</th><th>#P</th><th>W</th><th>SV</th><th>H</th><th>R</th><th>ER</th><th>BB</th><th>SO</th><th>ERA</th><th>WHIP</th><th>BAA</th><th>K/BF</th><th>S%</th><th>FPS%</th><th>BB/INN</th></tr></thead>
+      <tbody>
+        <tr><td>78</td><td>McDuffie</td><td>Sam</td><td class="hi">18.2</td><td class="hi">5</td><td class="hi">311</td><td class="hi">2</td><td>0</td><td>31</td><td>20</td><td>14</td><td>11</td><td class="hi">18</td><td>4.50</td><td>2.25</td><td>.352</td><td class="hi">.178</td><td>62.1</td><td>63.4</td><td>.589</td></tr>
+        <tr><td>9</td><td>Fairfield</td><td>Grayson</td><td>10.0</td><td>2</td><td>164</td><td>1</td><td class="hi">2</td><td>10</td><td>9</td><td>7</td><td>6</td><td>9</td><td>4.20</td><td class="hi">1.60</td><td class="hi">.238</td><td>.184</td><td class="hi">60.4</td><td>55.1</td><td>0.60</td></tr>
+        <tr><td>1</td><td>Mullen</td><td>Cooper</td><td>9.1</td><td>2</td><td>229</td><td>1</td><td>0</td><td>18</td><td>16</td><td>11</td><td>15</td><td>7</td><td>7.07</td><td>3.54</td><td>.391</td><td>.113</td><td>52.4</td><td>45.2</td><td>1.607</td></tr>
+        <tr><td>13</td><td>Kane</td><td>Owen</td><td>5.1</td><td>1</td><td>97</td><td>1</td><td>0</td><td>8</td><td>3</td><td>3</td><td>3</td><td>7</td><td>3.38</td><td>2.06</td><td>.364</td><td>.280</td><td>59.8</td><td>44.0</td><td>0.563</td></tr>
+        <tr><td>5</td><td>Jellie</td><td>Max</td><td>6.0</td><td>1</td><td>126</td><td>0</td><td>1</td><td>18</td><td>19</td><td>16</td><td>4</td><td>2</td><td>16.00</td><td>3.67</td><td>.450</td><td>.045</td><td>61.9</td><td>56.8</td><td>0.667</td></tr>
+        <tr><td>11</td><td>Boston</td><td>Charlie</td><td>3.2</td><td>0</td><td>98</td><td>0</td><td>0</td><td>8</td><td>12</td><td>9</td><td>7</td><td>3</td><td>14.73</td><td>4.09</td><td>.400</td><td>.111</td><td>50.0</td><td>48.2</td><td>1.909</td></tr>
+        <tr><td>8</td><td>Petersons</td><td>Jamiks</td><td>2.1</td><td>0</td><td>55</td><td>0</td><td>0</td><td>5</td><td>5</td><td>5</td><td>5</td><td>1</td><td>12.86</td><td>4.29</td><td>.500</td><td>.067</td><td>43.6</td><td>46.7</td><td>2.143</td></tr>
+        <tr><td>3</td><td>Johnston</td><td>Alex</td><td>1.2</td><td>0</td><td>28</td><td>0</td><td>2</td><td>3</td><td>2</td><td>2</td><td>1</td><td>1</td><td>7.20</td><td>2.40</td><td>.375</td><td>.111</td><td>50.0</td><td>44.4</td><td>0.60</td></tr>
+        <tr><td>7</td><td>Dolby</td><td>Joe</td><td>0.1</td><td>0</td><td>6</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0.00</td><td>0.00</td><td>.000</td><td>1.000</td><td>66.7</td><td>0.0</td><td>0.00</td></tr>
+        <tr><td>33</td><td>Eastman</td><td>Ben</td><td>1.0</td><td>0</td><td>30</td><td>0</td><td>0</td><td>2</td><td>1</td><td>1</td><td>1</td><td>3</td><td>6.00</td><td>3.00</td><td>.400</td><td>.500</td><td>53.3</td><td>33.3</td><td>1.00</td></tr>
+        <tr><td>20</td><td>Strattard</td><td>Griffin</td><td>1.0</td><td>0</td><td>22</td><td>0</td><td>0</td><td>3</td><td>3</td><td>2</td><td>0</td><td>0</td><td>12.00</td><td>3.00</td><td>.429</td><td>.000</td><td>50.0</td><td>28.6</td><td>0.00</td></tr>
+        <tr><td>28</td><td>Marcaurelle</td><td>Everett</td><td>1.0</td><td>0</td><td>26</td><td>0</td><td>1</td><td>1</td><td>3</td><td>3</td><td>2</td><td>1</td><td>18.00</td><td>3.00</td><td>.250</td><td>.167</td><td>53.9</td><td>66.7</td><td>2.00</td></tr>
+        <tr><td>12</td><td>Emery</td><td>Jackson</td><td>0.0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <p class="stat-note">Sorted by IP · Gray: best WHIP &amp; lowest BAA · Joe: only arm with 0 ERA this season</p>
+  </div>
+</div>
+
+<!-- Fielding Stats -->
+<div class="tab-panel" id="fld">
+  <div class="dh">Fielding Stats &#183; 2026 Season</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="stats-tbl">
+      <thead><tr><th>#</th><th>Last</th><th>First</th><th>TC</th><th>PO</th><th>A</th><th>E</th><th>FPCT</th><th>INN-C</th><th>1B</th><th>2B</th><th>3B</th><th>SS</th><th>LF</th><th>CF</th><th>RF</th></tr></thead>
+      <tbody>
+        <tr><td>8</td><td>Petersons</td><td>Jamiks</td><td>28</td><td>27</td><td>1</td><td>0</td><td class="hi">1.000</td><td>27.1</td><td>1</td><td>0</td><td>0.2</td><td>2</td><td>0</td><td>2</td><td>4</td></tr>
+        <tr><td>11</td><td>Boston</td><td>Charlie</td><td class="hi">34</td><td class="hi">29</td><td>5</td><td>0</td><td class="hi">1.000</td><td>15</td><td>10</td><td>3</td><td>15.1</td><td>0</td><td>1</td><td>1.1</td><td>2.2</td></tr>
+        <tr><td>20</td><td>Strattard</td><td>Griffin</td><td>26</td><td>24</td><td>1</td><td>1</td><td>.962</td><td>—</td><td class="hi">27</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>5</td></tr>
+        <tr><td>78</td><td>McDuffie</td><td>Sam</td><td>23</td><td>19</td><td>3</td><td>1</td><td>.957</td><td>—</td><td>1</td><td>5</td><td>2</td><td class="hi">14</td><td>0</td><td>9.1</td><td>0</td></tr>
+        <tr><td>1</td><td>Mullen</td><td>Cooper</td><td>13</td><td>10</td><td>2</td><td>1</td><td>.923</td><td>—</td><td>0.2</td><td>13</td><td>6.1</td><td>1</td><td>2</td><td>2</td><td>4</td></tr>
+        <tr><td>3</td><td>Johnston</td><td>Alex</td><td>9</td><td>6</td><td>2</td><td>1</td><td>.889</td><td>—</td><td>0</td><td>4</td><td>3</td><td>2.1</td><td class="hi">22</td><td>9.1</td><td>2</td></tr>
+        <tr><td>13</td><td>Kane</td><td>Owen</td><td>9</td><td>7</td><td>1</td><td>1</td><td>.889</td><td>—</td><td>6</td><td>3</td><td>2</td><td>1.2</td><td>18.1</td><td>3</td><td>6</td></tr>
+        <tr><td>9</td><td>Fairfield</td><td>Grayson</td><td>18</td><td>11</td><td>4</td><td>3</td><td>.833</td><td>—</td><td>2</td><td>0</td><td class="hi">24</td><td>0</td><td>8</td><td>0</td><td>4</td></tr>
+        <tr><td>7</td><td>Dolby</td><td>Joe</td><td>18</td><td>14</td><td>1</td><td>3</td><td>.833</td><td>15</td><td>8.2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.2</td><td>16.2</td></tr>
+        <tr><td>33</td><td>Eastman</td><td>Ben</td><td>12</td><td>8</td><td>2</td><td>2</td><td>.833</td><td>—</td><td>3</td><td>0.2</td><td>0</td><td class="hi">19.1</td><td>0</td><td>5</td><td>2</td></tr>
+        <tr><td>28</td><td>Marcaurelle</td><td>Everett</td><td>10</td><td>8</td><td>2</td><td>0</td><td class="hi">1.000</td><td>3</td><td>0</td><td>5</td><td>3</td><td>1</td><td>7</td><td>8</td><td>6</td></tr>
+        <tr><td>5</td><td>Jellie</td><td>Max</td><td>23</td><td>11</td><td>5</td><td>7</td><td>.696</td><td>—</td><td>1</td><td>10.1</td><td>2</td><td class="hi">19</td><td>2</td><td>6.2</td><td>2</td></tr>
+        <tr><td>12</td><td>Emery</td><td>Jackson</td><td>11</td><td>7</td><td>1</td><td>3</td><td>.727</td><td>—</td><td>0</td><td>16.1</td><td>1</td><td>0</td><td>0</td><td>13</td><td>5.2</td></tr>
+      </tbody>
+    </table>
+    <p class="stat-note">Sorted by FPCT · Griffin: 27 inn at 1B · Ben: 19.1 inn at SS · Sam: 14 inn at SS</p>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// 13 PLAYERS · 4-INNING GAMES · 4 SIT/INNING = 16 SITS TOTAL
+//
+// Batting order (both games):
+// 1-Coop  2-Charlie  3-Gray  4-Jamiks  5-Max  6-Griffin
+// 7-Sam   8-Jack     9-Joe  10-Alex   11-Ben 12-Everett 13-Owen
+//
+// G1: Sam P · Gray(Grayson) closes · Jamiks C inn1-2 · Charlie C inn3-4
+//   Sit-twice (3): Alex, Everett, Owen
+//   Sit-once (10): Coop,Charlie,Gray,Jamiks,Max,Griffin,Sam,Jack,Joe,Ben
+//   Inn1: Coop,Charlie,Alex,Everett  Inn2: Gray,Owen,Jack,Ben
+//   Inn3: Jamiks,Joe,Alex,Everett    Inn4: Sam,Max,Griffin,Owen
+//
+// G2: Coop P · Gray(Grayson) closes · Jamiks C inn1-2 · Joe C inn3-4
+//   Sit-twice (3): Sam, Jack, Ben  ← DIFFERENT from G1
+//   Sit-once (10): Coop,Charlie,Gray,Jamiks,Max,Griffin,Joe,Alex,Everett,Owen
+//   Inn1: Gray,Ben,Jack,Everett  Inn2: Joe,Sam,Alex,Owen
+//   Inn3: Ben,Jack,Jamiks,Charlie  Inn4: Sam,Coop,Max,Griffin
+// ═══════════════════════════════════════════════════════════════════
+
+// ── G1 GOES 2: Sam P inn1-2 · Gray P inn3-4 ──────────────────────
+// Inn1 field: Gray(3B) Ben(SS) Max(2B) Griffin(1B) Jack(CF) Joe(RF) Owen(LF)
+// Inn2 field: Charlie(3B) Max(SS) Griffin(1B) Coop(2B) Alex(CF) Everett(LF) Joe(RF)
+// Inn3 field: Sam(SS) Griffin(1B) Charlie(3B) Max(2B) Coop(CF) Ben(3B→RF) Owen(LF)
+//   wait - inn3: Sam(SS) Griffin(1B) Max(2B) Coop(CF) Owen(LF) Joe(RF) Ben(3B - stretch)
+// Inn4 field: Coop(RF) Jamiks(1B) Ben(SS) Jack(CF) Joe(LF) Alex(3B) Everett(RF - conflict)
+//   inn4: Ben(SS) Jamiks(1B) Jack(CF) Coop(RF) Alex(3B) Everett(LF... wait Joe sits)
+//   inn4 sit: Sam,Max,Griffin,Owen. Active: Coop,Charlie(C),Gray(P),Jamiks,Jack,Joe,Alex,Ben,Everett
+//   field (non-P/C): Coop,Jamiks,Jack,Joe,Alex,Ben,Everett = 7
+//   Ben(SS) Jack(CF) Jamiks(1B) Coop(RF) Alex(3B) Everett(LF) Joe(2B-stretch)
+const tg1g2=[
+  [1,"Coop","2B","2B","SIT","SIT"],
+  [2,"Charlie","SIT","3B","C","C"],
+  [3,"Gray","3B","SIT","P","P"],
+  [4,"Jamiks","C","C","SIT","1B"],
+  [5,"Max","SS","SS","2B","SIT"],
+  [6,"Griffin","1B","1B","1B","SIT"],
+  [7,"Sam","P","P","SIT","CF"],
+  [8,"Jack","RF","SIT","CF","2B"],
+  [9,"Joe","SIT","RF","RF","RF"],
+  [10,"Alex","SIT","CF","3B","3B"],
+  [11,"Ben","CF","SIT","SS","SS"],
+  [12,"Everett","SIT","LF","SIT","LF"],
+  [13,"Owen","LF","SIT","LF","SIT"]
+];
+
+// ── G1 GOES 3: Sam P inn1-3 · Gray P inn4 ────────────────────────
+// Only Sam and Gray rows change for inn3:
+//   Sam inn3: SS → P
+//   Gray inn3: P → 3B  (Gray fields inn3, pitches inn4)
+// Inn3 field: Gray(3B) Ben(SS) Max(2B) Griffin(1B) Coop(CF) Owen(LF) Joe(RF)
+const tg1g3=[
+  [1,"Coop","2B","2B","SIT","2B"],
+  [2,"Charlie","SIT","3B","C","C"],
+  [3,"Gray","3B","SIT","3B","P"],
+  [4,"Jamiks","C","C","SIT","1B"],
+  [5,"Max","SS","SS","2B","SIT"],
+  [6,"Griffin","1B","1B","1B","SIT"],
+  [7,"Sam","P","P","P","SIT"],
+  [8,"Jack","RF","SIT","CF","CF"],
+  [9,"Joe","SIT","RF","RF","RF"],
+  [10,"Alex","SIT","CF","SIT","3B"],
+  [11,"Ben","CF","SIT","SS","SS"],
+  [12,"Everett","SIT","LF","SIT","LF"],
+  [13,"Owen","LF","SIT","LF","SIT"]
+];
+
+// ── G2 GOES 2: Coop P inn1-2 · Gray P inn3-4 ─────────────────────
+// Inn1 field: Charlie(3B) Sam(SS) Max(2B) Griffin(1B) Joe(RF) Alex(LF) Owen(CF)
+// Inn2 field: Gray(3B) Ben(SS) Max(2B) Griffin(1B) Jack(CF) Charlie(LF) Everett(RF)
+// Inn3 field: Sam(SS) Max(2B) Griffin(1B) Coop(RF) Alex(LF) Owen(CF) Everett(3B)
+// Inn4 field: Charlie(3B) Ben(SS) Jack(CF) Griffin(1B) Alex(LF) Everett(RF) Owen(2B) + Jamiks
+//   inn4 sit: Sam,Coop,Max,Griffin. Active field: Charlie,Jamiks,Jack,Joe(C),Alex,Ben,Everett,Owen
+//   non-C non-P: Charlie,Jamiks,Jack,Alex,Ben,Everett,Owen = 7
+//   Ben(SS) Jack(CF) Charlie(3B) Jamiks(1B) Alex(LF) Everett(RF) Owen(2B)
+const tg2g2=[
+  [1,"Coop","P","P","RF","SIT"],
+  [2,"Charlie","3B","LF","SIT","3B"],
+  [3,"Gray","SIT","3B","P","P"],
+  [4,"Jamiks","C","C","SIT","1B"],
+  [5,"Max","2B","2B","2B","SIT"],
+  [6,"Griffin","1B","1B","1B","SIT"],
+  [7,"Sam","SS","SIT","SS","SIT"],
+  [8,"Jack","SIT","CF","SIT","CF"],
+  [9,"Joe","RF","RF","C","C"],
+  [10,"Alex","LF","SIT","LF","LF"],
+  [11,"Ben","SIT","SS","SIT","SS"],
+  [12,"Everett","SIT","RF","3B","RF"],
+  [13,"Owen","CF","SIT","CF","2B"]
+];
+
+// ── G2 GOES 3: Coop P inn1-3 · Gray P inn4 ───────────────────────
+// Only Coop and Gray rows change for inn3:
+//   Coop inn3: RF → P
+//   Gray inn3: P → 3B
+// Inn3 field: Sam(SS) Max(2B) Griffin(1B) Gray(3B) Alex(LF) Owen(CF) Everett(RF)
+const tg2g3=[
+  [1,"Coop","P","P","P","SIT"],
+  [2,"Charlie","3B","LF","SIT","3B"],
+  [3,"Gray","SIT","3B","3B","P"],
+  [4,"Jamiks","C","C","SIT","1B"],
+  [5,"Max","2B","2B","2B","SIT"],
+  [6,"Griffin","1B","1B","1B","SIT"],
+  [7,"Sam","SS","SIT","SS","SIT"],
+  [8,"Jack","SIT","CF","SIT","CF"],
+  [9,"Joe","RF","RF","C","C"],
+  [10,"Alex","LF","SIT","LF","LF"],
+  [11,"Ben","SIT","SS","SIT","SS"],
+  [12,"Everett","SIT","RF","RF","RF"],
+  [13,"Owen","CF","SIT","CF","2B"]
+];
+
+// ── POSITION PICKER ───────────────────────────────────────────────
+var _aid=null;
+document.querySelector('.pg').addEventListener('click',function(e){
+  var btn=e.target.closest('[data-pos]');if(!btn||!_aid)return;
+  var el=document.getElementById(_aid);
+  el.textContent=btn.getAttribute('data-pos');
+  el.className='pc '+sf(btn.getAttribute('data-pos'));
+  closeOv();
+});
+document.getElementById('cancelBtn').addEventListener('click',closeOv);
+document.getElementById('ov').addEventListener('click',function(e){if(e.target===this)closeOv();});
+function closeOv(){document.getElementById('ov').classList.remove('open');_aid=null;}
+function sf(v){return v==='P'?'pst':v==='C'?'cst':v==='SIT'?'sst':'';}
+document.addEventListener('click',function(e){
+  var el=e.target.closest('.pc');if(!el)return;
+  _aid=el.id;
+  var cells=el.closest('tr').cells;
+  var inn=el.closest('td').cellIndex-1;
+  document.getElementById('ptitle').textContent=cells[1].textContent+' \u2014 Inn '+inn;
+  document.getElementById('ov').classList.add('open');
+});
+
+// ── TAB SWITCHING ─────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+    document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+    btn.classList.add('active');
+  });
+});
+
+// ── RENDER (4 innings) ────────────────────────────────────────────
+function render(cid,data,notes){
+  var div=document.getElementById(cid);if(!div)return;
+  var h='<table><thead><tr><th>Bat</th><th>Player</th><th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th></tr></thead><tbody>';
+  for(var i=0;i<data.length;i++){
+    var r=data[i];var cells='';
+    for(var j=0;j<4;j++){var v=r[j+2];var id=cid+'-r'+i+'-i'+j;cells+='<td><span class="pc '+sf(v)+'" id="'+id+'">'+v+'</span></td>';}
+    h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td>'+cells+'</tr>';
+  }
+  h+='</tbody></table>';
+  if(notes&&notes.length){h+='<div class="nr">';notes.forEach(function(n){h+='<span class="nb">'+n+'</span>';});h+='</div>';}
+  div.innerHTML=h;
+}
+
+render('tg1g2',tg1g2,['G1 \xb7 GOES 2','Sam P 1-2','Gray P 3-4','Jamiks C 1-2','Charlie C 3-4','Sit\xd72: Alex Everett Owen']);
+render('tg1g3',tg1g3,['G1 \xb7 GOES 3','Sam P 1-3','Gray P 4','Jamiks C 1-2','Charlie C 3-4','Sit\xd72: Alex Everett Owen']);
+render('tg2g2',tg2g2,['G2 \xb7 GOES 2','Coop P 1-2','Gray P 3-4','Jamiks C 1-2','Joe C 3-4','Sit\xd72: Sam Jack Ben']);
+render('tg2g3',tg2g3,['G2 \xb7 GOES 3','Coop P 1-3','Gray P 4','Jamiks C 1-2','Joe C 3-4','Sit\xd72: Sam Jack Ben']);
+</script>
+</body>
+</html>
