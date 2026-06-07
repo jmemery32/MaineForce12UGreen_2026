@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maine Force 12U · Game 11</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap');
+:root{--green:#1a3a1a;--chalk:#fff;--accent:#e8c840;--blue:#90ccff;--purple:#cc99ff;--red:#ff7070;--orange:#f0a030;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--green);background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px);font-family:'Source Code Pro',monospace;color:var(--chalk);padding:20px 12px 60px;min-height:100vh;}
+h1{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--accent);margin-bottom:2px;}
+.sub{text-align:center;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:20px;text-transform:uppercase;}
+.tabs{display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.tab-btn{font-family:'Oswald',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:2px solid rgba(255,255,255,.18);color:rgba(255,255,255,.45);padding:6px 12px;border-radius:4px;cursor:pointer;transition:all .15s;}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:var(--green);}
+.tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.dh{font-family:'Oswald',sans-serif;font-size:.95rem;letter-spacing:.15em;color:rgba(255,255,255,.38);text-align:center;margin-bottom:8px;text-transform:uppercase;}
+.branch-bar{display:flex;gap:0;margin-bottom:12px;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.1);}
+.branch-btn{flex:1;font-family:'Oswald',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px;cursor:pointer;border:none;background:rgba(255,255,255,.05);color:rgba(255,255,255,.4);transition:all .15s;}
+.branch-btn.active-b1{background:rgba(100,180,100,.25);color:#90e090;}
+.branch-btn.active-b2{background:rgba(220,80,80,.25);color:var(--red);}
+.branch-pane{display:none;}.branch-pane.active{display:block;}
+.b1-label{color:#90e090;font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;padding-left:2px;}
+.b2-label{color:var(--red);font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;padding-left:2px;}
+.sl{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;padding-left:2px;}
+.card{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:12px;margin-bottom:12px;overflow-x:auto;}
+.leg{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:.66rem;font-family:'Oswald',sans-serif;letter-spacing:.07em;}
+.lp{border-radius:3px;padding:2px 6px;background:rgba(100,180,255,.18);color:var(--blue);}
+.lc{border-radius:3px;padding:2px 6px;background:rgba(180,100,255,.18);color:var(--purple);}
+.ls{border-radius:3px;padding:2px 6px;background:rgba(232,200,64,.14);color:var(--accent);}
+.ldrag{border-radius:3px;padding:2px 6px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);font-size:.62rem;}
+table{width:100%;border-collapse:collapse;font-size:.7rem;white-space:nowrap;}
+thead th{font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:5px 7px;border-bottom:1px solid rgba(232,200,64,.2);text-align:center;font-weight:600;}
+thead th:nth-child(1),thead th:nth-child(2){text-align:left;}
+tbody tr:nth-child(even){background:rgba(255,255,255,.03);}
+tbody td{padding:3px 5px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);}
+tbody td:nth-child(1){text-align:center;color:var(--accent);font-weight:600;font-size:.65rem;width:24px;}
+tbody td:nth-child(2){text-align:left;font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.04em;color:var(--chalk);padding-right:10px;min-width:76px;}
+.pc{display:inline-block;min-width:40px;padding:3px 5px;border-radius:3px;cursor:pointer;font-family:'Oswald',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.04em;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);transition:background .1s;user-select:none;}
+.pc:hover{background:rgba(255,255,255,.14);}
+.pst{background:rgba(100,180,255,.18)!important;color:var(--blue)!important;border-color:rgba(100,180,255,.3)!important;}
+.cst{background:rgba(180,100,255,.18)!important;color:var(--purple)!important;border-color:rgba(180,100,255,.3)!important;}
+.sst{background:rgba(232,200,64,.13)!important;color:var(--accent)!important;border-color:rgba(232,200,64,.28)!important;}
+.ov{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);align-items:center;justify-content:center;}
+.ov.open{display:flex;}
+.pbox{background:#1e3a1e;border:1px solid rgba(232,200,64,.4);border-radius:10px;padding:14px;min-width:240px;box-shadow:0 8px 40px rgba(0,0,0,.6);}
+.ptl{font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;text-align:center;}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.pb{font-family:'Oswald',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.05em;padding:8px 4px;border-radius:4px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);color:var(--chalk);cursor:pointer;transition:all .1s;text-align:center;}
+.pb:hover{background:var(--accent);color:var(--green);border-color:var(--accent);}
+.ppp{background:rgba(100,180,255,.2);color:var(--blue);border-color:rgba(100,180,255,.3);}
+.pcp{background:rgba(180,100,255,.2);color:var(--purple);border-color:rgba(180,100,255,.3);}
+.psp{background:rgba(232,200,64,.15);color:var(--accent);border-color:rgba(232,200,64,.28);}
+.pc2{margin-top:8px;width:100%;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.1em;padding:7px;border-radius:4px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.38);cursor:pointer;}
+.pc2:hover{color:var(--chalk);}
+.nr{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.06);}
+.nb{border:1px solid rgba(232,200,64,.45);border-radius:3px;font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.06em;color:var(--accent);padding:2px 8px;}
+.nbb{border:1px solid rgba(255,120,120,.4);border-radius:3px;font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.06em;color:var(--red);padding:2px 8px;}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:460px){.ig{grid-template-columns:1fr;}}
+.ib h4{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;border-bottom:1px solid rgba(232,200,64,.18);padding-bottom:3px;}
+.ib h4.red{color:var(--red);border-bottom-color:rgba(255,100,100,.2);}
+.ib li{font-size:.73rem;color:rgba(255,255,255,.75);line-height:1.9;list-style:none;}
+.ib li .n{display:inline-block;width:22px;color:var(--accent);font-weight:600;}
+tr.dragging{opacity:.4;}
+tr.drag-over{border-top:2px solid var(--accent);}
+</style>
+</head>
+<body>
+<h1>&#9918; Maine Force 12U Green</h1>
+<p class="sub">Game 11 &#183; 12 Players &#183; 6 Innings</p>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="g1">G1</button>
+  <button class="tab-btn" data-tab="g1n">G1 Notes</button>
+  <button class="tab-btn" data-tab="g2">G2</button>
+  <button class="tab-btn" data-tab="g2n">G2 Notes</button>
+</div>
+
+<div class="ov" id="ov">
+  <div class="pbox">
+    <div class="ptl" id="ptitle">Select Position</div>
+    <div class="pg">
+      <button class="pb ppp" data-pos="P">P</button>
+      <button class="pb pcp" data-pos="C">C</button>
+      <button class="pb" data-pos="1B">1B</button>
+      <button class="pb" data-pos="2B">2B</button>
+      <button class="pb" data-pos="3B">3B</button>
+      <button class="pb" data-pos="SS">SS</button>
+      <button class="pb" data-pos="LF">LF</button>
+      <button class="pb" data-pos="CF">CF</button>
+      <button class="pb" data-pos="RF">RF</button>
+      <button class="pb psp" data-pos="SIT">SIT</button>
+    </div>
+    <button class="pc2" id="cancelBtn">Cancel</button>
+  </div>
+</div>
+
+<!-- G1 -->
+<div class="tab-panel active" id="g1">
+  <div class="dh">G1 &#183; 12 Players &#183; 6 Innings</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
+  <div class="branch-bar">
+    <button class="branch-btn active-b1" data-game="g1" data-branch="b1">&#9679; Branch 1 &mdash; In Control</button>
+    <button class="branch-btn" data-game="g1" data-branch="b2">&#9679; Branch 2 &mdash; Need the Win</button>
+  </div>
+  <div class="branch-pane active" id="g1-b1">
+    <p class="b1-label">&#8593; In control: Owen 1-2 · Max 3-4 · Joe 5-6 · Sam, Grayson &amp; Coop untouched</p>
+    <div class="card" id="tb1b1"></div>
+  </div>
+  <div class="branch-pane" id="g1-b2">
+    <p class="b2-label">&#9888; Need the win: Sam 1-3 · Coop 4-5 · Owen 6 · Grayson protected</p>
+    <div class="card" id="tb1b2"></div>
+  </div>
+</div>
+
+<!-- G1 Notes -->
+<div class="tab-panel" id="g1n">
+  <div class="dh">G1 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order</h4><ul>
+      <li><span class="n">1</span>Sam McDuffie</li>
+      <li><span class="n">2</span>Max Jellie</li>
+      <li><span class="n">3</span>Jamiks Petersons</li>
+      <li><span class="n">4</span>Grayson Fairfield</li>
+      <li><span class="n">5</span>Charlie Boston</li>
+      <li><span class="n">6</span>Coop Mullen</li>
+      <li><span class="n">7</span>Owen Kane</li>
+      <li><span class="n">8</span>Everett Marcaurelle</li>
+      <li><span class="n">9</span>Alex Johnston</li>
+      <li><span class="n">10</span>Griffin Strattard</li>
+      <li><span class="n">11</span>Joe Dolby</li>
+      <li><span class="n">12</span>Jack Emery</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching &#8212; Branch 1</h4><ul>
+      <li><span class="n">&#9312;</span>Owen Kane — Inn 1-2</li>
+      <li><span class="n">&#9313;</span>Max Jellie — Inn 3-4</li>
+      <li><span class="n">&#9314;</span>Joe Dolby — Inn 5-6</li>
+    </ul></div>
+    <div class="ib card"><h4 class="red">Pitching &#8212; Branch 2</h4><ul>
+      <li><span class="n">&#9312;</span>Sam McDuffie — Inn 1-3</li>
+      <li><span class="n">&#9313;</span>Coop Mullen — Inn 4-5</li>
+      <li><span class="n">&#9314;</span>Owen Kane — Inn 6</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — Inn 1-4</li>
+      <li>Charlie — Inn 5-6</li>
+    </ul></div>
+    <div class="ib card"><h4>Strategy</h4><ul>
+      <li>Branch 1 keeps Sam, Coop &amp; Gray fresh for G2</li>
+      <li>Branch 2 spends Sam &amp; Coop, protects Gray</li>
+      <li>Gray starts G2 regardless of branch</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- G2 -->
+<div class="tab-panel" id="g2">
+  <div class="dh">G2 &#183; 12 Players &#183; 6 Innings &#183; Reversed Order</div>
+  <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span><span class="ldrag">&#8597; drag to reorder</span></div>
+  <p class="sl">Grayson starts &#183; Max 3-4 &#183; Joe 5-6</p>
+  <div class="card" id="tg2"></div>
+</div>
+
+<!-- G2 Notes -->
+<div class="tab-panel" id="g2n">
+  <div class="dh">G2 &#183; Notes</div>
+  <div class="ig">
+    <div class="ib card"><h4>Batting Order (Reversed)</h4><ul>
+      <li><span class="n">1</span>Jack Emery</li>
+      <li><span class="n">2</span>Joe Dolby</li>
+      <li><span class="n">3</span>Griffin Strattard</li>
+      <li><span class="n">4</span>Alex Johnston</li>
+      <li><span class="n">5</span>Everett Marcaurelle</li>
+      <li><span class="n">6</span>Owen Kane</li>
+      <li><span class="n">7</span>Coop Mullen</li>
+      <li><span class="n">8</span>Charlie Boston</li>
+      <li><span class="n">9</span>Grayson Fairfield</li>
+      <li><span class="n">10</span>Jamiks Petersons</li>
+      <li><span class="n">11</span>Max Jellie</li>
+      <li><span class="n">12</span>Sam McDuffie</li>
+    </ul></div>
+    <div class="ib card"><h4>Pitching</h4><ul>
+      <li><span class="n">&#9312;</span>Grayson Fairfield — Inn 1-2</li>
+      <li><span class="n">&#9313;</span>Max Jellie — Inn 3-4</li>
+      <li><span class="n">&#9314;</span>Joe Dolby — Inn 5-6</li>
+    </ul></div>
+    <div class="ib card"><h4>Catching</h4><ul>
+      <li>Jamiks — Inn 1-4</li>
+      <li>Charlie — Inn 5-6</li>
+    </ul></div>
+    <div class="ib card"><h4>Strategy</h4><ul>
+      <li>Same sit rotation as G1, reversed bat order</li>
+      <li>Sam &amp; Coop fresh — available in relief if needed</li>
+      <li>Drag rows to adjust batting order on the fly</li>
+    </ul></div>
+  </div>
+</div>
+
+<script>
+// ── G1 BRANCH 1: In Control ────────────────────────────────────────
+// Owen P 1-2 · Max P 3-4 · Joe P 5-6
+// Jamiks C 1-4 · Charlie C 5-6
+// Batting: Sam,Max,Jamiks,Gray,Charlie,Coop,Owen,Everett,Alex,Griffin,Joe,Jack
+const tb1b1=[
+  [1,"Sam","P","P","SS","SS","SS","SS"],
+  [2,"Max","SS","SS","P","P","SIT","CF"],
+  [3,"Jamiks","C","C","C","C","SIT","SIT"],
+  [4,"Gray","SIT","SIT","3B","3B","LF","LF"],
+  [5,"Charlie","3B","3B","1B","SIT","C","C"],
+  [6,"Coop","2B","2B","SIT","2B","SIT","2B"],
+  [7,"Owen","CF","CF","2B","SIT","2B","SIT"],
+  [8,"Everett","RF","RF","SIT","LF","LF","RF"],
+  [9,"Alex","LF","LF","LF","SIT","3B","3B"],
+  [10,"Griffin","1B","1B","SIT","1B","1B","SIT"],
+  [11,"Joe","SIT","SIT","RF","RF","P","P"],
+  [12,"Jack","SIT","SIT","CF","CF","CF","CF"]
+];
+
+// ── G1 BRANCH 2: Need the Win ──────────────────────────────────────
+// Sam P 1-3 · Coop P 4-5 · Owen P 6
+// Jamiks C 1-4 · Charlie C 5-6
+const tb1b2=[
+  [1,"Sam","P","P","P","SS","SS","SS"],
+  [2,"Max","SS","SS","SS","SIT","SIT","CF"],
+  [3,"Jamiks","C","C","C","C","SIT","SIT"],
+  [4,"Gray","SIT","SIT","3B","3B","LF","LF"],
+  [5,"Charlie","3B","3B","1B","SIT","C","C"],
+  [6,"Coop","2B","2B","SIT","P","P","SIT"],
+  [7,"Owen","CF","CF","CF","SIT","CF","P"],
+  [8,"Everett","RF","RF","SIT","LF","LF","RF"],
+  [9,"Alex","LF","LF","LF","SIT","3B","3B"],
+  [10,"Griffin","1B","1B","SIT","1B","1B","SIT"],
+  [11,"Joe","SIT","SIT","RF","RF","SIT","2B"],
+  [12,"Jack","SIT","SIT","2B","2B","SIT","1B"]
+];
+
+// ── G2: Grayson starts · Reversed batting order ────────────────────
+// Gray P 1-2 · Max P 3-4 · Joe P 5-6
+// Jamiks C 1-4 · Charlie C 5-6
+// Batting: Jack,Joe,Griffin,Alex,Everett,Owen,Coop,Charlie,Gray,Jamiks,Max,Sam
+const tg2=[
+  [1,"Jack","2B","2B","2B","2B","2B","SIT"],
+  [2,"Joe","C","C","C","RF","RF","SIT"],
+  [3,"Griffin","1B","1B","SIT","1B","1B","SIT"],
+  [4,"Alex","LF","LF","LF","SIT","SIT","3B"],
+  [5,"Everett","RF","RF","SIT","LF","LF","RF"],
+  [6,"Owen","CF","CF","CF","SIT","3B","LF"],
+  [7,"Coop","P","P","P","SIT","2B","2B"],
+  [8,"Charlie","SIT","3B","1B","3B","SIT","1B"],
+  [9,"Gray","3B","SIT","RF","P","P","P"],
+  [10,"Jamiks","SIT","SIT","3B","C","C","C"],
+  [11,"Max","SS","SS","SIT","SS","SS","SS"],
+  [12,"Sam","SIT","SIT","SS","CF","CF","CF"]
+];
+
+// ── BRANCH SWITCHER ───────────────────────────────────────────────
+document.querySelectorAll('.branch-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var game=btn.getAttribute('data-game');
+    var branch=btn.getAttribute('data-branch');
+    document.querySelectorAll('[data-game="'+game+'"]').forEach(function(b){
+      b.classList.remove('active-b1','active-b2');
+    });
+    document.querySelectorAll('#'+game+' .branch-pane').forEach(function(p){p.classList.remove('active');});
+    btn.classList.add('active-'+branch);
+    document.getElementById(game+'-'+branch).classList.add('active');
+  });
+});
+
+// ── TAB SWITCHING ─────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+    document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+    btn.classList.add('active');
+  });
+});
+
+// ── POSITION PICKER ───────────────────────────────────────────────
+var _aid=null;
+document.querySelector('.pg').addEventListener('click',function(e){
+  var btn=e.target.closest('[data-pos]');if(!btn||!_aid)return;
+  var el=document.getElementById(_aid);
+  el.textContent=btn.getAttribute('data-pos');
+  el.className='pc '+sf(btn.getAttribute('data-pos'));
+  closeOv();
+});
+document.getElementById('cancelBtn').addEventListener('click',closeOv);
+document.getElementById('ov').addEventListener('click',function(e){if(e.target===this)closeOv();});
+function closeOv(){document.getElementById('ov').classList.remove('open');_aid=null;}
+function sf(v){return v==='P'?'pst':v==='C'?'cst':v==='SIT'?'sst':'';}
+document.addEventListener('click',function(e){
+  var el=e.target.closest('.pc');if(!el)return;
+  _aid=el.id;
+  var cells=el.closest('tr').cells;
+  var inn=el.closest('td').cellIndex-1;
+  document.getElementById('ptitle').textContent=cells[1].textContent+' \u2014 Inn '+inn;
+  document.getElementById('ov').classList.add('open');
+});
+
+// ── DRAG TO REORDER (G2 only) ─────────────────────────────────────
+function enableDrag(tbodyId){
+  var tbody=document.getElementById(tbodyId);if(!tbody)return;
+  var dragged=null;
+  tbody.addEventListener('dragstart',function(e){dragged=e.target.closest('tr');if(!dragged)return;dragged.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
+  tbody.addEventListener('dragend',function(){if(dragged)dragged.classList.remove('dragging');tbody.querySelectorAll('tr').forEach(function(r){r.classList.remove('drag-over');});dragged=null;renumber(tbody);});
+  tbody.addEventListener('dragover',function(e){e.preventDefault();var t=e.target.closest('tr');if(!t||t===dragged)return;tbody.querySelectorAll('tr').forEach(function(r){r.classList.remove('drag-over');});t.classList.add('drag-over');});
+  tbody.addEventListener('drop',function(e){e.preventDefault();var t=e.target.closest('tr');if(!t||t===dragged||!dragged)return;var rows=Array.from(tbody.querySelectorAll('tr'));if(rows.indexOf(dragged)<rows.indexOf(t)){tbody.insertBefore(dragged,t.nextSibling);}else{tbody.insertBefore(dragged,t);}});
+  var touchDragged=null,clone=null,offsetY=0;
+  tbody.addEventListener('touchstart',function(e){
+    var handle=e.target.closest('td:first-child');if(!handle)return;
+    touchDragged=handle.closest('tr');
+    var rect=touchDragged.getBoundingClientRect();
+    offsetY=e.touches[0].clientY-rect.top;
+    clone=touchDragged.cloneNode(true);
+    clone.style.cssText='position:fixed;left:'+rect.left+'px;width:'+rect.width+'px;opacity:.7;pointer-events:none;z-index:999;background:#1e3a1e;border:1px solid rgba(232,200,64,.4);border-radius:4px;top:'+rect.top+'px;';
+    document.body.appendChild(clone);
+    touchDragged.style.opacity='.3';
+    e.preventDefault();
+  },{passive:false});
+  tbody.addEventListener('touchmove',function(e){
+    if(!touchDragged||!clone)return;
+    var y=e.touches[0].clientY;
+    clone.style.top=(y-offsetY)+'px';
+    var rows=Array.from(tbody.querySelectorAll('tr'));
+    rows.forEach(function(r){r.classList.remove('drag-over');});
+    var target=rows.find(function(r){var rect=r.getBoundingClientRect();return r!==touchDragged&&y>=rect.top&&y<=rect.bottom;});
+    if(target)target.classList.add('drag-over');
+    e.preventDefault();
+  },{passive:false});
+  tbody.addEventListener('touchend',function(e){
+    if(!touchDragged||!clone)return;
+    var y=e.changedTouches[0].clientY;
+    var rows=Array.from(tbody.querySelectorAll('tr'));
+    var target=rows.find(function(r){var rect=r.getBoundingClientRect();return r!==touchDragged&&y>=rect.top&&y<=rect.bottom;});
+    if(target){if(rows.indexOf(touchDragged)<rows.indexOf(target)){tbody.insertBefore(touchDragged,target.nextSibling);}else{tbody.insertBefore(touchDragged,target);}}
+    clone.remove();clone=null;
+    touchDragged.style.opacity='';
+    tbody.querySelectorAll('tr').forEach(function(r){r.classList.remove('drag-over');});
+    renumber(tbody);touchDragged=null;
+  });
+}
+function renumber(tbody){tbody.querySelectorAll('tr').forEach(function(r,i){r.cells[0].textContent=i+1;});}
+
+// ── RENDER (fixed — no drag) ──────────────────────────────────────
+function renderFixed(cid,data,notes){
+  var div=document.getElementById(cid);if(!div)return;
+  var h='<table><thead><tr><th>Bat</th><th>Player</th><th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th></tr></thead><tbody>';
+  for(var i=0;i<data.length;i++){
+    var r=data[i];var cells='';
+    for(var j=0;j<6;j++){var v=r[j+2];var id=cid+'-r'+i+'-i'+j;cells+='<td><span class="pc '+sf(v)+'" id="'+id+'">'+v+'</span></td>';}
+    h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td>'+cells+'</tr>';
+  }
+  h+='</tbody></table>';
+  if(notes&&notes.length){h+='<div class="nr">';notes.forEach(function(n){h+='<span class="nb">'+n+'</span>';});h+='</div>';}
+  div.innerHTML=h;
+}
+
+// ── RENDER (draggable — G2) ───────────────────────────────────────
+function renderDrag(cid,data,notes){
+  var div=document.getElementById(cid);if(!div)return;
+  var h='<table><thead><tr><th style="width:18px;"></th><th style="width:24px;">Bat</th><th>Player</th><th>Inn 1</th><th>Inn 2</th><th>Inn 3</th><th>Inn 4</th><th>Inn 5</th><th>Inn 6</th></tr></thead><tbody id="'+cid+'-body">';
+  for(var i=0;i<data.length;i++){
+    var r=data[i];var cells='';
+    for(var j=0;j<6;j++){var v=r[j+2];var id=cid+'-r'+i+'-i'+j;cells+='<td><span class="pc '+sf(v)+'" id="'+id+'">'+v+'</span></td>';}
+    h+='<tr draggable="true"><td style="cursor:grab;color:var(--accent);font-size:.65rem;">&#8597;</td><td style="color:var(--accent);font-weight:600;font-size:.65rem;">'+r[0]+'</td><td style="text-align:left;font-family:Oswald,sans-serif;font-size:.8rem;letter-spacing:.04em;padding-right:10px;min-width:76px;">'+r[1]+'</td>'+cells+'</tr>';
+  }
+  h+='</tbody></table>';
+  if(notes&&notes.length){h+='<div class="nr">';notes.forEach(function(n){h+='<span class="nb">'+n+'</span>';});h+='</div>';}
+  div.innerHTML=h;
+  enableDrag(cid+'-body');
+}
+
+// ── RENDER ALL ────────────────────────────────────────────────────
+renderFixed('tb1b1',tb1b1,['B1 \xb7 IN CONTROL','Owen P 1-2','Max P 3-4','Joe P 5-6','Jamiks C 1-4','Charlie C 5-6']);
+renderFixed('tb1b2',tb1b2,['B2 \xb7 NEED WIN','Sam P 1-3','Coop P 4-5','Owen P 6','Jamiks C 1-4','Charlie C 5-6']);
+renderDrag('tg2',tg2,['G2','Gray P 1-2','Max P 3-4','Joe P 5-6','Jamiks C 1-4','Charlie C 5-6']);
+</script>
+</body>
+</html>
