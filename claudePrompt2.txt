@@ -1,0 +1,53 @@
+# prompt for the June 25, 26, 27 series with Portland
+
+In a previous chat, you helped me to develop game plans for the 12u baseball team that I coach. You provided html code that I host on github to share with my coaching staff. I want a fresh chat here to help plan for a 3-game series this Thursday, Friday, and Saturday. You told me to provide the following summary and it we can pick up again with fresh context for you. 
+
+I will upload the html from our May 3 games. 
+
+I will paste a screen capture of what I want the first two innings of G1 plan to be. Players sit no more than two in a row. w/ 12, 6-players sit twice per game. I want to switch those six in game 2. 
+
+Summary: 
+
+Maine Force 12U Green 2026 — Coaching staff: John, Brian, Evans, John M
+
+
+G1 Roster/batting order (jersey numbers / preferred batting order / preferred positions):
+#1	Cooper Mullen	2B, P, RF
+#11	Charlie Boston	C, P, 1B, LF
+#5	Max Jellie	2B, SS, P, LF
+#78	Sam McDuffie	SS, CF, P
+#7	Joe Dolby	C, P, RF
+#20	Griffin Strattard	1B, RF, P
+#28	Everett Marcaurelle	1B, LF, CF, P
+#13	Owen Kane	1B, LF, CF, RF, P
+#10 Evan Keene 2B, RF
+#11 Landon Colfer 3B, RF
+#13 Charlie Lemieux, 3B, LF
+#17 Wes Tardiff 3B, LF, RF
+
+Game format: 
+6 innings
+No pitch count limits 
+With 13 players: 4 sit/inning, 11 sit twice, 2 sit once. 
+With 12 players: 3 sit/inning, 6 sit twice, 6 sit once.
+With 11 players: 2 sit/inning, 1 sit twice, 10 sit once.
+With 10 players: 6 sit once, 4 sit zero.
+
+Our workflow: 
+I determine the starting pitcher, and the available pitchers for each game.
+I determine who is catching. 
+Claude suggests a game plan. 
+I modify the goes 5 game plan to my liking and share the Goes 5 screenshot.
+Claude reads the screenshot and derives Goes 2/3/4 by only changing pitcher rows and shares the new consts. 
+I paste the consts directly into the HTML file.
+
+Key rules: 
+No player sits 3 consecutive innings. 
+Max 2 consecutive sits. 
+Pitchers/catchers count as active. 
+For the tournament, pitchers can only pitch 100 pitches max for the weekend. I will plan to change pitchers more often. this means for the pool play we won't need goes 4, goes 5. 
+
+
+Tool: Interactive HTML lineup manager with tap-to-edit cells and drag-to-reorder batting. Make the drag easy for the browser on an iPhone.
+
+I will upload a csv with stats. Please put them on three tabs, batting, pitching, fielding. 
