@@ -368,49 +368,51 @@ const g2_g5 = [
   [13,"Wes",       "3B",  "3B",  "3B",  "SIT", "3B",  "SIT"],
 ];
 // G3 SATURDAY — 12 players, 3 sit/inning, 6 sit twice, 6 sit once
+// Sit once: Max, Charlie B, Sam, Jackson, Owen, Wes
+// Sit twice: Griffin, Joe, Evan, Everett, Landon, Charlie L
 // Catching: Charlie B inn 1-3, Joe inn 4-6
-// Max pitching: Sam=SS, Jackson=CF | Max not pitching: Max=SS, Sam=CF
+// Max pitching: Sam=SS | Max not pitching: Max=SS, Sam=CF
 const g3_g4 = [
-  [1, "Max",       "P",   "P",   "P",   "P",   "SS",  "SS"],
+  [1, "Max",       "P",   "P",   "P",   "P",   "SIT", "SS"],
   [2, "Charlie B", "C",   "C",   "C",   "SIT", "1B",  "3B"],
-  [3, "Griffin",   "SIT", "1B",  "1B",  "1B",  "SIT", "1B"],
+  [3, "Griffin",   "SIT", "1B",  "1B",  "SIT", "P",   "1B"],
   [4, "Joe",       "SIT", "RF",  "SIT", "C",   "C",   "C"],
-  [5, "Sam",       "SS",  "SS",  "SS",  "SS",  "SIT", "CF"],
-  [6, "Evan",      "2B",  "SIT", "RF",  "2B",  "SIT", "2B"],
-  [7, "Jackson",   "CF",  "2B",  "2B",  "CF",  "CF",  "SIT"],
-  [8, "Everett",   "SIT", "CF",  "SIT", "LF",  "P",   "LF"],
-  [9, "Owen",      "1B",  "SIT", "CF",  "RF",  "2B",  "P"],
+  [5, "Sam",       "SS",  "SS",  "SS",  "SS",  "SS",  "CF"],
+  [6, "Evan",      "2B",  "SIT", "RF",  "RF",  "SIT", "2B"],
+  [7, "Jackson",   "CF",  "2B",  "2B",  "2B",  "CF",  "SIT"],
+  [8, "Everett",   "SIT", "CF",  "SIT", "CF",  "2B",  "LF"],
+  [9, "Owen",      "1B",  "SIT", "CF",  "1B",  "LF",  "P"],
   [10,"Landon",    "RF",  "3B",  "SIT", "3B",  "3B",  "SIT"],
-  [11,"Charlie L", "LF",  "LF",  "LF",  "SIT", "LF",  "SIT"],
-  [12,"Wes",       "3B",  "SIT", "3B",  "SIT", "RF",  "RF"],
+  [11,"Charlie L", "LF",  "LF",  "LF",  "SIT", "RF",  "SIT"],
+  [12,"Wes",       "3B",  "SIT", "3B",  "LF",  "SIT", "RF"],
 ];
 const g3_g3 = [
   [1, "Max",       "P",   "P",   "P",   "SIT", "SS",  "SS"],
   [2, "Charlie B", "C",   "C",   "C",   "SIT", "1B",  "3B"],
-  [3, "Griffin",   "SIT", "1B",  "1B",  "1B",  "SIT", "1B"],
+  [3, "Griffin",   "SIT", "1B",  "1B",  "P",   "SIT", "1B"],
   [4, "Joe",       "SIT", "RF",  "SIT", "C",   "C",   "C"],
   [5, "Sam",       "SS",  "SS",  "SS",  "SS",  "SIT", "CF"],
-  [6, "Evan",      "2B",  "SIT", "RF",  "2B",  "SIT", "2B"],
-  [7, "Jackson",   "CF",  "2B",  "2B",  "CF",  "CF",  "SIT"],
-  [8, "Everett",   "SIT", "CF",  "SIT", "LF",  "P",   "LF"],
-  [9, "Owen",      "1B",  "SIT", "CF",  "RF",  "2B",  "P"],
+  [6, "Evan",      "2B",  "SIT", "RF",  "RF",  "SIT", "2B"],
+  [7, "Jackson",   "CF",  "2B",  "2B",  "2B",  "CF",  "SIT"],
+  [8, "Everett",   "SIT", "CF",  "SIT", "CF",  "2B",  "LF"],
+  [9, "Owen",      "1B",  "SIT", "CF",  "LF",  "LF",  "P"],
   [10,"Landon",    "RF",  "3B",  "SIT", "3B",  "3B",  "SIT"],
-  [11,"Charlie L", "LF",  "LF",  "LF",  "SIT", "LF",  "SIT"],
-  [12,"Wes",       "3B",  "SIT", "3B",  "P",   "RF",  "RF"],
+  [11,"Charlie L", "LF",  "LF",  "LF",  "SIT", "RF",  "SIT"],
+  [12,"Wes",       "3B",  "SIT", "3B",  "1B",  "P",   "RF"],
 ];
 const g3_g2 = [
-  [1, "Max",       "P",   "P",   "SS",  "SIT", "SS",  "SS"],
+  [1, "Max",       "P",   "P",   "SIT", "SS",  "SS",  "SS"],
   [2, "Charlie B", "C",   "C",   "C",   "SIT", "1B",  "3B"],
-  [3, "Griffin",   "SIT", "1B",  "1B",  "1B",  "SIT", "1B"],
+  [3, "Griffin",   "SIT", "1B",  "1B",  "P",   "SIT", "1B"],
   [4, "Joe",       "SIT", "RF",  "SIT", "C",   "C",   "C"],
-  [5, "Sam",       "SS",  "SS",  "CF",  "SS",  "SIT", "CF"],
-  [6, "Evan",      "2B",  "SIT", "RF",  "2B",  "SIT", "2B"],
-  [7, "Jackson",   "CF",  "2B",  "2B",  "CF",  "CF",  "SIT"],
-  [8, "Everett",   "SIT", "CF",  "P",   "LF",  "SIT", "LF"],
-  [9, "Owen",      "1B",  "SIT", "CF",  "RF",  "2B",  "P"],
+  [5, "Sam",       "SS",  "SS",  "SS",  "CF",  "SIT", "CF"],
+  [6, "Evan",      "2B",  "SIT", "RF",  "RF",  "SIT", "2B"],
+  [7, "Jackson",   "CF",  "2B",  "2B",  "2B",  "CF",  "SIT"],
+  [8, "Everett",   "SIT", "CF",  "P",   "SIT", "2B",  "LF"],
+  [9, "Owen",      "1B",  "SIT", "CF",  "LF",  "LF",  "P"],
   [10,"Landon",    "RF",  "3B",  "SIT", "3B",  "3B",  "SIT"],
-  [11,"Charlie L", "LF",  "LF",  "LF",  "SIT", "LF",  "SIT"],
-  [12,"Wes",       "3B",  "SIT", "3B",  "P",   "RF",  "RF"],
+  [11,"Charlie L", "LF",  "LF",  "LF",  "SIT", "RF",  "SIT"],
+  [12,"Wes",       "3B",  "SIT", "3B",  "1B",  "P",   "RF"],
 ];
 
 // ── PITCH TRACKER ──────────────────────────────────────────────────────────
