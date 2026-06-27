@@ -212,10 +212,11 @@ tr.drag-over{outline:2px solid var(--accent);}
 
 <!-- G3 TAB - SATURDAY -->
 <div class="tab-panel" id="g3">
-  <div class="dh">Saturday · Game 3 · 13 Players · 4 Sit/Inning</div>
+  <div class="dh">Saturday · Game 3 · 12 Players · 3 Sit/Inning</div>
   <div class="leg"><span class="lp">P Pitch</span><span class="lc">C Catch</span><span class="ls">SIT Bench</span></div>
-  <p class="sl">Goes 2</p><div class="card" id="tbl-g3-g2"></div>
-  <p class="sl">Goes 3</p><div class="card" id="tbl-g3-g3"></div>
+  <p class="sl">Goes 4 · Max P Inn 1–4 · Everett Inn 5 · Owen Inn 6 · Charlie B C Inn 1–3 · Joe C Inn 4–6</p><div class="card" id="tbl-g3-g4"></div>
+  <p class="sl">Goes 3 · Max P Inn 1–3 · Everett Inn 4 · Wes Inn 5 · Owen Inn 6 · Charlie B C Inn 1–3 · Joe C Inn 4–6</p><div class="card" id="tbl-g3-g3"></div>
+  <p class="sl">Goes 2 · Max P Inn 1–2 · Everett Inn 3 · Wes Inn 4 · Owen Inn 5–6 · Charlie B C Inn 1–3 · Joe C Inn 4–6</p><div class="card" id="tbl-g3-g2"></div>
 </div>
 
 <script>
@@ -366,9 +367,51 @@ const g2_g5 = [
   [12,"Charlie L", "2B",  "2B",  "LF",  "LF",  "SIT", "SIT"],
   [13,"Wes",       "3B",  "3B",  "3B",  "SIT", "3B",  "SIT"],
 ];
-// G3 SATURDAY — placeholder
-const g3_g2 = [];
-const g3_g3 = [];
+// G3 SATURDAY — 12 players, 3 sit/inning, 6 sit twice, 6 sit once
+// Catching: Charlie B inn 1-3, Joe inn 4-6
+// Max pitching: Sam=SS, Jackson=CF | Max not pitching: Max=SS, Sam=CF
+const g3_g4 = [
+  [1, "Max",       "P",   "P",   "P",   "P",   "SS",  "SS"],
+  [2, "Charlie B", "C",   "C",   "C",   "SIT", "1B",  "3B"],
+  [3, "Griffin",   "SIT", "1B",  "1B",  "1B",  "SIT", "1B"],
+  [4, "Joe",       "SIT", "RF",  "SIT", "C",   "C",   "C"],
+  [5, "Sam",       "SS",  "SS",  "SS",  "SS",  "SIT", "CF"],
+  [6, "Evan",      "2B",  "SIT", "RF",  "2B",  "SIT", "2B"],
+  [7, "Jackson",   "CF",  "2B",  "2B",  "CF",  "CF",  "SIT"],
+  [8, "Everett",   "SIT", "CF",  "SIT", "LF",  "P",   "LF"],
+  [9, "Owen",      "1B",  "SIT", "CF",  "RF",  "2B",  "P"],
+  [10,"Landon",    "RF",  "3B",  "SIT", "3B",  "3B",  "SIT"],
+  [11,"Charlie L", "LF",  "LF",  "LF",  "SIT", "LF",  "SIT"],
+  [12,"Wes",       "3B",  "SIT", "3B",  "SIT", "RF",  "RF"],
+];
+const g3_g3 = [
+  [1, "Max",       "P",   "P",   "P",   "SIT", "SS",  "SS"],
+  [2, "Charlie B", "C",   "C",   "C",   "SIT", "1B",  "3B"],
+  [3, "Griffin",   "SIT", "1B",  "1B",  "1B",  "SIT", "1B"],
+  [4, "Joe",       "SIT", "RF",  "SIT", "C",   "C",   "C"],
+  [5, "Sam",       "SS",  "SS",  "SS",  "SS",  "SIT", "CF"],
+  [6, "Evan",      "2B",  "SIT", "RF",  "2B",  "SIT", "2B"],
+  [7, "Jackson",   "CF",  "2B",  "2B",  "CF",  "CF",  "SIT"],
+  [8, "Everett",   "SIT", "CF",  "SIT", "LF",  "P",   "LF"],
+  [9, "Owen",      "1B",  "SIT", "CF",  "RF",  "2B",  "P"],
+  [10,"Landon",    "RF",  "3B",  "SIT", "3B",  "3B",  "SIT"],
+  [11,"Charlie L", "LF",  "LF",  "LF",  "SIT", "LF",  "SIT"],
+  [12,"Wes",       "3B",  "SIT", "3B",  "P",   "RF",  "RF"],
+];
+const g3_g2 = [
+  [1, "Max",       "P",   "P",   "SS",  "SIT", "SS",  "SS"],
+  [2, "Charlie B", "C",   "C",   "C",   "SIT", "1B",  "3B"],
+  [3, "Griffin",   "SIT", "1B",  "1B",  "1B",  "SIT", "1B"],
+  [4, "Joe",       "SIT", "RF",  "SIT", "C",   "C",   "C"],
+  [5, "Sam",       "SS",  "SS",  "CF",  "SS",  "SIT", "CF"],
+  [6, "Evan",      "2B",  "SIT", "RF",  "2B",  "SIT", "2B"],
+  [7, "Jackson",   "CF",  "2B",  "2B",  "CF",  "CF",  "SIT"],
+  [8, "Everett",   "SIT", "CF",  "P",   "LF",  "SIT", "LF"],
+  [9, "Owen",      "1B",  "SIT", "CF",  "RF",  "2B",  "P"],
+  [10,"Landon",    "RF",  "3B",  "SIT", "3B",  "3B",  "SIT"],
+  [11,"Charlie L", "LF",  "LF",  "LF",  "SIT", "LF",  "SIT"],
+  [12,"Wes",       "3B",  "SIT", "3B",  "P",   "RF",  "RF"],
+];
 
 // ── PITCH TRACKER ──────────────────────────────────────────────────────────
 const pitchers = ["Cooper","Sam","Charlie B","Joe","Owen","Max","Wes","Everett","Griffin"];
@@ -572,8 +615,9 @@ renderTable('tbl-g2-g5',g2_g5,[]);
 renderTable('tbl-g2-g4',g2_g4,[]);
 renderTable('tbl-g2-g3',g2_g3,[]);
 renderTable('tbl-g2-g2',g2_g2,[]);
-renderTable('tbl-g3-g2',g3_g2,[]);
+renderTable('tbl-g3-g4',g3_g4,[]);
 renderTable('tbl-g3-g3',g3_g3,[]);
+renderTable('tbl-g3-g2',g3_g2,[]);
 </script>
 </body>
 </html>
