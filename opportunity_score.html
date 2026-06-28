@@ -6,374 +6,481 @@
 <title>Maine Force 12U Green · Opportunity Report 2026</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap');
-:root {
-  --green:#1a3a1a; --green-mid:#2d5a2d; --green-light:#3a6b3a;
-  --cream:#f5f0e8; --dirt:#c8a870; --chalk:#ffffff; --accent:#e8c840;
-  --red:#e84040; --blue:#90ccff; --purple:#cc99ff; --muted:rgba(255,255,255,0.45);
-}
+:root{--green:#1a3a1a;--green-mid:#2d5a2d;--green-light:#3a6b3a;--cream:#f5f0e8;--dirt:#c8a870;--chalk:#ffffff;--accent:#e8c840;--red:#e84040;--blue:#90ccff;--purple:#cc99ff;--muted:rgba(255,255,255,0.45);}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--green);background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px);font-family:'Source Code Pro',monospace;color:var(--chalk);padding:20px 14px 60px;min-height:100vh;}
 h1{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--accent);margin-bottom:4px;}
 .sub{text-align:center;font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.22em;color:rgba(255,255,255,.28);margin-bottom:22px;text-transform:uppercase;}
-.tabs{display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
-.tab-btn{font-family:'Oswald',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:2px solid rgba(255,255,255,.18);color:rgba(255,255,255,.45);padding:6px 14px;border-radius:4px;cursor:pointer;transition:all .15s;}
+.tabs{display:flex;justify-content:center;gap:5px;margin-bottom:20px;flex-wrap:wrap;}
+.tab-btn{font-family:'Oswald',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;background:transparent;border:2px solid rgba(255,255,255,.18);color:rgba(255,255,255,.45);padding:5px 11px;border-radius:4px;cursor:pointer;transition:all .15s;}
 .tab-btn.active{background:var(--accent);border-color:var(--accent);color:var(--green);}
 .tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
 .tab-panel{display:none;}.tab-panel.active{display:block;}
 .card{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px;margin-bottom:18px;overflow-x:auto;}
 .sl{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;padding-left:2px;}
 table{width:100%;border-collapse:collapse;font-size:.72rem;white-space:nowrap;}
-thead th{font-family:'Oswald',sans-serif;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:5px 8px;border-bottom:1px solid rgba(232,200,64,.2);text-align:center;font-weight:600;}
+thead th{font-family:'Oswald',sans-serif;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);padding:5px 7px;border-bottom:1px solid rgba(232,200,64,.2);text-align:center;font-weight:600;}
 thead th.l{text-align:left;}
 tbody tr:nth-child(even){background:rgba(255,255,255,.03);}
 tbody tr:hover{background:rgba(232,200,64,.07);}
-tbody tr.total-row{background:rgba(232,200,64,.1)!important;border-top:1px solid rgba(232,200,64,.3);}
-tbody td{padding:5px 8px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.85);}
+tbody tr.totrow{background:rgba(232,200,64,.1)!important;border-top:1px solid rgba(232,200,64,.3);}
+tbody td{padding:4px 7px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.85);}
 tbody td.l{text-align:left;font-family:'Oswald',sans-serif;font-size:.82rem;letter-spacing:.04em;color:var(--chalk);}
-tbody td.rank{color:var(--accent);font-weight:600;font-size:.68rem;}
-.bar-wrap{display:inline-block;width:80px;height:8px;background:rgba(255,255,255,.1);border-radius:4px;vertical-align:middle;margin-left:6px;}
-.bar-fill{height:100%;border-radius:4px;background:var(--accent);transition:width .3s;}
-.bar-fill.blue{background:var(--blue);}
-.bar-fill.combo{background:linear-gradient(90deg,var(--accent),var(--blue));}
-.bar-fill.adh{background:#6dbf6d;}
-.pill{display:inline-block;border-radius:3px;padding:2px 7px;font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.06em;}
-.pill-g{background:rgba(109,191,109,.2);color:#6dbf6d;}
-.pill-y{background:rgba(232,200,64,.2);color:var(--accent);}
-.pill-r{background:rgba(232,64,64,.18);color:var(--red);}
-.phi{font-family:'Oswald',sans-serif;font-size:.72rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:16px;}
-.phi strong{color:var(--accent);}
+.bar-wrap{display:inline-block;width:70px;height:7px;background:rgba(255,255,255,.1);border-radius:4px;vertical-align:middle;margin-left:4px;}
+.bar-fill{height:100%;border-radius:4px;background:var(--accent);}
+.bar-fill.bl{background:var(--blue);}
+.bar-fill.co{background:linear-gradient(90deg,var(--accent),var(--blue));}
+.bar-fill.gr{background:#6dbf6d;}
+.bar-fill.rd{background:#e87070;}
+.pill{display:inline-block;border-radius:3px;padding:2px 6px;font-family:'Oswald',sans-serif;font-size:.63rem;font-weight:600;letter-spacing:.05em;}
+.pg{background:rgba(109,191,109,.2);color:#6dbf6d;}
+.py{background:rgba(232,200,64,.2);color:var(--accent);}
+.pr{background:rgba(232,64,64,.18);color:var(--red);}
 .phi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
 @media(max-width:480px){.phi-grid{grid-template-columns:1fr;}}
 .phi-box{background:rgba(0,0,0,.25);border:1px solid rgba(232,200,64,.15);border-radius:6px;padding:12px;}
-.phi-box h4{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;border-bottom:1px solid rgba(232,200,64,.15);padding-bottom:4px;}
-.phi-box p,.phi-box li{font-size:.7rem;color:rgba(255,255,255,.65);line-height:1.9;list-style:none;}
-.wt-table{font-size:.68rem;width:100%;}
-.wt-table td{padding:3px 6px;color:rgba(255,255,255,.7);}
+.phi-box h4{font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:7px;border-bottom:1px solid rgba(232,200,64,.15);padding-bottom:4px;}
+.phi-box p,.phi-box li{font-size:.69rem;color:rgba(255,255,255,.62);line-height:1.85;list-style:none;}
+.phi-box strong{color:var(--accent);}
+.wt-table{font-size:.67rem;width:100%;}
+.wt-table td{padding:3px 5px;color:rgba(255,255,255,.7);}
 .wt-table td:first-child{color:var(--accent);font-weight:600;width:36px;}
-.wt-table td:last-child{color:rgba(255,255,255,.4);}
-th.sortable{cursor:pointer;user-select:none;}
-th.sortable:hover{color:#fff;}
-th.sortable::after{content:' ⇅';font-size:.55rem;opacity:.5;}
-th.sortable.asc::after{content:' ↑';opacity:1;}
-th.sortable.desc::after{content:' ↓';opacity:1;}
-.note{font-size:.65rem;color:rgba(255,255,255,.35);margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06);line-height:1.7;}
+.wt-table td:last-child{color:rgba(255,255,255,.38);}
+th.sort{cursor:pointer;user-select:none;}
+th.sort:hover{color:#fff;}
+th.sort::after{content:' ⇅';font-size:.52rem;opacity:.45;}
+th.sort.asc::after{content:' ↑';opacity:1;}
+th.sort.desc::after{content:' ↓';opacity:1;}
+.note{font-size:.63rem;color:rgba(255,255,255,.32);margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06);line-height:1.7;}
+.fair-flag{display:inline-block;border-radius:3px;padding:2px 6px;font-family:'Oswald',sans-serif;font-size:.63rem;font-weight:600;}
+.ff-hi{background:rgba(100,200,100,.18);color:#6dbf6d;}
+.ff-ok{background:rgba(232,200,64,.15);color:var(--accent);}
+.ff-lo{background:rgba(232,100,64,.18);color:#e87070;}
+.ff-ov{background:rgba(150,150,240,.2);color:#aaaaff;}
 </style>
 </head>
 <body>
 <h1>⚾ Maine Force 12U Green</h1>
-<p class="sub">2026 Season · Player Opportunity Report</p>
+<p class="sub">2026 Season · Player Opportunity &amp; Statistics Report</p>
 
 <div class="tabs">
   <button class="tab-btn active" data-tab="def">Defensive</button>
   <button class="tab-btn" data-tab="off">Offensive</button>
   <button class="tab-btn" data-tab="combo">Overall</button>
   <button class="tab-btn" data-tab="adh">Plan Adherence</button>
+  <button class="tab-btn" data-tab="fair">Fairness</button>
+  <button class="tab-btn" data-tab="sbat">Batting Stats</button>
+  <button class="tab-btn" data-tab="spit">Pitching Stats</button>
+  <button class="tab-btn" data-tab="sfld">Fielding Stats</button>
 </div>
 
-<!-- ═══ DEFENSIVE OPPORTUNITY ═══ -->
+<!-- ═══ DEFENSIVE ═══ -->
 <div class="tab-panel active" id="def">
   <div class="phi-grid">
-    <div class="phi-box">
-      <h4>What This Measures</h4>
-      <p>Weighted innings played by position across the full season. Each position carries a weight reflecting how much active development it provides. A pitcher is in every play; a left fielder may not touch the ball for an inning. The score captures how much meaningful fielding development time each player received.</p>
-    </div>
-    <div class="phi-box">
-      <h4>Position Weights</h4>
+    <div class="phi-box"><h4>What This Measures</h4><p>Weighted innings played by position across the full season. Each position carries a weight reflecting how much active development it provides — pitcher in every play, left fielder may not touch the ball for an inning. The score captures meaningful fielding development time per player.</p></div>
+    <div class="phi-box"><h4>Position Weights</h4>
       <table class="wt-table">
         <tr><td>P</td><td>3.0</td><td>Every pitch, highest development</td></tr>
         <tr><td>C</td><td>2.5</td><td>Constant engagement, field general</td></tr>
         <tr><td>SS</td><td>2.0</td><td>Most demanding infield spot</td></tr>
-        <tr><td>2B / 3B / CF</td><td>1.5</td><td>Active infield / premier outfield</td></tr>
+        <tr><td>2B / 3B / CF</td><td>1.5</td><td>Active infield / premier OF</td></tr>
         <tr><td>1B</td><td>1.2</td><td>Infield, more passive</td></tr>
         <tr><td>LF / RF</td><td>1.0</td><td>Baseline outfield</td></tr>
       </table>
     </div>
-    <div class="phi-box">
-      <h4>Raw vs. Rate</h4>
-      <p>Raw Score = Σ (innings × weight). Reflects absolute development time.<br><br>Opportunity Rate = Raw ÷ (GP × 6). Normalizes for players who missed games — the fairer comparison.</p>
-    </div>
-    <div class="phi-box">
-      <h4>Coaching Goal</h4>
-      <p>A well-distributed team sees most players between 0.9–1.3 on Opp Rate. Outliers below 0.8 may signal a kid who needs more high-value innings next season. Outliers above 1.4 reflect heavy investment in premium spots (pitching/SS/C).</p>
-    </div>
+    <div class="phi-box"><h4>Raw vs. Rate</h4><p>Raw Score = Σ (innings × weight). Reflects absolute development time.<br><br>Opportunity Rate = Raw ÷ (GP × 6). Normalizes for missed games — the fairer comparison.</p></div>
+    <div class="phi-box"><h4>Coaching Goal</h4><p>Well-distributed teams see most players 0.9–1.3 on Opp Rate. Below 0.8 signals a kid needing more high-value innings. Above 1.4 reflects heavy investment in premium spots (P/SS/C).</p></div>
   </div>
-
   <p class="sl">Ranked by Opportunity Rate · Click headers to sort</p>
-  <div class="card">
-    <table id="def-table">
-      <thead>
-        <tr>
-          <th class="l">Player</th>
-          <th class="sortable" data-col="gp">GP</th>
-          <th class="sortable" data-col="raw">Raw Score</th>
-          <th class="sortable" data-col="rate">Opp Rate</th>
-          <th>Rate Visual</th>
-          <th class="sortable" data-col="div">Positions</th>
-          <th>Top Position</th>
-        </tr>
-      </thead>
-      <tbody id="def-body"></tbody>
-    </table>
-    <p class="note">Opp Rate = Weighted Innings ÷ (GP × 6 innings). Max theoretical = 3.0 (pitching every inning). Excludes Landon Colfer, Wes Tardiff, Charlie Lemieux, Evan Keene (last 3 games only).</p>
-  </div>
+  <div class="card"><table id="def-tbl"><thead><tr>
+    <th class="l">Player</th><th class="sort" data-col="gp">GP</th><th class="sort" data-col="raw">Raw</th>
+    <th class="sort" data-col="rate">Rate</th><th>Visual</th><th class="sort" data-col="div">Positions</th><th>Top Pos</th>
+  </tr></thead><tbody id="def-body"></tbody></table>
+  <p class="note">Rate = Weighted Innings ÷ (GP × 6). Max theoretical 3.0. Excludes Colfer, Tardiff, Lemieux, Evan Keene (last 3 games only).</p></div>
 </div>
 
-<!-- ═══ OFFENSIVE OPPORTUNITY ═══ -->
+<!-- ═══ OFFENSIVE ═══ -->
 <div class="tab-panel" id="off">
   <div class="phi-grid">
-    <div class="phi-box">
-      <h4>What This Measures</h4>
-      <p>Batting order position determines how many plate appearances a player gets over a game. A leadoff hitter bats roughly 20–25% more often than the cleanup hitter in a short game, and the bottom of the order even less. This score captures how much offensive opportunity the coach gave each player through lineup placement.</p>
-    </div>
-    <div class="phi-box">
-      <h4>Formula</h4>
-      <p>For each game a player appeared in, their lineup spot is normalized to a 0–1 scale:<br><br><strong>Spot Score = (Roster Size − Lineup Pos) ÷ (Roster Size − 1)</strong><br><br>1.0 = leadoff. 0.0 = last in order. Average across all games = Offensive Opportunity Score.</p>
-    </div>
-    <div class="phi-box">
-      <h4>Data Source</h4>
-      <p>Batting orders drawn from all game plan HTML files: Apr 26 (G1/G2), May 3 (G1/G2), May 10 (G1/G2), May 17 (G1/G2), May 23 pool play (G1/G2), May 23 bracket (G1/G2/G3), and tournament games.</p>
-    </div>
-    <div class="phi-box">
-      <h4>Coaching Goal</h4>
-      <p>In a pure rotation approach everyone averages 0.50. Scores above 0.60 reflect consistent top-of-order placement; below 0.35 reflects bottom-of-order. Intentional — coaches put stronger hitters up top — but worth reviewing for players who deserve more run-scoring chances next year.</p>
-    </div>
+    <div class="phi-box"><h4>What This Measures</h4><p>Batting order position determines how many plate appearances a player gets. A leadoff hitter bats ~20–25% more often than cleanup in a short game. This score captures the offensive opportunity each player received through lineup placement.</p></div>
+    <div class="phi-box"><h4>Formula</h4><p>For each game, lineup spot is normalized 0–1:<br><br><strong>Spot Score = (Roster Size − Pos) ÷ (Roster Size − 1)</strong><br><br>1.0 = leadoff. 0.0 = last in order. Averaged across all games.</p></div>
+    <div class="phi-box"><h4>Data Source</h4><p>Batting orders drawn from all game plan HTML files: Apr 26 (G1/G2), May 3, May 10, May 17, May 23 pool play, bracket, and tournament games — 20 planned lineups total.</p></div>
+    <div class="phi-box"><h4>Coaching Goal</h4><p>Pure rotation = 0.50 for all. Above 0.60 = consistent top-of-order. Below 0.35 = bottom-of-order. Intentional based on ability, but worth reviewing for players who earned more.</p></div>
   </div>
-
   <p class="sl">Ranked by Offensive Opportunity Score · Click headers to sort</p>
-  <div class="card">
-    <table id="off-table">
-      <thead>
-        <tr>
-          <th class="l">Player</th>
-          <th class="sortable" data-col="games">Lineups</th>
-          <th class="sortable" data-col="avgpos">Avg Lineup Pos</th>
-          <th class="sortable" data-col="offscore">Opp Score</th>
-          <th>Score Visual</th>
-          <th>Tier</th>
-        </tr>
-      </thead>
-      <tbody id="off-body"></tbody>
-    </table>
-    <p class="note">Score of 1.0 = always led off. 0.0 = always batted last. Lineup counts include all 20 planned games across regular season and tournament.</p>
-  </div>
+  <div class="card"><table id="off-tbl"><thead><tr>
+    <th class="l">Player</th><th class="sort" data-col="games">Lineups</th><th class="sort" data-col="avgpos">Avg Pos</th>
+    <th class="sort" data-col="offscore">Opp Score</th><th>Visual</th><th>Tier</th>
+  </tr></thead><tbody id="off-body"></tbody></table>
+  <p class="note">Score: 1.0 = always led off. 0.0 = always batted last. Based on 20 planned game lineups.</p></div>
 </div>
 
-<!-- ═══ COMBINED OPPORTUNITY ═══ -->
+<!-- ═══ COMBINED ═══ -->
 <div class="tab-panel" id="combo">
   <div class="phi-grid">
-    <div class="phi-box">
-      <h4>Combined Score</h4>
-      <p>Blends Defensive Opportunity Rate and Offensive Opportunity Score using equal weight (50/50). Both scores are already normalized to comparable scales. The combined view shows which players received holistic opportunity — both in the field at premium spots and in the lineup at productive positions.</p>
-    </div>
-    <div class="phi-box">
-      <h4>How to Read It</h4>
-      <p>Above 0.90 = high opportunity across both dimensions.<br><br>0.65–0.90 = solid, well-rounded opportunity.<br><br>Below 0.65 = coach may want to revisit this player's role heading into next season.</p>
-    </div>
+    <div class="phi-box"><h4>Combined Score</h4><p>Blends Defensive Opportunity Rate and Offensive Opportunity Score 50/50. Both scores are normalized to comparable scales. Shows players who received holistic opportunity — premium fielding spots and productive lineup positions.</p></div>
+    <div class="phi-box"><h4>How to Read It</h4><p>Above 0.90 = high opportunity across both dimensions.<br><br>0.65–0.90 = solid, well-rounded opportunity.<br><br>Below 0.65 = worth revisiting this player's role for next season.</p></div>
   </div>
-
-  <p class="sl">Combined Opportunity · Defensive Rate + Offensive Score (equal weight) · Click headers to sort</p>
-  <div class="card">
-    <table id="combo-table">
-      <thead>
-        <tr>
-          <th class="l">Player</th>
-          <th class="sortable" data-col="defrate">Def Rate</th>
-          <th class="sortable" data-col="offscore">Off Score</th>
-          <th class="sortable" data-col="combined">Combined</th>
-          <th>Visual</th>
-          <th>Tier</th>
-        </tr>
-      </thead>
-      <tbody id="combo-body"></tbody>
-    </table>
-    <p class="note">Def Rate normalized from 0–3.0 scale to 0–1 for blending by dividing by 3. Combined = avg(Def Rate/3, Off Score).</p>
-  </div>
+  <p class="sl">Combined Opportunity · 50/50 blend · Click headers to sort</p>
+  <div class="card"><table id="combo-tbl"><thead><tr>
+    <th class="l">Player</th><th class="sort" data-col="defrate">Def Rate</th><th class="sort" data-col="offscore">Off Score</th>
+    <th class="sort" data-col="combined">Combined</th><th>Visual</th><th>Tier</th>
+  </tr></thead><tbody id="combo-body"></tbody></table>
+  <p class="note">Def Rate normalized /3 for blending. Combined = avg(Def Rate/3, Off Score).</p></div>
 </div>
 
 <!-- ═══ PLAN ADHERENCE ═══ -->
 <div class="tab-panel" id="adh">
   <div class="phi-grid">
-    <div class="phi-box">
-      <h4>What This Measures</h4>
-      <p>How closely the actual season fielding statistics matched what was drawn up in the game plan HTML files. For each player, the planned proportion of innings at each position is compared to the actual proportion. Overlap in those distributions = adherence.</p>
-    </div>
-    <div class="phi-box">
-      <h4>Method</h4>
-      <p>For each position: compute the fraction of planned innings vs. actual innings. The adherence score is the sum of min(planned%, actual%) across all 9 positions — essentially the "intersection" of the two distributions. 100% = executed exactly as drawn up.</p>
-    </div>
-    <div class="phi-box">
-      <h4>What Lowers It</h4>
-      <p>In-game adjustments, injured arms, absent players, and defensive substitutions all cause deviations. A lower score doesn't mean bad coaching — it means the game demanded flexibility. Planners never survive contact with the opponent.</p>
-    </div>
-    <div class="phi-box">
-      <h4>Season Summary</h4>
-      <p>Overall weighted adherence across all 13 players: <strong style="color:var(--accent);font-size:1.1em;">84%</strong>. That's a meaningful number — it means roughly 5 out of 6 fielding innings went exactly as planned.</p>
-    </div>
+    <div class="phi-box"><h4>What This Measures</h4><p>How closely actual season fielding statistics matched what was drawn up in the game plan HTML files. For each player, planned innings at each position are compared to actual innings. Overlap = adherence.</p></div>
+    <div class="phi-box"><h4>Method</h4><p>For each position: compute fraction of planned vs. actual innings. Adherence = sum of min(planned%, actual%) across 9 positions — the "intersection" of the two distributions. 100% = executed exactly as planned.</p></div>
+    <div class="phi-box"><h4>What Lowers It</h4><p>In-game adjustments, injured arms, absent players, and defensive subs all cause deviations. Lower score ≠ bad coaching — it means the game demanded flexibility.</p></div>
+    <div class="phi-box"><h4>Season Summary</h4><p>Overall weighted adherence across all 13 players: <strong style="font-size:1.1em;">84%</strong>. Roughly 5 out of every 6 fielding innings went exactly as planned.</p></div>
   </div>
+  <p class="sl">Game Plan Adherence · Click headers to sort</p>
+  <div class="card"><table id="adh-tbl"><thead><tr>
+    <th class="l">Player</th><th class="sort" data-col="planinns">Plan Inn</th><th class="sort" data-col="actinns">Act Inn</th>
+    <th>Plan Top</th><th>Act Top</th><th class="sort" data-col="adh">Adherence</th><th>Visual</th>
+  </tr></thead><tbody id="adh-body"></tbody></table>
+  <p class="note">Planned innings from all game plan JS arrays. Actual from final season stats. Overall weighted adherence: 84.0%.</p></div>
+</div>
 
-  <p class="sl">Game Plan Adherence by Player · Click headers to sort</p>
-  <div class="card">
-    <table id="adh-table">
-      <thead>
-        <tr>
-          <th class="l">Player</th>
-          <th class="sortable" data-col="planinns">Planned Inn</th>
-          <th class="sortable" data-col="actinns">Actual Inn</th>
-          <th>Plan Top Pos</th>
-          <th>Actual Top Pos</th>
-          <th class="sortable" data-col="adh">Adherence</th>
-          <th>Visual</th>
-        </tr>
-      </thead>
-      <tbody id="adh-body"></tbody>
-    </table>
-    <p class="note">Planned innings extracted from all game plan JS arrays (Apr 26 through tournament). Actual innings from final season statistics. Overall weighted adherence: 84.0%.</p>
+<!-- ═══ FAIRNESS ═══ -->
+<div class="tab-panel" id="fair">
+  <div class="card" style="overflow:visible;">
+    <p class="sl" style="margin-bottom:10px;">OPS vs. Combined Opportunity · hover for details</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-size:.65rem;color:rgba(255,255,255,.5);">
+      <span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#4a9eff;vertical-align:middle;margin-right:4px;"></span>Pitchers ≥3 IP</span>
+      <span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#4dbf7a;vertical-align:middle;margin-right:4px;"></span>Position players</span>
+      <span style="opacity:.7;">Shaded band = proportional zone</span>
+    </div>
+    <div style="position:relative;width:100%;height:320px;">
+      <canvas id="fairChart"></canvas>
+    </div>
+    <p class="note" style="margin-top:8px;">OPS = on-base + slugging. Combined opportunity = defensive rate + offensive score (equal weight).</p>
   </div>
+  <div class="phi-grid">
+    <div class="phi-box"><h4>What This Measures</h4><p>Whether each player's combined opportunity was proportional to their performance. Compares OPS rank (offensive ability), ERA rank (pitching ability), and combined opportunity rank. A "fair" assignment means high performers got high opportunity and vice versa.</p></div>
+    <div class="phi-box"><h4>Verdict Definitions</h4><p>
+      <span class="fair-flag ff-hi">Earned</span> — opportunity closely matches performance.<br><br>
+      <span class="fair-flag ff-ok">Balanced</span> — minor gap; explainable by roster/role constraints.<br><br>
+      <span class="fair-flag ff-lo">Under-served</span> — performed above their opportunity level.<br><br>
+      <span class="fair-flag ff-ov">Over-served</span> — received more opportunity than performance alone justified.
+    </p></div>
+    <div class="phi-box"><h4>Key Finding</h4><p>Season overall opportunity distribution was defensible and largely tied to performance. The clearest outlier: <strong>Griffin Strattard</strong> — 2nd-highest OPS, best QAB%, but consistently batted 6th–7th and played almost exclusively 1B. A role expansion candidate for next season.</p></div>
+    <div class="phi-box"><h4>Caveats</h4><p>OPS alone doesn't capture defense, coachability, or positional fit. Some "over-served" players were given premium spots to develop, not because they'd already earned them. That's a coaching investment, not an error.</p></div>
+  </div>
+  <p class="sl">Opportunity vs. Performance · Click headers to sort</p>
+  <div class="card"><table id="fair-tbl"><thead><tr>
+    <th class="l">Player</th><th class="sort" data-col="ops">OPS</th><th class="sort" data-col="opsrank">OPS Rank</th>
+    <th class="sort" data-col="combined">Opp Score</th><th class="sort" data-col="opprank">Opp Rank</th>
+    <th class="sort" data-col="delta">Rank Gap</th><th>Verdict</th>
+  </tr></thead><tbody id="fair-body"></tbody></table>
+  <p class="note">Rank Gap = OPS Rank − Opp Rank. Negative = player ranked higher in performance than in opportunity received (under-served). Positive = received more opportunity than OPS rank alone suggests (over-served or intentional investment). Pitching performance (ERA) factored into verdict for pitchers with ≥3 IP.</p></div>
+</div>
+
+<!-- ═══ BATTING STATS ═══ -->
+<div class="tab-panel" id="sbat">
+  <p class="sl">Batting Statistics · Click headers to sort</p>
+  <div class="card"><table id="bat-tbl"><thead><tr>
+    <th class="l">Player</th><th class="sort" data-col="gp">GP</th><th class="sort" data-col="pa">PA</th>
+    <th class="sort" data-col="ab">AB</th><th class="sort" data-col="avg">AVG</th>
+    <th class="sort" data-col="obp">OBP</th><th class="sort" data-col="slg">SLG</th>
+    <th class="sort" data-col="ops">OPS</th><th class="sort" data-col="h">H</th>
+    <th class="sort" data-col="xbh">XBH</th><th class="sort" data-col="rbi">RBI</th>
+    <th class="sort" data-col="r">R</th><th class="sort" data-col="bb">BB</th>
+    <th class="sort" data-col="so">SO</th><th class="sort" data-col="sb">SB</th>
+    <th class="sort" data-col="qab">QAB%</th><th class="sort" data-col="hhb">HHB</th>
+  </tr></thead><tbody id="bat-body"></tbody></table>
+  <p class="note">QAB% = Quality AB per PA (3 pitches after 2 strikes, 6+ pitch AB, XBH, HHB, BB, SAC). HHB = Hard Hit Balls (line drives + hard grounders). Sorted by OPS by default.</p></div>
+</div>
+
+<!-- ═══ PITCHING STATS ═══ -->
+<div class="tab-panel" id="spit">
+  <p class="sl">Pitching Statistics · Click headers to sort</p>
+  <div class="card"><table id="pit-tbl"><thead><tr>
+    <th class="l">Player</th><th class="sort" data-col="ip">IP</th><th class="sort" data-col="bf">BF</th>
+    <th class="sort" data-col="era">ERA</th><th class="sort" data-col="whip">WHIP</th>
+    <th class="sort" data-col="so">K</th><th class="sort" data-col="kbf">K/BF</th>
+    <th class="sort" data-col="bb">BB</th><th class="sort" data-col="bbinn">BB/Inn</th>
+    <th class="sort" data-col="h">H</th><th class="sort" data-col="er">ER</th>
+    <th class="sort" data-col="fps">FPS%</th><th class="sort" data-col="sp">S%</th>
+    <th class="sort" data-col="fip">FIP</th>
+  </tr></thead><tbody id="pit-body"></tbody></table>
+  <p class="note">FPS% = First-pitch strike %. S% = Overall strike %. K/BF = Strikeouts per batter faced. Only players with ≥1 IP shown. Sorted by ERA by default.</p></div>
+</div>
+
+<!-- ═══ FIELDING STATS ═══ -->
+<div class="tab-panel" id="sfld">
+  <p class="sl">Fielding Statistics · Click headers to sort</p>
+  <div class="card"><table id="fld-tbl"><thead><tr>
+    <th class="l">Player</th><th class="sort" data-col="inn">Inn</th>
+    <th class="sort" data-col="tc">TC</th><th class="sort" data-col="po">PO</th>
+    <th class="sort" data-col="a">A</th><th class="sort" data-col="e">E</th>
+    <th class="sort" data-col="fpct">FPCT</th>
+    <th class="sort" data-col="p">P</th><th class="sort" data-col="c">C</th>
+    <th class="sort" data-col="b1">1B</th><th class="sort" data-col="b2">2B</th>
+    <th class="sort" data-col="b3">3B</th><th class="sort" data-col="ss">SS</th>
+    <th class="sort" data-col="lf">LF</th><th class="sort" data-col="cf">CF</th>
+    <th class="sort" data-col="rf">RF</th>
+  </tr></thead><tbody id="fld-body"></tbody></table>
+  <p class="note">Innings shown in X.Y format (thirds). FPCT = Fielding percentage. Sorted by innings played by default.</p></div>
 </div>
 
 <script>
 // ── DATA ──────────────────────────────────────────────────────────────────
 
-const defData = [
-  {name:'Sam McDuffie',    gp:15, raw:155.70, rate:1.730, div:6, topPos:'P'},
-  {name:'Jamiks Petersons',gp:10, raw:96.87,  rate:1.614, div:7, topPos:'C'},
-  {name:'Charlie Boston',  gp:15, raw:130.87, rate:1.454, div:8, topPos:'C'},
-  {name:'Max Jellie',      gp:15, raw:129.87, rate:1.443, div:8, topPos:'SS'},
-  {name:'Ben Eastman',     gp:7,  raw:55.77,  rate:1.328, div:6, topPos:'SS'},
-  {name:'Grayson Fairfield',gp:12,raw:85.40,  rate:1.186, div:5, topPos:'3B'},
-  {name:'Cooper Mullen',   gp:12, raw:85.30,  rate:1.185, div:8, topPos:'2B'},
-  {name:'Joe Dolby',       gp:15, raw:97.93,  rate:1.088, div:6, topPos:'C'},
-  {name:'Owen Kane',       gp:15, raw:87.77,  rate:0.975, div:8, topPos:'LF'},
-  {name:'Everett Marcaurelle',gp:12,raw:69.90,rate:0.971, div:9, topPos:'CF'},
-  {name:'Alex Johnston',   gp:12, raw:63.50,  rate:0.882, div:7, topPos:'LF'},
-  {name:'Griffin Strattard',gp:13,raw:62.30,  rate:0.799, div:4, topPos:'1B'},
-  {name:'Jackson Emery',   gp:14, raw:66.67,  rate:0.794, div:4, topPos:'CF'},
+const defData=[
+  {name:'Sam McDuffie',    gp:15,raw:155.70,rate:1.730,div:6,topPos:'P'},
+  {name:'Jamiks Petersons',gp:10,raw:96.87, rate:1.614,div:7,topPos:'C'},
+  {name:'Charlie Boston',  gp:15,raw:130.87,rate:1.454,div:8,topPos:'C'},
+  {name:'Max Jellie',      gp:15,raw:129.87,rate:1.443,div:8,topPos:'SS'},
+  {name:'Ben Eastman',     gp:7, raw:55.77, rate:1.328,div:6,topPos:'SS'},
+  {name:'Grayson Fairfield',gp:12,raw:85.40,rate:1.186,div:5,topPos:'3B'},
+  {name:'Cooper Mullen',   gp:12,raw:85.30, rate:1.185,div:8,topPos:'2B'},
+  {name:'Joe Dolby',       gp:15,raw:97.93, rate:1.088,div:6,topPos:'C'},
+  {name:'Owen Kane',       gp:15,raw:87.77, rate:0.975,div:8,topPos:'LF'},
+  {name:'Everett Marcaurelle',gp:12,raw:69.90,rate:0.971,div:9,topPos:'CF'},
+  {name:'Alex Johnston',   gp:12,raw:63.50, rate:0.882,div:7,topPos:'LF'},
+  {name:'Griffin Strattard',gp:13,raw:62.30,rate:0.799,div:4,topPos:'1B'},
+  {name:'Jackson Emery',   gp:14,raw:66.67, rate:0.794,div:4,topPos:'CF'},
 ];
 
-const offData = [
-  {name:'Cooper Mullen',    games:17, avgpos:2.9, offscore:0.818},
-  {name:'Charlie Boston',   games:20, avgpos:3.7, offscore:0.740},
-  {name:'Grayson Fairfield',games:17, avgpos:4.2, offscore:0.707},
-  {name:'Max Jellie',       games:20, avgpos:4.3, offscore:0.690},
-  {name:'Jamiks Petersons', games:15, avgpos:5.2, offscore:0.628},
-  {name:'Sam McDuffie',     games:20, avgpos:6.0, offscore:0.506},
-  {name:'Griffin Strattard',games:18, avgpos:6.9, offscore:0.435},
-  {name:'Joe Dolby',        games:20, avgpos:6.8, offscore:0.432},
-  {name:'Ben Eastman',      games:10, avgpos:7.9, offscore:0.382},
-  {name:'Jackson Emery',    games:18, avgpos:8.1, offscore:0.351},
-  {name:'Alex Johnston',    games:17, avgpos:8.5, offscore:0.328},
+const offData=[
+  {name:'Cooper Mullen',    games:17,avgpos:2.9,offscore:0.818},
+  {name:'Charlie Boston',   games:20,avgpos:3.7,offscore:0.740},
+  {name:'Grayson Fairfield',games:17,avgpos:4.2,offscore:0.707},
+  {name:'Max Jellie',       games:20,avgpos:4.3,offscore:0.690},
+  {name:'Jamiks Petersons', games:15,avgpos:5.2,offscore:0.628},
+  {name:'Sam McDuffie',     games:20,avgpos:6.0,offscore:0.506},
+  {name:'Griffin Strattard',games:18,avgpos:6.9,offscore:0.435},
+  {name:'Joe Dolby',        games:20,avgpos:6.8,offscore:0.432},
+  {name:'Ben Eastman',      games:10,avgpos:7.9,offscore:0.382},
+  {name:'Jackson Emery',    games:18,avgpos:8.1,offscore:0.351},
+  {name:'Alex Johnston',    games:17,avgpos:8.5,offscore:0.328},
   {name:'Everett Marcaurelle',games:16,avgpos:9.3,offscore:0.235},
-  {name:'Owen Kane',        games:19, avgpos:9.8, offscore:0.186},
+  {name:'Owen Kane',        games:19,avgpos:9.8,offscore:0.186},
 ];
 
-const adhData = [
-  {name:'Sam McDuffie',     planinns:181, actinns:69.3, topPlan:'SS', topAct:'P',  adh:83.8},
-  {name:'Max Jellie',       planinns:179, actinns:67.3, topPlan:'SS', topAct:'SS', adh:81.0},
-  {name:'Charlie Boston',   planinns:178, actinns:69.0, topPlan:'1B', topAct:'C',  adh:78.7},
-  {name:'Joe Dolby',        planinns:166, actinns:56.3, topPlan:'C',  topAct:'C',  adh:94.0},
-  {name:'Jamiks Petersons', planinns:166, actinns:42.7, topPlan:'C',  topAct:'C',  adh:86.6},
-  {name:'Grayson Fairfield',planinns:172, actinns:52.0, topPlan:'3B', topAct:'3B', adh:90.7},
-  {name:'Cooper Mullen',    planinns:136, actinns:50.7, topPlan:'3B', topAct:'2B', adh:73.7},
-  {name:'Owen Kane',        planinns:170, actinns:61.7, topPlan:'LF', topAct:'LF', adh:81.2},
-  {name:'Griffin Strattard',planinns:163, actinns:48.0, topPlan:'1B', topAct:'1B', adh:84.3},
-  {name:'Everett Marcaurelle',planinns:137,actinns:50.0,topPlan:'CF', topAct:'CF', adh:84.1},
-  {name:'Jackson Emery',    planinns:163, actinns:46.3, topPlan:'CF', topAct:'CF', adh:87.4},
-  {name:'Alex Johnston',    planinns:178, actinns:48.7, topPlan:'LF', topAct:'LF', adh:80.3},
-  {name:'Ben Eastman',      planinns:115, actinns:31.0, topPlan:'SS', topAct:'SS', adh:85.2},
+const adhData=[
+  {name:'Sam McDuffie',     planinns:181,actinns:69.3,topPlan:'SS',topAct:'P', adh:83.8},
+  {name:'Max Jellie',       planinns:179,actinns:67.3,topPlan:'SS',topAct:'SS',adh:81.0},
+  {name:'Charlie Boston',   planinns:178,actinns:69.0,topPlan:'1B',topAct:'C', adh:78.7},
+  {name:'Joe Dolby',        planinns:166,actinns:56.3,topPlan:'C', topAct:'C', adh:94.0},
+  {name:'Jamiks Petersons', planinns:166,actinns:42.7,topPlan:'C', topAct:'C', adh:86.6},
+  {name:'Grayson Fairfield',planinns:172,actinns:52.0,topPlan:'3B',topAct:'3B',adh:90.7},
+  {name:'Cooper Mullen',    planinns:136,actinns:50.7,topPlan:'3B',topAct:'2B',adh:73.7},
+  {name:'Owen Kane',        planinns:170,actinns:61.7,topPlan:'LF',topAct:'LF',adh:81.2},
+  {name:'Griffin Strattard',planinns:163,actinns:48.0,topPlan:'1B',topAct:'1B',adh:84.3},
+  {name:'Everett Marcaurelle',planinns:137,actinns:50.0,topPlan:'CF',topAct:'CF',adh:84.1},
+  {name:'Jackson Emery',    planinns:163,actinns:46.3,topPlan:'CF',topAct:'CF',adh:87.4},
+  {name:'Alex Johnston',    planinns:178,actinns:48.7,topPlan:'LF',topAct:'LF',adh:80.3},
+  {name:'Ben Eastman',      planinns:115,actinns:31.0,topPlan:'SS',topAct:'SS',adh:85.2},
 ];
 
-// Build combined
-const comboData = defData.map(d => {
-  const o = offData.find(x => x.name === d.name);
-  const defNorm = d.rate / 3.0;
-  const offScore = o ? o.offscore : 0;
-  return {name: d.name, defrate: d.rate, offscore: offScore, combined: (defNorm + offScore) / 2};
-}).sort((a,b) => b.combined - a.combined);
+const comboData=(()=>{
+  return defData.map(d=>{
+    const o=offData.find(x=>x.name===d.name);
+    const defNorm=d.rate/3.0;
+    const offScore=o?o.offscore:0;
+    return{name:d.name,defrate:d.rate,offscore:offScore,combined:(defNorm+offScore)/2};
+  }).sort((a,b)=>b.combined-a.combined);
+})();
 
-// ── RENDER ────────────────────────────────────────────────────────────────
+// Fairness data
+const fairRaw=[
+  {name:'Jamiks Petersons', ops:1.433,era:12.86,ip:2.1, combined:0.582,notes:''},
+  {name:'Griffin Strattard',ops:1.329,era:4.00, ip:3.0, combined:0.383,notes:''},
+  {name:'Charlie Boston',   ops:1.321,era:14.73,ip:3.2, combined:0.612,notes:''},
+  {name:'Grayson Fairfield',ops:1.242,era:4.20, ip:10.0,combined:0.550,notes:''},
+  {name:'Cooper Mullen',    ops:1.216,era:10.93,ip:9.1, combined:0.591,notes:''},
+  {name:'Max Jellie',       ops:1.181,era:10.91,ip:11.0,combined:0.586,notes:''},
+  {name:'Joe Dolby',        ops:1.181,era:11.45,ip:3.2, combined:0.423,notes:''},
+  {name:'Jackson Emery',   ops:0.890,era:null,  ip:0,   combined:0.309,notes:''},
+  {name:'Sam McDuffie',    ops:0.825,era:3.556, ip:27.0,combined:0.625,notes:''},
+  {name:'Ben Eastman',     ops:0.750,era:6.00,  ip:1.0, combined:0.476,notes:''},
+  {name:'Alex Johnston',   ops:0.580,era:7.20,  ip:1.2, combined:0.322,notes:''},
+  {name:'Owen Kane',       ops:0.575,era:4.50,  ip:8.0, combined:0.349,notes:''},
+  {name:'Everett Marcaurelle',ops:0.385,era:18.00,ip:1.0,combined:0.412,notes:''},
+];
+// Rank by OPS and by combined opp, compute delta
+const fairData=(()=>{
+  const sorted=[...fairRaw].sort((a,b)=>b.ops-a.ops);
+  sorted.forEach((r,i)=>r.opsrank=i+1);
+  const sortedOpp=[...fairRaw].sort((a,b)=>b.combined-a.combined);
+  sortedOpp.forEach((r,i)=>{
+    const orig=fairRaw.find(x=>x.name===r.name);
+    orig.opprank=i+1;
+  });
+  fairRaw.forEach(r=>{
+    r.delta=r.opsrank-r.opprank;
+    // Verdict logic
+    const gap=r.delta;
+    const isPitcher=r.ip>=3;
+    // Sam: low OPS rank but high opp — justified by elite ERA
+    if(r.name==='Sam McDuffie') r.verdict='Earned';
+    else if(Math.abs(gap)<=2) r.verdict='Earned';
+    else if(gap<=-3) r.verdict='Under-served'; // performed better than opportunity
+    else if(gap>=3) r.verdict='Over-served';
+    else r.verdict='Balanced';
+    // Special case overrides
+    if(r.name==='Owen Kane') r.verdict='Balanced'; // pitching saves him
+    if(r.name==='Everett Marcaurelle') r.verdict='Balanced'; // 9-position dev investment
+    if(r.name==='Griffin Strattard') r.verdict='Under-served';
+    if(r.name==='Jackson Emery') r.verdict='Under-served';
+  });
+  return [...fairRaw].sort((a,b)=>a.opsrank-b.opsrank);
+})();
 
-function bar(val, max, cls='') {
-  const pct = Math.min(100, (val/max)*100).toFixed(1);
-  return `<div class="bar-wrap"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div>`;
+// Batting stats
+const batData=[
+  {name:'Cooper Mullen',    gp:12,pa:36,ab:26,avg:.500,obp:.639,slg:.577,ops:1.216,h:13,xbh:2,rbi:4, r:16,bb:9,so:4, sb:8, qab:38.89,hhb:1},
+  {name:'Alex Johnston',    gp:12,pa:32,ab:23,avg:.174,obp:.406,slg:.174,ops:.580, h:4, xbh:0,rbi:8, r:5, bb:8,so:12,sb:4, qab:50.00,hhb:3},
+  {name:'Max Jellie',       gp:15,pa:43,ab:35,avg:.486,obp:.581,slg:.600,ops:1.181,h:17,xbh:4,rbi:8, r:22,bb:7,so:5, sb:12,qab:53.49,hhb:7},
+  {name:'Joe Dolby',        gp:15,pa:40,ab:27,avg:.444,obp:.625,slg:.556,ops:1.181,h:12,xbh:2,rbi:11,r:12,bb:13,so:5,sb:2, qab:57.50,hhb:3},
+  {name:'Jamiks Petersons', gp:10,pa:29,ab:23,avg:.522,obp:.607,slg:.826,ops:1.433,h:12,xbh:5,rbi:10,r:12,bb:3,so:3, sb:3, qab:51.72,hhb:8},
+  {name:'Grayson Fairfield',gp:12,pa:34,ab:26,avg:.462,obp:.588,slg:.654,ops:1.242,h:12,xbh:3,rbi:12,r:12,bb:6,so:2, sb:5, qab:38.24,hhb:4},
+  {name:'Charlie Boston',   gp:15,pa:43,ab:34,avg:.588,obp:.674,slg:.647,ops:1.321,h:20,xbh:2,rbi:15,r:16,bb:8,so:0, sb:9, qab:44.19,hhb:8},
+  {name:'Jackson Emery',    gp:14,pa:35,ab:30,avg:.367,obp:.457,slg:.433,ops:.890, h:11,xbh:2,rbi:6, r:13,bb:5,so:8, sb:7, qab:40.00,hhb:4},
+  {name:'Owen Kane',        gp:15,pa:36,ab:29,avg:.172,obp:.333,slg:.241,ops:.575, h:5, xbh:2,rbi:4, r:9, bb:6,so:9, sb:7, qab:38.89,hhb:3},
+  {name:'Griffin Strattard',gp:13,pa:34,ab:23,avg:.522,obp:.676,slg:.652,ops:1.329,h:12,xbh:3,rbi:9, r:10,bb:11,so:6,sb:3, qab:64.71,hhb:7},
+  {name:'Everett Marcaurelle',gp:12,pa:29,ab:28,avg:.179,obp:.207,slg:.179,ops:.385,h:5,xbh:0,rbi:2,r:5,bb:1,so:8,sb:3,qab:13.79,hhb:1},
+  {name:'Ben Eastman',      gp:7, pa:18,ab:12,avg:.250,obp:.500,slg:.250,ops:.750, h:3, xbh:0,rbi:3, r:5, bb:5,so:3, sb:0, qab:50.00,hhb:2},
+  {name:'Sam McDuffie',     gp:15,pa:40,ab:35,avg:.343,obp:.425,slg:.400,ops:.825, h:12,xbh:1,rbi:14,r:11,bb:4,so:3, sb:8, qab:30.00,hhb:7},
+].sort((a,b)=>b.ops-a.ops);
+
+// Pitching stats
+const pitData=[
+  {name:'Sam McDuffie',     ip:27.0,bf:135,era:3.556,whip:1.852,so:29,kbf:.215,bb:12,bbinn:.444,h:38,er:16,fps:63.70,sp:63.57,fip:2.336},
+  {name:'Griffin Strattard',ip:3.0, bf:15, era:4.000,whip:1.667,so:0, kbf:.000,bb:1, bbinn:.333,h:4, er:2, fps:60.00,sp:50.00,fip:8.060},
+  {name:'Grayson Fairfield',ip:10.0,bf:49, era:4.200,whip:1.600,so:9, kbf:.184,bb:6, bbinn:.600,h:10,er:7, fps:55.10,sp:60.37,fip:4.124},
+  {name:'Owen Kane',        ip:8.0, bf:41, era:4.500,whip:2.250,so:12,kbf:.293,bb:4, bbinn:.500,h:14,er:6, fps:39.02,sp:58.49,fip:1.760},
+  {name:'Max Jellie',       ip:11.0,bf:68, era:10.91,whip:2.909,so:6, kbf:.088,bb:8, bbinn:.727,h:26,er:20,fps:54.41,sp:61.50,fip:5.245},
+  {name:'Cooper Mullen',    ip:9.1, bf:68, era:10.93,whip:4.179,so:7, kbf:.103,bb:19,bbinn:2.036,h:20,er:17,fps:48.39,sp:49.80,fip:7.974},
+  {name:'Joe Dolby',        ip:3.2, bf:24, era:11.45,whip:3.545,so:5, kbf:.208,bb:10,bbinn:2.727,h:3, er:7, fps:33.33,sp:43.30,fip:7.100},
+  {name:'Charlie Boston',   ip:3.2, bf:27, era:14.73,whip:4.091,so:3, kbf:.111,bb:7, bbinn:1.909,h:8, er:9, fps:48.15,sp:50.00,fip:6.315},
+  {name:'Ben Eastman',      ip:1.0, bf:6,  era:6.000,whip:3.000,so:3, kbf:.500,bb:1, bbinn:1.000,h:2, er:1, fps:33.33,sp:53.33,fip:-.580},
+  {name:'Alex Johnston',    ip:1.2, bf:9,  era:7.200,whip:2.400,so:1, kbf:.111,bb:1, bbinn:.600, h:3, er:2, fps:44.44,sp:50.00,fip:3.644},
+  {name:'Everett Marcaurelle',ip:1.0,bf:6,  era:18.00,whip:3.000,so:1,kbf:.167,bb:2, bbinn:2.000,h:1, er:3, fps:66.67,sp:53.85,fip:6.140},
+  {name:'Jamiks Petersons', ip:2.1, bf:15, era:12.86,whip:4.286,so:1, kbf:.067,bb:5, bbinn:2.143,h:5, er:5, fps:46.67,sp:43.64,fip:7.717},
+].sort((a,b)=>a.era-b.era);
+
+// Fielding stats
+const fldData=[
+  {name:'Cooper Mullen',    inn:'50.2',tc:17,po:11,a:5, e:1,fpct:.941,p:'9.1', c:'0.0', b1:'0.2', b2:'19.1',b3:'6.1', ss:'2.0', lf:'3.0', cf:'2.0', rf:'8.0'},
+  {name:'Alex Johnston',    inn:'48.2',tc:10,po:7, a:2, e:1,fpct:.900,p:'1.2', c:'0.0', b1:'0.0', b2:'4.0', b3:'5.0', ss:'2.1', lf:'24.1',cf:'9.1', rf:'2.0'},
+  {name:'Max Jellie',       inn:'67.1',tc:28,po:14,a:7, e:7,fpct:.750,p:'11.0',c:'0.0', b1:'1.0', b2:'10.1',b3:'2.0', ss:'30.1',lf:'2.0', cf:'7.2', rf:'3.0'},
+  {name:'Joe Dolby',        inn:'56.1',tc:26,po:20,a:2, e:4,fpct:.846,p:'3.2', c:'21.0',b1:'9.2', b2:'1.0', b3:'0.0', ss:'0.0', lf:'0.0', cf:'0.2', rf:'20.1'},
+  {name:'Jamiks Petersons', inn:'42.2',tc:30,po:29,a:1, e:0,fpct:1.000,p:'2.1',c:'30.2',b1:'1.0', b2:'0.0', b3:'0.2', ss:'2.0', lf:'0.0', cf:'2.0', rf:'4.0'},
+  {name:'Grayson Fairfield',inn:'52.0',tc:18,po:11,a:4, e:3,fpct:.833,p:'10.0',c:'0.0', b1:'2.0', b2:'0.0', b3:'26.0',ss:'0.0', lf:'10.0',cf:'0.0', rf:'4.0'},
+  {name:'Charlie Boston',   inn:'69.0',tc:54,po:48,a:6, e:0,fpct:1.000,p:'3.2',c:'27.0',b1:'11.0',b2:'3.0', b3:'16.2',ss:'0.0', lf:'1.0', cf:'4.0', rf:'2.2'},
+  {name:'Jackson Emery',    inn:'46.1',tc:11,po:7, a:1, e:3,fpct:.727,p:'0.0', c:'0.0', b1:'0.0', b2:'19.1',b3:'1.0', ss:'0.0', lf:'0.0', cf:'20.1',rf:'5.2'},
+  {name:'Owen Kane',        inn:'61.2',tc:17,po:14,a:2, e:1,fpct:.941,p:'8.0', c:'0.0', b1:'11.1',b2:'5.0', b3:'2.0', ss:'1.2', lf:'20.1',cf:'5.1', rf:'8.0'},
+  {name:'Griffin Strattard',inn:'48.0',tc:42,po:39,a:1, e:2,fpct:.952,p:'3.0', c:'0.0', b1:'39.0',b2:'0.0', b3:'1.0', ss:'0.0', lf:'0.0', cf:'0.0', rf:'5.0'},
+  {name:'Everett Marcaurelle',inn:'50.0',tc:10,po:8,a:2,e:0,fpct:1.000,p:'1.0',c:'3.0', b1:'2.0', b2:'6.0', b3:'4.0', ss:'1.0', lf:'11.2',cf:'14.0',rf:'7.1'},
+  {name:'Ben Eastman',      inn:'31.0',tc:12,po:8, a:2, e:2,fpct:.833,p:'1.0', c:'0.0', b1:'3.0', b2:'0.2', b3:'0.0', ss:'19.1',lf:'0.0', cf:'5.0', rf:'2.0'},
+  {name:'Sam McDuffie',     inn:'69.1',tc:31,po:23,a:7, e:1,fpct:.968,p:'27.0',c:'0.0', b1:'1.0', b2:'5.0', b3:'2.0', ss:'23.0',lf:'0.0', cf:'11.1',rf:'0.0'},
+].sort((a,b)=>parseFloat(b.inn)-parseFloat(a.inn));
+
+// ── RENDER HELPERS ────────────────────────────────────────────────────────
+
+function bar(v,mx,cls=''){
+  return `<div class="bar-wrap"><div class="bar-fill ${cls}" style="width:${Math.min(100,(v/mx)*100).toFixed(1)}%"></div></div>`;
 }
-
-function tier(score, lo, hi) {
-  if (score >= hi) return '<span class="pill pill-g">High</span>';
-  if (score >= lo) return '<span class="pill pill-y">Mid</span>';
-  return '<span class="pill pill-r">Low</span>';
+function tier(s,lo,hi){
+  return s>=hi?'<span class="pill pg">High</span>':s>=lo?'<span class="pill py">Mid</span>':'<span class="pill pr">Low</span>';
 }
+function fmt(v,d=3){return typeof v==='number'?v.toFixed(d):v;}
+function ac(v){return`<span style="font-family:'Oswald',sans-serif;color:var(--accent)">${v}</span>`;}
 
-function renderDef(data) {
-  const tb = document.getElementById('def-body');
-  tb.innerHTML = data.map((r,i) =>
-    `<tr>
-      <td class="l">${r.name}</td>
-      <td>${r.gp}</td>
-      <td>${r.raw.toFixed(2)}</td>
-      <td>${r.rate.toFixed(3)}</td>
-      <td>${bar(r.rate, 2.0)}</td>
-      <td>${r.div}</td>
-      <td><span style="font-family:'Oswald',sans-serif;color:var(--accent)">${r.topPos}</span></td>
-    </tr>`
-  ).join('');
+// ── RENDER FUNCTIONS ──────────────────────────────────────────────────────
+
+function renderDef(data){
+  document.getElementById('def-body').innerHTML=data.map(r=>`<tr>
+    <td class="l">${r.name}</td><td>${r.gp}</td><td>${r.raw.toFixed(2)}</td>
+    <td>${r.rate.toFixed(3)}</td><td>${bar(r.rate,2.0)}</td>
+    <td>${r.div}</td><td>${ac(r.topPos)}</td></tr>`).join('');
 }
-
-function renderOff(data) {
-  const tb = document.getElementById('off-body');
-  tb.innerHTML = data.map(r =>
-    `<tr>
-      <td class="l">${r.name}</td>
-      <td>${r.games}</td>
-      <td>${r.avgpos.toFixed(1)}</td>
-      <td>${r.offscore.toFixed(3)}</td>
-      <td>${bar(r.offscore, 1.0, 'blue')}</td>
-      <td>${tier(r.offscore, 0.35, 0.60)}</td>
-    </tr>`
-  ).join('');
+function renderOff(data){
+  document.getElementById('off-body').innerHTML=data.map(r=>`<tr>
+    <td class="l">${r.name}</td><td>${r.games}</td><td>${r.avgpos.toFixed(1)}</td>
+    <td>${r.offscore.toFixed(3)}</td><td>${bar(r.offscore,1.0,'bl')}</td>
+    <td>${tier(r.offscore,.35,.60)}</td></tr>`).join('');
 }
-
-function renderCombo(data) {
-  const tb = document.getElementById('combo-body');
-  tb.innerHTML = data.map(r =>
-    `<tr>
-      <td class="l">${r.name}</td>
-      <td>${r.defrate.toFixed(3)}</td>
-      <td>${r.offscore.toFixed(3)}</td>
-      <td><strong style="color:var(--accent)">${r.combined.toFixed(3)}</strong></td>
-      <td>${bar(r.combined, 0.80, 'combo')}</td>
-      <td>${tier(r.combined, 0.38, 0.55)}</td>
-    </tr>`
-  ).join('');
+function renderCombo(data){
+  document.getElementById('combo-body').innerHTML=data.map(r=>`<tr>
+    <td class="l">${r.name}</td><td>${r.defrate.toFixed(3)}</td><td>${r.offscore.toFixed(3)}</td>
+    <td><strong style="color:var(--accent)">${r.combined.toFixed(3)}</strong></td>
+    <td>${bar(r.combined,.80,'co')}</td>
+    <td>${tier(r.combined,.38,.55)}</td></tr>`).join('');
 }
-
-function renderAdh(data) {
-  const tb = document.getElementById('adh-body');
-  tb.innerHTML = data.map(r => {
-    const pillCls = r.adh >= 88 ? 'pill-g' : r.adh >= 78 ? 'pill-y' : 'pill-r';
-    const match = r.topPlan === r.topAct;
-    return `<tr>
-      <td class="l">${r.name}</td>
-      <td>${r.planinns}</td>
-      <td>${r.actinns.toFixed(1)}</td>
-      <td><span style="font-family:'Oswald',sans-serif;color:var(--accent)">${r.topPlan}</span></td>
-      <td><span style="font-family:'Oswald',sans-serif;color:${match?'#6dbf6d':'var(--dirt)'}">${r.topAct}</span></td>
-      <td><span class="pill ${pillCls}">${r.adh.toFixed(1)}%</span></td>
-      <td>${bar(r.adh, 100, 'adh')}</td>
-    </tr>`;
+function renderAdh(data){
+  document.getElementById('adh-body').innerHTML=data.map(r=>{
+    const pc=r.adh>=88?'pg':r.adh>=78?'py':'pr';
+    const match=r.topPlan===r.topAct;
+    return`<tr><td class="l">${r.name}</td><td>${r.planinns}</td><td>${r.actinns.toFixed(1)}</td>
+    <td>${ac(r.topPlan)}</td>
+    <td><span style="font-family:'Oswald',sans-serif;color:${match?'#6dbf6d':'var(--dirt)'}">${r.topAct}</span></td>
+    <td><span class="pill ${pc}">${r.adh.toFixed(1)}%</span></td>
+    <td>${bar(r.adh,100,'gr')}</td></tr>`;
   }).join('');
 }
+function renderFair(data){
+  document.getElementById('fair-body').innerHTML=data.map(r=>{
+    const vc=r.verdict==='Earned'?'ff-hi':r.verdict==='Balanced'?'ff-ok':r.verdict==='Under-served'?'ff-lo':'ff-ov';
+    const dSign=r.delta>0?'+':'';
+    return`<tr><td class="l">${r.name}</td>
+    <td>${r.ops.toFixed(3)}</td><td>#${r.opsrank}</td>
+    <td>${r.combined.toFixed(3)}</td><td>#${r.opprank}</td>
+    <td style="color:${r.delta<=-3?'#e87070':r.delta>=3?'#aaaaff':'rgba(255,255,255,.6)'}">${dSign}${r.delta}</td>
+    <td><span class="fair-flag ${vc}">${r.verdict}</span></td></tr>`;
+  }).join('');
+}
+function renderBat(data){
+  document.getElementById('bat-body').innerHTML=data.map(r=>`<tr>
+    <td class="l">${r.name}</td><td>${r.gp}</td><td>${r.pa}</td><td>${r.ab}</td>
+    <td>${r.avg.toFixed(3)}</td><td>${r.obp.toFixed(3)}</td><td>${r.slg.toFixed(3)}</td>
+    <td><strong style="color:var(--accent)">${r.ops.toFixed(3)}</strong></td>
+    <td>${r.h}</td><td>${r.xbh}</td><td>${r.rbi}</td><td>${r.r}</td>
+    <td>${r.bb}</td><td>${r.so}</td><td>${r.sb}</td>
+    <td>${r.qab.toFixed(2)}%</td><td>${r.hhb}</td></tr>`).join('')+
+    `<tr class="totrow"><td class="l">Team</td><td>15</td><td>476</td><td>374</td>
+    <td>.393</td><td>.522</td><td>.484</td><td style="color:var(--accent)"><strong>1.006</strong></td>
+    <td>147</td><td>28</td><td>111</td><td>156</td><td>90</td><td>74</td><td>79</td>
+    <td>44.75%</td><td>62</td></tr>`;
+}
+function renderPit(data){
+  document.getElementById('pit-body').innerHTML=data.map(r=>`<tr>
+    <td class="l">${r.name}</td><td>${r.ip.toFixed(1)}</td><td>${r.bf}</td>
+    <td><strong style="color:var(--accent)">${r.era.toFixed(2)}</strong></td>
+    <td>${r.whip.toFixed(3)}</td><td>${r.so}</td><td>${r.kbf.toFixed(3)}</td>
+    <td>${r.bb}</td><td>${r.bbinn.toFixed(3)}</td><td>${r.h}</td><td>${r.er}</td>
+    <td>${r.fps.toFixed(1)}%</td><td>${r.sp.toFixed(1)}%</td>
+    <td>${r.fip.toFixed(3)}</td></tr>`).join('')+
+    `<tr class="totrow"><td class="l">Team</td><td>82.1</td><td>464</td>
+    <td style="color:var(--accent)"><strong>6.78</strong></td><td>2.526</td>
+    <td>77</td><td>.166</td><td>74</td><td>.899</td><td>134</td><td>93</td>
+    <td>53.0%</td><td>56.5%</td><td>4.322</td></tr>`;
+}
+function renderFld(data){
+  document.getElementById('fld-body').innerHTML=data.map(r=>`<tr>
+    <td class="l">${r.name}</td><td>${r.inn}</td><td>${r.tc}</td>
+    <td>${r.po}</td><td>${r.a}</td><td>${r.e}</td>
+    <td>${r.fpct.toFixed(3)}</td>
+    <td>${r.p}</td><td>${r.c}</td><td>${r.b1}</td><td>${r.b2}</td>
+    <td>${r.b3}</td><td>${r.ss}</td><td>${r.lf}</td><td>${r.cf}</td><td>${r.rf}</td></tr>`).join('');
+}
 
-renderDef(defData);
-renderOff(offData);
-renderCombo(comboData);
-renderAdh(adhData);
+renderDef(defData);renderOff(offData);renderCombo(comboData);
+renderAdh(adhData);renderFair(fairData);
+renderBat(batData);renderPit(pitData);renderFld(fldData);
 
 // ── TABS ──────────────────────────────────────────────────────────────────
 
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
     btn.classList.add('active');
   });
@@ -381,35 +488,110 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 // ── SORT ──────────────────────────────────────────────────────────────────
 
-function makeSortable(tableId, dataRef, renderFn) {
-  const table = document.getElementById(tableId);
-  let sortCol = null, sortDir = 1;
-  table.querySelectorAll('th.sortable').forEach(th => {
-    th.addEventListener('click', function() {
-      const col = th.getAttribute('data-col');
-      if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = -1; }
-      table.querySelectorAll('th.sortable').forEach(t => { t.classList.remove('asc','desc'); });
-      th.classList.add(sortDir === -1 ? 'desc' : 'asc');
-      const sorted = [...dataRef].sort((a,b) => sortDir * ((b[col]||0) - (a[col]||0)));
+function makeSortable(tblId,dataRef,renderFn,defaultDesc=true){
+  const tbl=document.getElementById(tblId);
+  let sortCol=null,sortDir=defaultDesc?-1:1;
+  tbl.querySelectorAll('th.sort').forEach(th=>{
+    th.addEventListener('click',function(){
+      const col=th.getAttribute('data-col');
+      if(sortCol===col) sortDir*=-1; else{sortCol=col;sortDir=-1;}
+      tbl.querySelectorAll('th.sort').forEach(t=>t.classList.remove('asc','desc'));
+      th.classList.add(sortDir===-1?'desc':'asc');
+      const sorted=[...dataRef].sort((a,b)=>{
+        const av=a[col],bv=b[col];
+        if(typeof av==='number'&&typeof bv==='number') return sortDir*(bv-av);
+        return sortDir*String(bv).localeCompare(String(av));
+      });
       renderFn(sorted);
     });
   });
 }
 
-makeSortable('def-table', defData, renderDef);
-makeSortable('off-table', offData, renderOff);
-makeSortable('adh-table', adhData, renderAdh);
+makeSortable('def-tbl',  defData,  renderDef);
+makeSortable('off-tbl',  offData,  renderOff);
+makeSortable('adh-tbl',  adhData,  renderAdh);
+makeSortable('bat-tbl',  batData,  renderBat);
+makeSortable('pit-tbl',  pitData,  renderPit);
+makeSortable('fld-tbl',  fldData,  renderFld);
+makeSortable('fair-tbl', fairData, renderFair);
 
-// combo sort
-document.getElementById('combo-table').querySelectorAll('th.sortable').forEach(th => {
-  let sortDir = 1;
-  th.addEventListener('click', function() {
-    const col = th.getAttribute('data-col');
-    sortDir *= -1;
-    document.getElementById('combo-table').querySelectorAll('th.sortable').forEach(t => t.classList.remove('asc','desc'));
-    th.classList.add(sortDir === -1 ? 'desc' : 'asc');
-    const sorted = [...comboData].sort((a,b) => sortDir * ((b[col]||0) - (a[col]||0)));
-    renderCombo(sorted);
+// ── SCATTER CHART ─────────────────────────────────────────────────────────
+
+function buildChart(){
+  if(!document.getElementById('fairChart')) return;
+  const pitchers=['Sam McDuffie','Grayson Fairfield','Owen Kane','Max Jellie','Cooper Mullen','Griffin Strattard','Joe Dolby','Charlie Boston'];
+  const ds1=[],ds2=[];
+  fairData.forEach(r=>{
+    const pt={x:r.ops,y:r.combined,name:r.name};
+    (pitchers.includes(r.name)?ds1:ds2).push(pt);
+  });
+  new Chart(document.getElementById('fairChart'),{
+    type:'scatter',
+    data:{datasets:[
+      {label:'Pitchers',data:ds1,backgroundColor:'#4a9eff',pointRadius:7,pointHoverRadius:9},
+      {label:'Position',data:ds2,backgroundColor:'#4dbf7a',pointRadius:7,pointHoverRadius:9}
+    ]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:ctx=>`${ctx.raw.name}  |  OPS ${ctx.raw.x.toFixed(3)}  |  Opp ${ctx.raw.y.toFixed(3)}`}}
+      },
+      scales:{
+        x:{title:{display:true,text:'OPS (batting performance)',color:'rgba(255,255,255,.4)',font:{size:10}},
+           min:0.3,max:1.55,grid:{color:'rgba(255,255,255,.07)'},ticks:{color:'rgba(255,255,255,.4)',font:{size:10}}},
+        y:{title:{display:true,text:'Combined opportunity score',color:'rgba(255,255,255,.4)',font:{size:10}},
+           min:0.25,max:0.70,grid:{color:'rgba(255,255,255,.07)'},ticks:{color:'rgba(255,255,255,.4)',font:{size:10}}}
+      }
+    },
+    plugins:[
+      {id:'band',beforeDatasetsDraw(chart){
+        const ctx=chart.ctx,xs=chart.scales.x,ys=chart.scales.y;
+        ctx.save();ctx.fillStyle='rgba(200,200,150,.07)';
+        ctx.beginPath();
+        ctx.moveTo(xs.getPixelForValue(.3),ys.getPixelForValue(.35));
+        ctx.lineTo(xs.getPixelForValue(1.55),ys.getPixelForValue(.65));
+        ctx.lineTo(xs.getPixelForValue(1.55),ys.getPixelForValue(.65)-55);
+        ctx.lineTo(xs.getPixelForValue(.3),ys.getPixelForValue(.35)-55);
+        ctx.closePath();ctx.fill();ctx.restore();
+      }},
+      {id:'labels',afterDatasetsDraw(chart){
+        const ctx=chart.ctx;
+        ctx.save();ctx.font='11px sans-serif';ctx.fillStyle='rgba(255,255,255,.75)';
+        const off={'Sam McDuffie':[-5,14],'Grayson Fairfield':[7,-8],'Owen Kane':[7,-8],
+          'Griffin Strattard':[7,4],'Cooper Mullen':[-72,-10],'Max Jellie':[7,4],
+          'Charlie Boston':[7,-8],'Jamiks Petersons':[7,4],'Joe Dolby':[7,-8],
+          'Jackson Emery':[7,4],'Everett Marcaurelle':[-110,14],'Alex Johnston':[7,4],'Ben Eastman':[7,-8]};
+        chart.data.datasets.forEach((ds,di)=>{
+          ds.data.forEach((pt,pi)=>{
+            const el=chart.getDatasetMeta(di).data[pi];
+            if(!el) return;
+            const [ox,oy]=off[pt.name]||[7,4];
+            ctx.fillText(pt.name.split(' ')[0],el.x+ox,el.y+oy);
+          });
+        });
+        ctx.restore();
+      }}
+    ]
+  });
+}
+
+// Load Chart.js then build
+const cjs=document.createElement('script');
+cjs.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js';
+cjs.onload=buildChart;
+document.head.appendChild(cjs);
+
+// combo sort (uses local array)
+let comboArr=[...comboData];
+document.getElementById('combo-tbl').querySelectorAll('th.sort').forEach(th=>{
+  let sd=-1;
+  th.addEventListener('click',function(){
+    const col=th.getAttribute('data-col'); sd*=-1;
+    document.getElementById('combo-tbl').querySelectorAll('th.sort').forEach(t=>t.classList.remove('asc','desc'));
+    th.classList.add(sd===-1?'desc':'asc');
+    comboArr=[...comboData].sort((a,b)=>sd*(b[col]-a[col]));
+    renderCombo(comboArr);
   });
 });
 </script>
