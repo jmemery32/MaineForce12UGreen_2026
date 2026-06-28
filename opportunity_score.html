@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maine Force 12U Green · Opportunity Report 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap');
+:root {
+  --green:#1a3a1a; --green-mid:#2d5a2d; --green-light:#3a6b3a;
+  --cream:#f5f0e8; --dirt:#c8a870; --chalk:#ffffff; --accent:#e8c840;
+  --red:#e84040; --blue:#90ccff; --purple:#cc99ff; --muted:rgba(255,255,255,0.45);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--green);background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px);font-family:'Source Code Pro',monospace;color:var(--chalk);padding:20px 14px 60px;min-height:100vh;}
+h1{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--accent);margin-bottom:4px;}
+.sub{text-align:center;font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.22em;color:rgba(255,255,255,.28);margin-bottom:22px;text-transform:uppercase;}
+.tabs{display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.tab-btn{font-family:'Oswald',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:2px solid rgba(255,255,255,.18);color:rgba(255,255,255,.45);padding:6px 14px;border-radius:4px;cursor:pointer;transition:all .15s;}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:var(--green);}
+.tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.card{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px;margin-bottom:18px;overflow-x:auto;}
+.sl{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;padding-left:2px;}
+table{width:100%;border-collapse:collapse;font-size:.72rem;white-space:nowrap;}
+thead th{font-family:'Oswald',sans-serif;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:5px 8px;border-bottom:1px solid rgba(232,200,64,.2);text-align:center;font-weight:600;}
+thead th.l{text-align:left;}
+tbody tr:nth-child(even){background:rgba(255,255,255,.03);}
+tbody tr:hover{background:rgba(232,200,64,.07);}
+tbody tr.total-row{background:rgba(232,200,64,.1)!important;border-top:1px solid rgba(232,200,64,.3);}
+tbody td{padding:5px 8px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.85);}
+tbody td.l{text-align:left;font-family:'Oswald',sans-serif;font-size:.82rem;letter-spacing:.04em;color:var(--chalk);}
+tbody td.rank{color:var(--accent);font-weight:600;font-size:.68rem;}
+.bar-wrap{display:inline-block;width:80px;height:8px;background:rgba(255,255,255,.1);border-radius:4px;vertical-align:middle;margin-left:6px;}
+.bar-fill{height:100%;border-radius:4px;background:var(--accent);transition:width .3s;}
+.bar-fill.blue{background:var(--blue);}
+.bar-fill.combo{background:linear-gradient(90deg,var(--accent),var(--blue));}
+.bar-fill.adh{background:#6dbf6d;}
+.pill{display:inline-block;border-radius:3px;padding:2px 7px;font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.06em;}
+.pill-g{background:rgba(109,191,109,.2);color:#6dbf6d;}
+.pill-y{background:rgba(232,200,64,.2);color:var(--accent);}
+.pill-r{background:rgba(232,64,64,.18);color:var(--red);}
+.phi{font-family:'Oswald',sans-serif;font-size:.72rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:16px;}
+.phi strong{color:var(--accent);}
+.phi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
+@media(max-width:480px){.phi-grid{grid-template-columns:1fr;}}
+.phi-box{background:rgba(0,0,0,.25);border:1px solid rgba(232,200,64,.15);border-radius:6px;padding:12px;}
+.phi-box h4{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;border-bottom:1px solid rgba(232,200,64,.15);padding-bottom:4px;}
+.phi-box p,.phi-box li{font-size:.7rem;color:rgba(255,255,255,.65);line-height:1.9;list-style:none;}
+.wt-table{font-size:.68rem;width:100%;}
+.wt-table td{padding:3px 6px;color:rgba(255,255,255,.7);}
+.wt-table td:first-child{color:var(--accent);font-weight:600;width:36px;}
+.wt-table td:last-child{color:rgba(255,255,255,.4);}
+th.sortable{cursor:pointer;user-select:none;}
+th.sortable:hover{color:#fff;}
+th.sortable::after{content:' ⇅';font-size:.55rem;opacity:.5;}
+th.sortable.asc::after{content:' ↑';opacity:1;}
+th.sortable.desc::after{content:' ↓';opacity:1;}
+.note{font-size:.65rem;color:rgba(255,255,255,.35);margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06);line-height:1.7;}
+</style>
+</head>
+<body>
+<h1>⚾ Maine Force 12U Green</h1>
+<p class="sub">2026 Season · Player Opportunity Report</p>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="def">Defensive</button>
+  <button class="tab-btn" data-tab="off">Offensive</button>
+  <button class="tab-btn" data-tab="combo">Overall</button>
+  <button class="tab-btn" data-tab="adh">Plan Adherence</button>
+</div>
+
+<!-- ═══ DEFENSIVE OPPORTUNITY ═══ -->
+<div class="tab-panel active" id="def">
+  <div class="phi-grid">
+    <div class="phi-box">
+      <h4>What This Measures</h4>
+      <p>Weighted innings played by position across the full season. Each position carries a weight reflecting how much active development it provides. A pitcher is in every play; a left fielder may not touch the ball for an inning. The score captures how much meaningful fielding development time each player received.</p>
+    </div>
+    <div class="phi-box">
+      <h4>Position Weights</h4>
+      <table class="wt-table">
+        <tr><td>P</td><td>3.0</td><td>Every pitch, highest development</td></tr>
+        <tr><td>C</td><td>2.5</td><td>Constant engagement, field general</td></tr>
+        <tr><td>SS</td><td>2.0</td><td>Most demanding infield spot</td></tr>
+        <tr><td>2B / 3B / CF</td><td>1.5</td><td>Active infield / premier outfield</td></tr>
+        <tr><td>1B</td><td>1.2</td><td>Infield, more passive</td></tr>
+        <tr><td>LF / RF</td><td>1.0</td><td>Baseline outfield</td></tr>
+      </table>
+    </div>
+    <div class="phi-box">
+      <h4>Raw vs. Rate</h4>
+      <p>Raw Score = Σ (innings × weight). Reflects absolute development time.<br><br>Opportunity Rate = Raw ÷ (GP × 6). Normalizes for players who missed games — the fairer comparison.</p>
+    </div>
+    <div class="phi-box">
+      <h4>Coaching Goal</h4>
+      <p>A well-distributed team sees most players between 0.9–1.3 on Opp Rate. Outliers below 0.8 may signal a kid who needs more high-value innings next season. Outliers above 1.4 reflect heavy investment in premium spots (pitching/SS/C).</p>
+    </div>
+  </div>
+
+  <p class="sl">Ranked by Opportunity Rate · Click headers to sort</p>
+  <div class="card">
+    <table id="def-table">
+      <thead>
+        <tr>
+          <th class="l">Player</th>
+          <th class="sortable" data-col="gp">GP</th>
+          <th class="sortable" data-col="raw">Raw Score</th>
+          <th class="sortable" data-col="rate">Opp Rate</th>
+          <th>Rate Visual</th>
+          <th class="sortable" data-col="div">Positions</th>
+          <th>Top Position</th>
+        </tr>
+      </thead>
+      <tbody id="def-body"></tbody>
+    </table>
+    <p class="note">Opp Rate = Weighted Innings ÷ (GP × 6 innings). Max theoretical = 3.0 (pitching every inning). Excludes Landon Colfer, Wes Tardiff, Charlie Lemieux, Evan Keene (last 3 games only).</p>
+  </div>
+</div>
+
+<!-- ═══ OFFENSIVE OPPORTUNITY ═══ -->
+<div class="tab-panel" id="off">
+  <div class="phi-grid">
+    <div class="phi-box">
+      <h4>What This Measures</h4>
+      <p>Batting order position determines how many plate appearances a player gets over a game. A leadoff hitter bats roughly 20–25% more often than the cleanup hitter in a short game, and the bottom of the order even less. This score captures how much offensive opportunity the coach gave each player through lineup placement.</p>
+    </div>
+    <div class="phi-box">
+      <h4>Formula</h4>
+      <p>For each game a player appeared in, their lineup spot is normalized to a 0–1 scale:<br><br><strong>Spot Score = (Roster Size − Lineup Pos) ÷ (Roster Size − 1)</strong><br><br>1.0 = leadoff. 0.0 = last in order. Average across all games = Offensive Opportunity Score.</p>
+    </div>
+    <div class="phi-box">
+      <h4>Data Source</h4>
+      <p>Batting orders drawn from all game plan HTML files: Apr 26 (G1/G2), May 3 (G1/G2), May 10 (G1/G2), May 17 (G1/G2), May 23 pool play (G1/G2), May 23 bracket (G1/G2/G3), and tournament games.</p>
+    </div>
+    <div class="phi-box">
+      <h4>Coaching Goal</h4>
+      <p>In a pure rotation approach everyone averages 0.50. Scores above 0.60 reflect consistent top-of-order placement; below 0.35 reflects bottom-of-order. Intentional — coaches put stronger hitters up top — but worth reviewing for players who deserve more run-scoring chances next year.</p>
+    </div>
+  </div>
+
+  <p class="sl">Ranked by Offensive Opportunity Score · Click headers to sort</p>
+  <div class="card">
+    <table id="off-table">
+      <thead>
+        <tr>
+          <th class="l">Player</th>
+          <th class="sortable" data-col="games">Lineups</th>
+          <th class="sortable" data-col="avgpos">Avg Lineup Pos</th>
+          <th class="sortable" data-col="offscore">Opp Score</th>
+          <th>Score Visual</th>
+          <th>Tier</th>
+        </tr>
+      </thead>
+      <tbody id="off-body"></tbody>
+    </table>
+    <p class="note">Score of 1.0 = always led off. 0.0 = always batted last. Lineup counts include all 20 planned games across regular season and tournament.</p>
+  </div>
+</div>
+
+<!-- ═══ COMBINED OPPORTUNITY ═══ -->
+<div class="tab-panel" id="combo">
+  <div class="phi-grid">
+    <div class="phi-box">
+      <h4>Combined Score</h4>
+      <p>Blends Defensive Opportunity Rate and Offensive Opportunity Score using equal weight (50/50). Both scores are already normalized to comparable scales. The combined view shows which players received holistic opportunity — both in the field at premium spots and in the lineup at productive positions.</p>
+    </div>
+    <div class="phi-box">
+      <h4>How to Read It</h4>
+      <p>Above 0.90 = high opportunity across both dimensions.<br><br>0.65–0.90 = solid, well-rounded opportunity.<br><br>Below 0.65 = coach may want to revisit this player's role heading into next season.</p>
+    </div>
+  </div>
+
+  <p class="sl">Combined Opportunity · Defensive Rate + Offensive Score (equal weight) · Click headers to sort</p>
+  <div class="card">
+    <table id="combo-table">
+      <thead>
+        <tr>
+          <th class="l">Player</th>
+          <th class="sortable" data-col="defrate">Def Rate</th>
+          <th class="sortable" data-col="offscore">Off Score</th>
+          <th class="sortable" data-col="combined">Combined</th>
+          <th>Visual</th>
+          <th>Tier</th>
+        </tr>
+      </thead>
+      <tbody id="combo-body"></tbody>
+    </table>
+    <p class="note">Def Rate normalized from 0–3.0 scale to 0–1 for blending by dividing by 3. Combined = avg(Def Rate/3, Off Score).</p>
+  </div>
+</div>
+
+<!-- ═══ PLAN ADHERENCE ═══ -->
+<div class="tab-panel" id="adh">
+  <div class="phi-grid">
+    <div class="phi-box">
+      <h4>What This Measures</h4>
+      <p>How closely the actual season fielding statistics matched what was drawn up in the game plan HTML files. For each player, the planned proportion of innings at each position is compared to the actual proportion. Overlap in those distributions = adherence.</p>
+    </div>
+    <div class="phi-box">
+      <h4>Method</h4>
+      <p>For each position: compute the fraction of planned innings vs. actual innings. The adherence score is the sum of min(planned%, actual%) across all 9 positions — essentially the "intersection" of the two distributions. 100% = executed exactly as drawn up.</p>
+    </div>
+    <div class="phi-box">
+      <h4>What Lowers It</h4>
+      <p>In-game adjustments, injured arms, absent players, and defensive substitutions all cause deviations. A lower score doesn't mean bad coaching — it means the game demanded flexibility. Planners never survive contact with the opponent.</p>
+    </div>
+    <div class="phi-box">
+      <h4>Season Summary</h4>
+      <p>Overall weighted adherence across all 13 players: <strong style="color:var(--accent);font-size:1.1em;">84%</strong>. That's a meaningful number — it means roughly 5 out of 6 fielding innings went exactly as planned.</p>
+    </div>
+  </div>
+
+  <p class="sl">Game Plan Adherence by Player · Click headers to sort</p>
+  <div class="card">
+    <table id="adh-table">
+      <thead>
+        <tr>
+          <th class="l">Player</th>
+          <th class="sortable" data-col="planinns">Planned Inn</th>
+          <th class="sortable" data-col="actinns">Actual Inn</th>
+          <th>Plan Top Pos</th>
+          <th>Actual Top Pos</th>
+          <th class="sortable" data-col="adh">Adherence</th>
+          <th>Visual</th>
+        </tr>
+      </thead>
+      <tbody id="adh-body"></tbody>
+    </table>
+    <p class="note">Planned innings extracted from all game plan JS arrays (Apr 26 through tournament). Actual innings from final season statistics. Overall weighted adherence: 84.0%.</p>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+
+const defData = [
+  {name:'Sam McDuffie',    gp:15, raw:155.70, rate:1.730, div:6, topPos:'P'},
+  {name:'Jamiks Petersons',gp:10, raw:96.87,  rate:1.614, div:7, topPos:'C'},
+  {name:'Charlie Boston',  gp:15, raw:130.87, rate:1.454, div:8, topPos:'C'},
+  {name:'Max Jellie',      gp:15, raw:129.87, rate:1.443, div:8, topPos:'SS'},
+  {name:'Ben Eastman',     gp:7,  raw:55.77,  rate:1.328, div:6, topPos:'SS'},
+  {name:'Grayson Fairfield',gp:12,raw:85.40,  rate:1.186, div:5, topPos:'3B'},
+  {name:'Cooper Mullen',   gp:12, raw:85.30,  rate:1.185, div:8, topPos:'2B'},
+  {name:'Joe Dolby',       gp:15, raw:97.93,  rate:1.088, div:6, topPos:'C'},
+  {name:'Owen Kane',       gp:15, raw:87.77,  rate:0.975, div:8, topPos:'LF'},
+  {name:'Everett Marcaurelle',gp:12,raw:69.90,rate:0.971, div:9, topPos:'CF'},
+  {name:'Alex Johnston',   gp:12, raw:63.50,  rate:0.882, div:7, topPos:'LF'},
+  {name:'Griffin Strattard',gp:13,raw:62.30,  rate:0.799, div:4, topPos:'1B'},
+  {name:'Jackson Emery',   gp:14, raw:66.67,  rate:0.794, div:4, topPos:'CF'},
+];
+
+const offData = [
+  {name:'Cooper Mullen',    games:17, avgpos:2.9, offscore:0.818},
+  {name:'Charlie Boston',   games:20, avgpos:3.7, offscore:0.740},
+  {name:'Grayson Fairfield',games:17, avgpos:4.2, offscore:0.707},
+  {name:'Max Jellie',       games:20, avgpos:4.3, offscore:0.690},
+  {name:'Jamiks Petersons', games:15, avgpos:5.2, offscore:0.628},
+  {name:'Sam McDuffie',     games:20, avgpos:6.0, offscore:0.506},
+  {name:'Griffin Strattard',games:18, avgpos:6.9, offscore:0.435},
+  {name:'Joe Dolby',        games:20, avgpos:6.8, offscore:0.432},
+  {name:'Ben Eastman',      games:10, avgpos:7.9, offscore:0.382},
+  {name:'Jackson Emery',    games:18, avgpos:8.1, offscore:0.351},
+  {name:'Alex Johnston',    games:17, avgpos:8.5, offscore:0.328},
+  {name:'Everett Marcaurelle',games:16,avgpos:9.3,offscore:0.235},
+  {name:'Owen Kane',        games:19, avgpos:9.8, offscore:0.186},
+];
+
+const adhData = [
+  {name:'Sam McDuffie',     planinns:181, actinns:69.3, topPlan:'SS', topAct:'P',  adh:83.8},
+  {name:'Max Jellie',       planinns:179, actinns:67.3, topPlan:'SS', topAct:'SS', adh:81.0},
+  {name:'Charlie Boston',   planinns:178, actinns:69.0, topPlan:'1B', topAct:'C',  adh:78.7},
+  {name:'Joe Dolby',        planinns:166, actinns:56.3, topPlan:'C',  topAct:'C',  adh:94.0},
+  {name:'Jamiks Petersons', planinns:166, actinns:42.7, topPlan:'C',  topAct:'C',  adh:86.6},
+  {name:'Grayson Fairfield',planinns:172, actinns:52.0, topPlan:'3B', topAct:'3B', adh:90.7},
+  {name:'Cooper Mullen',    planinns:136, actinns:50.7, topPlan:'3B', topAct:'2B', adh:73.7},
+  {name:'Owen Kane',        planinns:170, actinns:61.7, topPlan:'LF', topAct:'LF', adh:81.2},
+  {name:'Griffin Strattard',planinns:163, actinns:48.0, topPlan:'1B', topAct:'1B', adh:84.3},
+  {name:'Everett Marcaurelle',planinns:137,actinns:50.0,topPlan:'CF', topAct:'CF', adh:84.1},
+  {name:'Jackson Emery',    planinns:163, actinns:46.3, topPlan:'CF', topAct:'CF', adh:87.4},
+  {name:'Alex Johnston',    planinns:178, actinns:48.7, topPlan:'LF', topAct:'LF', adh:80.3},
+  {name:'Ben Eastman',      planinns:115, actinns:31.0, topPlan:'SS', topAct:'SS', adh:85.2},
+];
+
+// Build combined
+const comboData = defData.map(d => {
+  const o = offData.find(x => x.name === d.name);
+  const defNorm = d.rate / 3.0;
+  const offScore = o ? o.offscore : 0;
+  return {name: d.name, defrate: d.rate, offscore: offScore, combined: (defNorm + offScore) / 2};
+}).sort((a,b) => b.combined - a.combined);
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+
+function bar(val, max, cls='') {
+  const pct = Math.min(100, (val/max)*100).toFixed(1);
+  return `<div class="bar-wrap"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div>`;
+}
+
+function tier(score, lo, hi) {
+  if (score >= hi) return '<span class="pill pill-g">High</span>';
+  if (score >= lo) return '<span class="pill pill-y">Mid</span>';
+  return '<span class="pill pill-r">Low</span>';
+}
+
+function renderDef(data) {
+  const tb = document.getElementById('def-body');
+  tb.innerHTML = data.map((r,i) =>
+    `<tr>
+      <td class="l">${r.name}</td>
+      <td>${r.gp}</td>
+      <td>${r.raw.toFixed(2)}</td>
+      <td>${r.rate.toFixed(3)}</td>
+      <td>${bar(r.rate, 2.0)}</td>
+      <td>${r.div}</td>
+      <td><span style="font-family:'Oswald',sans-serif;color:var(--accent)">${r.topPos}</span></td>
+    </tr>`
+  ).join('');
+}
+
+function renderOff(data) {
+  const tb = document.getElementById('off-body');
+  tb.innerHTML = data.map(r =>
+    `<tr>
+      <td class="l">${r.name}</td>
+      <td>${r.games}</td>
+      <td>${r.avgpos.toFixed(1)}</td>
+      <td>${r.offscore.toFixed(3)}</td>
+      <td>${bar(r.offscore, 1.0, 'blue')}</td>
+      <td>${tier(r.offscore, 0.35, 0.60)}</td>
+    </tr>`
+  ).join('');
+}
+
+function renderCombo(data) {
+  const tb = document.getElementById('combo-body');
+  tb.innerHTML = data.map(r =>
+    `<tr>
+      <td class="l">${r.name}</td>
+      <td>${r.defrate.toFixed(3)}</td>
+      <td>${r.offscore.toFixed(3)}</td>
+      <td><strong style="color:var(--accent)">${r.combined.toFixed(3)}</strong></td>
+      <td>${bar(r.combined, 0.80, 'combo')}</td>
+      <td>${tier(r.combined, 0.38, 0.55)}</td>
+    </tr>`
+  ).join('');
+}
+
+function renderAdh(data) {
+  const tb = document.getElementById('adh-body');
+  tb.innerHTML = data.map(r => {
+    const pillCls = r.adh >= 88 ? 'pill-g' : r.adh >= 78 ? 'pill-y' : 'pill-r';
+    const match = r.topPlan === r.topAct;
+    return `<tr>
+      <td class="l">${r.name}</td>
+      <td>${r.planinns}</td>
+      <td>${r.actinns.toFixed(1)}</td>
+      <td><span style="font-family:'Oswald',sans-serif;color:var(--accent)">${r.topPlan}</span></td>
+      <td><span style="font-family:'Oswald',sans-serif;color:${match?'#6dbf6d':'var(--dirt)'}">${r.topAct}</span></td>
+      <td><span class="pill ${pillCls}">${r.adh.toFixed(1)}%</span></td>
+      <td>${bar(r.adh, 100, 'adh')}</td>
+    </tr>`;
+  }).join('');
+}
+
+renderDef(defData);
+renderOff(offData);
+renderCombo(comboData);
+renderAdh(adhData);
+
+// ── TABS ──────────────────────────────────────────────────────────────────
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+    btn.classList.add('active');
+  });
+});
+
+// ── SORT ──────────────────────────────────────────────────────────────────
+
+function makeSortable(tableId, dataRef, renderFn) {
+  const table = document.getElementById(tableId);
+  let sortCol = null, sortDir = 1;
+  table.querySelectorAll('th.sortable').forEach(th => {
+    th.addEventListener('click', function() {
+      const col = th.getAttribute('data-col');
+      if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = -1; }
+      table.querySelectorAll('th.sortable').forEach(t => { t.classList.remove('asc','desc'); });
+      th.classList.add(sortDir === -1 ? 'desc' : 'asc');
+      const sorted = [...dataRef].sort((a,b) => sortDir * ((b[col]||0) - (a[col]||0)));
+      renderFn(sorted);
+    });
+  });
+}
+
+makeSortable('def-table', defData, renderDef);
+makeSortable('off-table', offData, renderOff);
+makeSortable('adh-table', adhData, renderAdh);
+
+// combo sort
+document.getElementById('combo-table').querySelectorAll('th.sortable').forEach(th => {
+  let sortDir = 1;
+  th.addEventListener('click', function() {
+    const col = th.getAttribute('data-col');
+    sortDir *= -1;
+    document.getElementById('combo-table').querySelectorAll('th.sortable').forEach(t => t.classList.remove('asc','desc'));
+    th.classList.add(sortDir === -1 ? 'desc' : 'asc');
+    const sorted = [...comboData].sort((a,b) => sortDir * ((b[col]||0) - (a[col]||0)));
+    renderCombo(sorted);
+  });
+});
+</script>
+</body>
+</html>
